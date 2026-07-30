@@ -7,3 +7,19 @@ headers = {
 }
 
 fg_PitchersBaseUrl = "https://www.fangraphs.com/_next/data/Srtn7z-JINs_4qWLRn9y2/players/eury-perez/27768/stats/pitching.json?playerNameRoute=eury-perez&playerId=27768"
+
+class Pitcher:
+    def __init__(self, firstName, lastName):
+        self.fName = firstName
+        self.lName = lastName
+        self.playerId = getPlayerId(firstName, lastName)
+        self.url = f"https://www.fangraphs.com/_next/data/Srtn7z-JINs_4qWLRn9y2/players/{firstName}-{lastName}/{self.playerId}/stats/pitching.json?playerNameRoute={firstName}-{lastName}&playerId={self.playerId}"
+  
+class Batter:
+    def __init__(self, firstName, lastName):
+        self.fName = firstName
+        self.lName = lastName
+        self.playerId = getPlayerId(firstName, lastName)
+        self.url = f"https://www.fangraphs.com/_next/data/qzBSEHXDTj0Ut4UbaRB2T/players/{firstName}-{lastName}/{self.playerId}/splits.json?position=NP&playerNameRoute={firstName}-{lastName}&playerId={self.playerId}"
+  
+
