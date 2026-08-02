@@ -22,4 +22,12 @@ class Batter:
         self.playerId = getPlayerId(firstName, lastName)
         self.url = f"https://www.fangraphs.com/_next/data/qzBSEHXDTj0Ut4UbaRB2T/players/{firstName}-{lastName}/{self.playerId}/splits.json?position=NP&playerNameRoute={firstName}-{lastName}&playerId={self.playerId}"
   
-
+class Game:
+    def __init__(self, home, away, hPitcher, aPitcher, hLineup, aLineup, gameId):
+        self.home = home
+        self.away = away
+        self.hPitcher = hPitcher
+        self.aPitcher = aPitcher
+        self.hLineup = hLineup
+        self.aLineup = aLineup
+        self.gameId = gameId
