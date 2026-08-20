@@ -7,6 +7,12 @@ headers = {
 }
 
 
+mlbDates = {
+    2024: ["2024-03-28", "2024-10-30"],
+    2025: ["2025-03-27", "2025-11-01"],
+    2026: ["2026-03-25", "2026-08-21"]
+}
+
 def getMlbScheduleUrl(dateFrom, dateTo):
     return f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&sportId=21&sportId=51&startDate={dateFrom}&endDate={dateTo}&timeZone=America/New_York&gameType=E&&gameType=S&&gameType=R&&gameType=F&&gameType=D&&gameType=L&&gameType=W&&gameType=A&season=2026&language=en&leagueId=&&leagueId=&&leagueId=103&&leagueId=104&&leagueId=160&&leagueId=426&&leagueId=427&&leagueId=428&&leagueId=429&&leagueId=430&&leagueId=431&&leagueId=432&&leagueId=590&sortBy=gameDate,gameType&hydrate=team,linescore(matchup,runners),xrefId,flags,statusFlags,broadcasts(all),venue(location),decisions,person,probablePitcher,stats,game(content(media(epg),summary),tickets),seriesStatus(useOverride=true)"
 
