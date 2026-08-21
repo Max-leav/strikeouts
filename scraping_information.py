@@ -1,3 +1,5 @@
+import json
+
 headers = {
   'sec-ch-ua-platform': '"Windows"',
   'Referer': 'https://www.fangraphs.com/players/eury-perez/27768/stats/pitching',
@@ -18,19 +20,32 @@ def getMlbScheduleUrl(dateFrom, dateTo):
 
 fg_PitchersBaseUrl = "https://www.fangraphs.com/_next/data/Srtn7z-JINs_4qWLRn9y2/players/eury-perez/27768/stats/pitching.json?playerNameRoute=eury-perez&playerId=27768"
 
+def getMlbPlayerInfo(mlbid):
+    file = open("mlbLookup.json", "r")
+    data = json.load(file)[str(mlbid)]
+    file.close()
+    
+    data.append(''.join(c for c in data[1] if c.isalnum() or c == ' '))
+    
+    return data
+
 class Pitcher:
-    def __init__(self, firstName, lastName):
-        self.fName = firstName
-        self.lName = lastName
-        self.playerId = getPlayerId(firstName, lastName)
-        self.url = f"https://www.fangraphs.com/_next/data/Srtn7z-JINs_4qWLRn9y2/players/{firstName}-{lastName}/{self.playerId}/stats/pitching.json?playerNameRoute={firstName}-{lastName}&playerId={self.playerId}"
+    def __init__(self, mlbid, year):
+        info = getMlbPlayerInfo(mlbid)
+        self.name = info[1]
+        self.mlbid = mlbid
+        self.fgid = info[0]
+        self.statsUrl = f"https://www.fangraphs.com/_next/data/vJs8ho_58DlWCEmPinVEd/players/{info[2].replace(' ', '-')}/{self.fgid}/splits-tool.json?position=P&playerNameRoute={info[2].replace(' ', '-')}&playerId={self.fgid}"
+        self.splitsUrl = f"https://www.fangraphs.com/api/players/splits?playerid={self.mlbid}&position=P&season={year}&split="
   
 class Batter:
-    def __init__(self, firstName, lastName):
-        self.fName = firstName
-        self.lName = lastName
-        self.playerId = getPlayerId(firstName, lastName)
-        self.url = f"https://www.fangraphs.com/_next/data/qzBSEHXDTj0Ut4UbaRB2T/players/{firstName}-{lastName}/{self.playerId}/splits.json?position=NP&playerNameRoute={firstName}-{lastName}&playerId={self.playerId}"
+    def __init__(self, mlbid, year):
+        info = getMlbPlayerInfo(mlbid)
+        self.name = info[1]
+        self.mlbid = mlbid
+        self.fgid = info[0]
+        self.statsUrl = f"https://www.fangraphs.com/_next/data/qzBSEHXDTj0Ut4UbaRB2T/players/{info[2].replace(' ', '-')}/{self.fgid}/splits.json?position=NP&playerNameRoute={info[2].replace(' ', '-')}&playerId={self.fgid}"
+        self.splitsUrl = f"https://www.fangraphs.com/api/players/splits?playerid={self.mlbid}&position=NP&season={year}&split="
   
 class Game:
     def __init__(self, home, away, hPitcher, aPitcher, hLineup, aLineup, gameId, date):
