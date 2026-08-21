@@ -43,6 +43,17 @@ class Game:
         self.gameId = gameId
         self.date = date
         
+    def getDict(self):
+        return {
+            "home": self.home,
+            "away": self.away,
+            "hPitcher": self.hPitcher,
+            "aPitcher": self.aPitcher,
+            "hLineup": self.hLineup,
+            "aLineup": self.aLineup,
+            "date": self.date
+        }
+        
 class Market:
     def __init__(self, sport, propName):
         self.sport = sport
