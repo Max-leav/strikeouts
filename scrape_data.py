@@ -68,11 +68,15 @@ def getAllGameInfo():
     file = open("mlbGameInfo.json", "w")
     file.write(json.dumps(gameInfo, indent=4))
     file.close()
-        
+
+
+def getAllAtBats(yearFrom, yearTo):
+    allGameIds = getGameIds(yearFrom, yearTo)
+    allPlateAppearances = []
     
 
 def getProbablePitchers(date):
     pass
 
 if __name__ == '__main__':
-    getAllGameInfo()
+    getAllAtBats('2024', '2026')
