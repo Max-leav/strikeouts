@@ -92,3 +92,28 @@ class Event:
     def __init__(self, game, bet):
         self.game = game
         self.bet = bet
+        
+class BatterStats:
+    def __init__(self, batter, year, endDate):
+        self.batter = batter
+        self.year = year
+        self.endDate = endDate
+        
+class PitcherStats:
+    def __init__(self, pitcher, year, endDate):
+        self.pitcher = pitcher
+        self.year = year
+        self.endDate = endDate
+        
+class PlateAppearance:
+    def __init__(self, date, gid, pitcher, batter, pitcherStats, batterStats, isStrikeout):
+        self.date = date
+        self.gid = gid
+        self.pitcher = pitcher
+        self.batter = batter
+        self.pStats = pitcherStats
+        self.bStats = batterStats
+        self.isStrikeout = isStrikeout
+        
+    def getDict(self):
+        return {}
