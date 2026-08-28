@@ -1,119 +1,323 @@
 {
-    "691718": [
-        27769,
-        "Pete Crow-Armstrong"
-    ],
-    "670541": [
-        19556,
-        "Yordan Alvarez"
-    ],
-    "693307": [
-        27464,
-        "Dillon Dingler"
-    ],
     "677951": [
         25764,
         "Bobby Witt Jr."
     ],
-    "805808": [
-        33572,
-        "Kevin McGonigle"
-    ],
-    "672640": [
-        19608,
-        "Otto Lopez"
-    ],
-    "695578": [
-        29518,
-        "James Wood"
-    ],
-    "668930": [
-        22186,
-        "Brice Turang"
-    ],
-    "682829": [
-        26668,
-        "Elly De La Cruz"
-    ],
-    "682928": [
-        25768,
-        "CJ Abrams"
-    ],
-    "802139": [
-        34985,
-        "JJ Wetherholt"
-    ],
-    "650333": [
-        18568,
-        "Luis Arraez"
-    ],
-    "678882": [
-        24262,
-        "Ceddanne Rafaela"
-    ],
-    "691406": [
-        28163,
-        "Junior Caminero"
-    ],
-    "575929": [
-        11609,
-        "Willson Contreras"
-    ],
-    "682998": [
-        25878,
-        "Corbin Carroll"
-    ],
-    "681624": [
-        24816,
-        "Andy Pages"
+    "592450": [
+        15640,
+        "Aaron Judge"
     ],
     "660271": [
         19755,
         "Shohei Ohtani"
     ],
-    "518692": [
-        5361,
-        "Freddie Freeman"
+    "691718": [
+        27769,
+        "Pete Crow-Armstrong"
     ],
-    "700250": [
-        29576,
-        "Ben Rice"
+    "665742": [
+        20123,
+        "Juan Soto"
     ],
-    "571970": [
-        13301,
-        "Max Muncy"
+    "663728": [
+        21534,
+        "Cal Raleigh"
     ],
-    "678246": [
-        20178,
-        "Miguel Vargas"
+    "682829": [
+        26668,
+        "Elly De La Cruz"
     ],
-    "677649": [
-        23733,
-        "Ezequiel Duran"
+    "682998": [
+        25878,
+        "Corbin Carroll"
     ],
-    "672515": [
-        22664,
-        "Gabriel Moreno"
+    "596019": [
+        12916,
+        "Francisco Lindor"
     ],
-    "677587": [
-        23690,
-        "Brayan Rocchio"
+    "683002": [
+        26289,
+        "Gunnar Henderson"
     ],
-    "664040": [
-        18882,
-        "Brandon Lowe"
+    "608070": [
+        13510,
+        "Jos\u00e9 Ram\u00edrez"
+    ],
+    "665487": [
+        19709,
+        "Fernando Tatis Jr."
+    ],
+    "606466": [
+        13613,
+        "Ketel Marte"
+    ],
+    "672695": [
+        22799,
+        "Geraldo Perdomo"
+    ],
+    "677594": [
+        23697,
+        "Julio Rodr\u00edguez"
+    ],
+    "670541": [
+        19556,
+        "Yordan Alvarez"
+    ],
+    "547180": [
+        11579,
+        "Bryce Harper"
+    ],
+    "680776": [
+        24617,
+        "Jarren Duran"
     ],
     "621566": [
         14344,
         "Matt Olson"
     ],
+    "661388": [
+        20503,
+        "William Contreras"
+    ],
+    "621439": [
+        14161,
+        "Byron Buxton"
+    ],
+    "608324": [
+        17678,
+        "Alex Bregman"
+    ],
+    "665161": [
+        21636,
+        "Jeremy Pe\u00f1a"
+    ],
+    "668930": [
+        22186,
+        "Brice Turang"
+    ],
+    "665862": [
+        20454,
+        "Jazz Chisholm Jr."
+    ],
+    "621020": [
+        18314,
+        "Dansby Swanson"
+    ],
+    "663538": [
+        21479,
+        "Nico Hoerner"
+    ],
+    "701538": [
+        29490,
+        "Jackson Merrill"
+    ],
+    "607208": [
+        16252,
+        "Trea Turner"
+    ],
+    "518692": [
+        5361,
+        "Freddie Freeman"
+    ],
+    "656941": [
+        16478,
+        "Kyle Schwarber"
+    ],
+    "656305": [
+        16505,
+        "Matt Chapman"
+    ],
+    "608369": [
+        13624,
+        "Corey Seager"
+    ],
+    "680757": [
+        24610,
+        "Steven Kwan"
+    ],
+    "665489": [
+        19611,
+        "Vladimir Guerrero Jr."
+    ],
     "641355": [
         15998,
         "Cody Bellinger"
     ],
+    "673548": [
+        30116,
+        "Seiya Suzuki"
+    ],
+    "646240": [
+        17350,
+        "Rafael Devers"
+    ],
+    "694671": [
+        33333,
+        "Wyatt Langford"
+    ],
+    "687263": [
+        31347,
+        "Zach Neto"
+    ],
+    "694192": [
+        28806,
+        "Jackson Chourio"
+    ],
+    "672640": [
+        19608,
+        "Otto Lopez"
+    ],
+    "624413": [
+        19251,
+        "Pete Alonso"
+    ],
+    "575929": [
+        11609,
+        "Willson Contreras"
+    ],
+    "672386": [
+        22581,
+        "Alejandro Kirk"
+    ],
+    "672515": [
+        22664,
+        "Gabriel Moreno"
+    ],
+    "681624": [
+        24816,
+        "Andy Pages"
+    ],
+    "678882": [
+        24262,
+        "Ceddanne Rafaela"
+    ],
+    "642715": [
+        15986,
+        "Willy Adames"
+    ],
+    "691026": [
+        27479,
+        "Masyn Winn"
+    ],
+    "691406": [
+        28163,
+        "Junior Caminero"
+    ],
+    "605141": [
+        13611,
+        "Mookie Betts"
+    ],
+    "682985": [
+        25976,
+        "Riley Greene"
+    ],
+    "571970": [
+        13301,
+        "Max Muncy"
+    ],
+    "693307": [
+        27464,
+        "Dillon Dingler"
+    ],
+    "664023": [
+        17919,
+        "Ian Happ"
+    ],
+    "592518": [
+        11493,
+        "Manny Machado"
+    ],
+    "670623": [
+        20036,
+        "Isaac Paredes"
+    ],
+    "677800": [
+        23772,
+        "Wilyer Abreu"
+    ],
+    "663656": [
+        18345,
+        "Kyle Tucker"
+    ],
     "668227": [
         19290,
         "Randy Arozarena"
+    ],
+    "672580": [
+        22715,
+        "Maikel Garcia"
+    ],
+    "695578": [
+        29518,
+        "James Wood"
+    ],
+    "672275": [
+        27478,
+        "Patrick Bailey"
+    ],
+    "682928": [
+        25768,
+        "CJ Abrams"
+    ],
+    "669127": [
+        25816,
+        "Shea Langeliers"
+    ],
+    "681082": [
+        26294,
+        "Bryson Stott"
+    ],
+    "621043": [
+        14162,
+        "Carlos Correa"
+    ],
+    "683737": [
+        26319,
+        "Michael Busch"
+    ],
+    "669257": [
+        19197,
+        "Will Smith"
+    ],
+    "650490": [
+        16578,
+        "Yandy D\u00edaz"
+    ],
+    "553993": [
+        12552,
+        "Eugenio Su\u00e1rez"
+    ],
+    "607043": [
+        12927,
+        "Brandon Nimmo"
+    ],
+    "621493": [
+        17548,
+        "Taylor Ward"
+    ],
+    "664040": [
+        18882,
+        "Brandon Lowe"
+    ],
+    "669364": [
+        22266,
+        "Xavier Edwards"
+    ],
+    "669224": [
+        27562,
+        "Austin Wells"
+    ],
+    "665833": [
+        21711,
+        "Oneil Cruz"
+    ],
+    "514888": [
+        5417,
+        "Jose Altuve"
+    ],
+    "680977": [
+        24679,
+        "Brendan Donovan"
     ],
     "671739": [
         25931,
@@ -123,429 +327,309 @@
         35110,
         "Nick Kurtz"
     ],
-    "665742": [
-        20123,
-        "Juan Soto"
-    ],
-    "669127": [
-        25816,
-        "Shea Langeliers"
-    ],
-    "665161": [
-        21636,
-        "Jeremy Pe\u00f1a"
-    ],
-    "624413": [
-        19251,
-        "Pete Alonso"
-    ],
-    "673548": [
-        30116,
-        "Seiya Suzuki"
-    ],
-    "670623": [
-        20036,
-        "Isaac Paredes"
-    ],
-    "668804": [
-        19326,
-        "Bryan Reynolds"
-    ],
-    "808959": [
-        37120,
-        "Munetaka Murakami"
-    ],
-    "682985": [
-        25976,
-        "Riley Greene"
-    ],
-    "621439": [
-        14161,
-        "Byron Buxton"
-    ],
-    "545361": [
-        10155,
-        "Mike Trout"
-    ],
-    "621020": [
-        18314,
-        "Dansby Swanson"
-    ],
-    "665487": [
-        19709,
-        "Fernando Tatis Jr."
-    ],
-    "805367": [
-        31580,
-        "Chase Meidroth"
-    ],
-    "656941": [
-        16478,
-        "Kyle Schwarber"
-    ],
-    "673962": [
-        26299,
-        "Josh Jung"
-    ],
-    "669364": [
-        22266,
-        "Xavier Edwards"
-    ],
-    "665862": [
-        20454,
-        "Jazz Chisholm Jr."
-    ],
-    "672695": [
-        22799,
-        "Geraldo Perdomo"
-    ],
-    "671976": [
-        30063,
-        "Tristan Peters"
-    ],
-    "693304": [
-        27490,
-        "Nick Gonzales"
-    ],
-    "695657": [
-        29712,
-        "Colson Montgomery"
-    ],
-    "691023": [
-        27475,
-        "Jordan Walker"
-    ],
-    "608324": [
-        17678,
-        "Alex Bregman"
-    ],
-    "668939": [
-        26288,
-        "Adley Rutschman"
-    ],
-    "650490": [
-        16578,
-        "Yandy D\u00edaz"
-    ],
-    "686948": [
-        31539,
-        "Drake Baldwin"
-    ],
-    "664034": [
-        17982,
-        "Ty France"
-    ],
-    "669003": [
-        27555,
-        "Garrett Mitchell"
-    ],
-    "680777": [
-        24618,
-        "Ryan Jeffers"
-    ],
-    "608070": [
-        13510,
-        "Jos\u00e9 Ram\u00edrez"
-    ],
-    "681082": [
-        26294,
-        "Bryson Stott"
-    ],
-    "592450": [
-        15640,
-        "Aaron Judge"
-    ],
-    "671277": [
-        20391,
-        "Luis Garc\u00eda Jr."
-    ],
-    "696100": [
-        29715,
-        "Hunter Goodman"
-    ],
-    "641343": [
-        15194,
-        "Jake Bauers"
-    ],
-    "672960": [
-        37123,
-        "Kazuma Okamoto"
-    ],
-    "664023": [
-        17919,
-        "Ian Happ"
-    ],
-    "677800": [
-        23772,
-        "Wilyer Abreu"
-    ],
-    "702284": [
-        31680,
-        "Cole Young"
-    ],
-    "666018": [
-        21837,
-        "Jonathan Aranda"
-    ],
-    "683002": [
-        26289,
-        "Gunnar Henderson"
-    ],
-    "695600": [
-        29478,
-        "Carter Jensen"
-    ],
-    "694671": [
-        33333,
-        "Wyatt Langford"
-    ],
-    "665019": [
-        20572,
-        "Kody Clemens"
-    ],
-    "676475": [
-        27615,
-        "Alec Burleson"
-    ],
-    "686527": [
-        26438,
-        "Dominic Canzone"
-    ],
-    "687263": [
-        31347,
-        "Zach Neto"
-    ],
-    "677594": [
-        23697,
-        "Julio Rodr\u00edguez"
-    ],
-    "701807": [
-        35177,
-        "Carson Benge"
-    ],
-    "663616": [
-        21501,
-        "Trevor Larnach"
-    ],
-    "691720": [
-        33252,
-        "Kyle Karros"
-    ],
-    "547180": [
-        11579,
-        "Bryce Harper"
-    ],
-    "681198": [
-        29805,
-        "TJ Rumfield"
-    ],
-    "800050": [
-        32127,
-        "Chase DeLauter"
-    ],
-    "606466": [
-        13613,
-        "Ketel Marte"
-    ],
-    "669477": [
-        27577,
-        "Casey Schmitt"
-    ],
-    "678218": [
-        23813,
-        "Brandon Valenzuela"
-    ],
-    "701398": [
-        31505,
-        "Sal Stewart"
-    ],
-    "621493": [
-        17548,
-        "Taylor Ward"
-    ],
-    "571448": [
-        9777,
-        "Nolan Arenado"
-    ],
-    "702332": [
-        29646,
-        "Caleb Durbin"
-    ],
-    "805779": [
-        33266,
-        "Jacob Wilson"
-    ],
-    "691026": [
-        27479,
-        "Masyn Winn"
-    ],
-    "680869": [
-        29766,
-        "Zack Gelof"
-    ],
-    "661388": [
-        20503,
-        "William Contreras"
-    ],
-    "691788": [
-        29780,
-        "Joe Mack"
-    ],
-    "701538": [
-        29490,
-        "Jackson Merrill"
-    ],
-    "699013": [
-        29005,
-        "Esmerlyn Valdez"
-    ],
-    "694192": [
-        28806,
-        "Jackson Chourio"
-    ],
-    "645277": [
-        16556,
-        "Ozzie Albies"
-    ],
-    "607043": [
-        12927,
-        "Brandon Nimmo"
-    ],
-    "803011": [
-        35101,
-        "Sam Antonacci"
-    ],
-    "592626": [
-        11899,
-        "Joc Pederson"
-    ],
-    "643289": [
-        16530,
-        "Mauricio Dub\u00f3n"
-    ],
-    "663538": [
-        21479,
-        "Nico Hoerner"
-    ],
-    "592518": [
-        11493,
-        "Manny Machado"
-    ],
-    "680757": [
-        24610,
-        "Steven Kwan"
-    ],
-    "664983": [
-        21622,
-        "Jake McCarthy"
-    ],
-    "572233": [
-        13419,
-        "Christian Walker"
-    ],
-    "678554": [
-        23986,
-        "Curtis Mead"
-    ],
-    "696285": [
-        29931,
-        "Jacob Young"
-    ],
-    "665833": [
-        21711,
-        "Oneil Cruz"
-    ],
-    "683737": [
-        26319,
-        "Michael Busch"
-    ],
-    "683953": [
-        34967,
-        "Travis Bazzana"
-    ],
-    "694497": [
-        27790,
-        "Evan Carter"
-    ],
-    "682626": [
-        26121,
-        "Francisco Alvarez"
+    "593428": [
+        12161,
+        "Xander Bogaerts"
+    ],
+    "667670": [
+        19627,
+        "Brent Rooker"
     ],
     "676391": [
         20352,
         "Ernie Clement"
     ],
-    "689414": [
-        29844,
-        "Liam Hicks"
+    "543807": [
+        12856,
+        "George Springer"
     ],
-    "802415": [
-        31912,
-        "Chandler Simpson"
-    ],
-    "677942": [
-        23789,
-        "Blaze Alexander"
-    ],
-    "646240": [
-        17350,
-        "Rafael Devers"
-    ],
-    "672580": [
-        22715,
-        "Maikel Garcia"
-    ],
-    "665926": [
-        19950,
-        "Andr\u00e9s Gim\u00e9nez"
-    ],
-    "691016": [
-        27467,
-        "Tyler Soderstrom"
-    ],
-    "686681": [
-        27684,
-        "Michael Massey"
-    ],
-    "663968": [
-        26202,
-        "Jake Mangum"
-    ],
-    "502671": [
-        9218,
-        "Paul Goldschmidt"
-    ],
-    "686797": [
-        31595,
-        "Brooks Lee"
-    ],
-    "668709": [
-        26368,
-        "JJ Bleday"
-    ],
-    "687221": [
-        31382,
-        "Dalton Rushing"
+    "662139": [
+        19918,
+        "Daulton Varsho"
     ],
     "687401": [
         25493,
         "Joey Ortiz"
     ],
-    "605141": [
-        13611,
-        "Mookie Betts"
+    "647304": [
+        18839,
+        "Josh Naylor"
     ],
-    "596019": [
-        12916,
-        "Francisco Lindor"
+    "671277": [
+        20391,
+        "Luis Garc\u00eda Jr."
     ],
-    "593428": [
-        12161,
-        "Xander Bogaerts"
+    "681297": [
+        29591,
+        "Colton Cowser"
     ],
-    "808982": [
-        33824,
-        "Jung Hoo Lee"
+    "668939": [
+        26288,
+        "Adley Rutschman"
+    ],
+    "680777": [
+        24618,
+        "Ryan Jeffers"
+    ],
+    "665926": [
+        19950,
+        "Andr\u00e9s Gim\u00e9nez"
+    ],
+    "671056": [
+        20599,
+        "Iv\u00e1n Herrera"
+    ],
+    "543760": [
+        12533,
+        "Marcus Semien"
+    ],
+    "650333": [
+        18568,
+        "Luis Arraez"
+    ],
+    "571448": [
+        9777,
+        "Nolan Arenado"
+    ],
+    "608348": [
+        13620,
+        "Carson Kelly"
+    ],
+    "545361": [
+        10155,
+        "Mike Trout"
+    ],
+    "700250": [
+        29576,
+        "Ben Rice"
+    ],
+    "666182": [
+        19612,
+        "Bo Bichette"
+    ],
+    "572233": [
+        13419,
+        "Christian Walker"
+    ],
+    "663886": [
+        17988,
+        "Tyler Stephenson"
+    ],
+    "686948": [
+        31539,
+        "Drake Baldwin"
+    ],
+    "595777": [
+        10815,
+        "Jurickson Profar"
+    ],
+    "696285": [
+        29931,
+        "Jacob Young"
+    ],
+    "592885": [
+        11477,
+        "Christian Yelich"
+    ],
+    "668804": [
+        19326,
+        "Bryan Reynolds"
+    ],
+    "676475": [
+        27615,
+        "Alec Burleson"
+    ],
+    "669016": [
+        20202,
+        "Brandon Marsh"
+    ],
+    "683011": [
+        27647,
+        "Anthony Volpe"
+    ],
+    "650402": [
+        16997,
+        "Gleyber Torres"
+    ],
+    "641487": [
+        15491,
+        "J.P. Crawford"
+    ],
+    "656811": [
+        16442,
+        "Ryan O'Hearn"
+    ],
+    "676609": [
+        23401,
+        "Jos\u00e9 Caballero"
+    ],
+    "500743": [
+        7802,
+        "Miguel Rojas"
+    ],
+    "702332": [
+        29646,
+        "Caleb Durbin"
+    ],
+    "666018": [
+        21837,
+        "Jonathan Aranda"
+    ],
+    "695657": [
+        29712,
+        "Colson Montgomery"
+    ],
+    "643289": [
+        16530,
+        "Mauricio Dub\u00f3n"
+    ],
+    "686217": [
+        29622,
+        "Sal Frelick"
+    ],
+    "664761": [
+        21618,
+        "Alec Bohm"
+    ],
+    "664983": [
+        21622,
+        "Jake McCarthy"
+    ],
+    "663586": [
+        18360,
+        "Austin Riley"
+    ],
+    "669003": [
+        27555,
+        "Garrett Mitchell"
+    ],
+    "542303": [
+        10324,
+        "Marcell Ozuna"
+    ],
+    "673237": [
+        23003,
+        "Yainer Diaz"
+    ],
+    "660670": [
+        18401,
+        "Ronald Acu\u00f1a Jr."
+    ],
+    "630105": [
+        18036,
+        "Jake Cronenworth"
+    ],
+    "682626": [
+        26121,
+        "Francisco Alvarez"
+    ],
+    "592663": [
+        11739,
+        "J.T. Realmuto"
+    ],
+    "656716": [
+        19392,
+        "Zach McKinstry"
+    ],
+    "678246": [
+        20178,
+        "Miguel Vargas"
+    ],
+    "805367": [
+        31580,
+        "Chase Meidroth"
+    ],
+    "641857": [
+        15112,
+        "Ryan McMahon"
+    ],
+    "669065": [
+        26151,
+        "Kyle Stowers"
+    ],
+    "691016": [
+        27467,
+        "Tyler Soderstrom"
+    ],
+    "669701": [
+        26396,
+        "Josh Smith"
+    ],
+    "696100": [
+        29715,
+        "Hunter Goodman"
+    ],
+    "805808": [
+        33572,
+        "Kevin McGonigle"
+    ],
+    "573262": [
+        14854,
+        "Mike Yastrzemski"
+    ],
+    "663757": [
+        18564,
+        "Trent Grisham"
+    ],
+    "690993": [
+        27899,
+        "Colt Keith"
+    ],
+    "673962": [
+        26299,
+        "Josh Jung"
+    ],
+    "676059": [
+        27815,
+        "Jordan Westburg"
+    ],
+    "805779": [
+        33266,
+        "Jacob Wilson"
+    ],
+    "656775": [
+        17929,
+        "Cedric Mullins"
+    ],
+    "650489": [
+        17338,
+        "Willi Castro"
+    ],
+    "677649": [
+        23733,
+        "Ezequiel Duran"
+    ],
+    "802139": [
+        34985,
+        "JJ Wetherholt"
+    ],
+    "606192": [
+        13066,
+        "Teoscar Hern\u00e1ndez"
+    ],
+    "645277": [
+        16556,
+        "Ozzie Albies"
+    ],
+    "668709": [
+        26368,
+        "JJ Bleday"
+    ],
+    "620443": [
+        15905,
+        "Luis Torrens"
+    ],
+    "671732": [
+        22542,
+        "Lawrence Butler"
+    ],
+    "677587": [
+        23690,
+        "Brayan Rocchio"
+    ],
+    "676694": [
+        20308,
+        "Jake Meyers"
     ],
     "687462": [
         26477,
@@ -555,1041 +639,1569 @@
         33189,
         "Nolan Schanuel"
     ],
-    "656305": [
-        16505,
-        "Matt Chapman"
+    "657656": [
+        17128,
+        "Ram\u00f3n Laureano"
     ],
-    "665923": [
-        21780,
-        "Esteury Ruiz"
+    "693304": [
+        27490,
+        "Nick Gonzales"
     ],
-    "690993": [
-        27899,
-        "Colt Keith"
-    ],
-    "805999": [
-        33656,
-        "A.J. Ewing"
-    ],
-    "666160": [
-        19956,
-        "Mickey Moniak"
+    "678662": [
+        24064,
+        "Ezequiel Tovar"
     ],
     "664770": [
         18123,
         "Nathan Lukes"
     ],
-    "694249": [
-        33253,
-        "Cole Carrigg"
+    "666023": [
+        21840,
+        "Freddy Fermin"
     ],
-    "669065": [
-        26151,
-        "Kyle Stowers"
+    "641343": [
+        15194,
+        "Jake Bauers"
     ],
-    "691740": [
-        31441,
-        "Daniel Susac"
-    ],
-    "662139": [
-        19918,
-        "Daulton Varsho"
-    ],
-    "676356": [
-        26365,
-        "Jonny DeLuca"
-    ],
-    "681297": [
-        29591,
-        "Colton Cowser"
-    ],
-    "660688": [
-        19610,
-        "Keibert Ruiz"
-    ],
-    "806198": [
-        33530,
-        "Cooper Pratt"
-    ],
-    "804606": [
-        35376,
-        "Konnor Griffin"
-    ],
-    "695506": [
-        35041,
-        "Jac Caglianone"
-    ],
-    "683011": [
-        27647,
-        "Anthony Volpe"
-    ],
-    "621043": [
-        14162,
-        "Carlos Correa"
+    "664056": [
+        18030,
+        "Harrison Bader"
     ],
     "643396": [
         16512,
         "Isiah Kiner-Falefa"
     ],
-    "620443": [
-        15905,
-        "Luis Torrens"
-    ],
-    "608348": [
-        13620,
-        "Carson Kelly"
-    ],
-    "701358": [
-        35108,
-        "Cam Smith"
-    ],
-    "807712": [
-        33321,
-        "Luke Keaschall"
-    ],
-    "683734": [
-        26197,
-        "Andrew Vaughn"
-    ],
-    "669134": [
-        22217,
-        "Luis Campusano"
-    ],
-    "592663": [
-        11739,
-        "J.T. Realmuto"
-    ],
-    "669394": [
-        22275,
-        "Jake Burger"
-    ],
-    "665804": [
-        21693,
-        "Miguel Amaya"
-    ],
-    "695734": [
-        29995,
-        "Daylen Lile"
-    ],
-    "669242": [
-        19470,
-        "Tommy Edman"
-    ],
-    "666182": [
-        19612,
-        "Bo Bichette"
-    ],
-    "702616": [
-        31781,
-        "Jackson Holliday"
-    ],
-    "650402": [
-        16997,
-        "Gleyber Torres"
-    ],
-    "682848": [
-        25332,
-        "Endy Rodr\u00edguez"
-    ],
-    "685133": [
-        31490,
-        "Wade Meckler"
-    ],
-    "665489": [
-        19611,
-        "Vladimir Guerrero Jr."
-    ],
-    "671056": [
-        20599,
-        "Iv\u00e1n Herrera"
-    ],
-    "607208": [
-        16252,
-        "Trea Turner"
-    ],
-    "663743": [
-        21538,
-        "Nick Fortes"
-    ],
-    "669257": [
-        19197,
-        "Will Smith"
-    ],
-    "656775": [
-        17929,
-        "Cedric Mullins"
-    ],
-    "669016": [
-        20202,
-        "Brandon Marsh"
-    ],
-    "681715": [
-        24878,
-        "Heriberto Hern\u00e1ndez"
-    ],
-    "683083": [
-        25979,
-        "Nasim Nu\u00f1ez"
-    ],
-    "679822": [
-        27501,
-        "Justin Foscue"
-    ],
-    "811965": [
-        35121,
-        "Joshua Kuroda-Grauer"
-    ],
-    "665052": [
-        21626,
-        "Griffin Conine"
-    ],
-    "676609": [
-        23401,
-        "Jos\u00e9 Caballero"
-    ],
-    "695731": [
-        35423,
-        "Braden Montgomery"
-    ],
-    "641487": [
-        15491,
-        "J.P. Crawford"
-    ],
-    "691594": [
-        28253,
-        "Javier Sanoja"
-    ],
-    "694212": [
-        28824,
-        "Samuel Basallo"
-    ],
-    "668885": [
-        27462,
-        "Austin Martin"
-    ],
-    "687093": [
-        26031,
-        "Vaughn Grissom"
-    ],
-    "686894": [
-        27690,
-        "Joey Wiemer"
-    ],
-    "641680": [
-        16930,
-        "Jonah Heim"
-    ],
-    "545121": [
-        13324,
-        "Ildemaro Vargas"
-    ],
-    "596142": [
-        11442,
-        "Gary S\u00e1nchez"
-    ],
-    "686611": [
-        33541,
-        "Dylan Crews"
-    ],
-    "605170": [
-        14968,
-        "Victor Caratini"
-    ],
-    "699393": [
-        29218,
-        "Pedro Ram\u00edrez"
-    ],
-    "683748": [
-        25999,
-        "Victor Mesa Jr."
-    ],
     "668715": [
         26323,
         "Spencer Steer"
     ],
-    "663886": [
-        17988,
-        "Tyler Stephenson"
-    ],
-    "686475": [
-        25779,
-        "Tyler Tolbert"
-    ],
-    "663656": [
-        18345,
-        "Kyle Tucker"
-    ],
-    "814439": [
-        35061,
-        "Ryan Waldschmidt"
-    ],
-    "676724": [
-        20404,
-        "Jared Young"
-    ],
-    "668952": [
-        25867,
-        "Ryan Kreidler"
-    ],
-    "656537": [
-        16947,
-        "Derek Hill"
-    ],
-    "672356": [
-        22563,
-        "Gabriel Arias"
-    ],
-    "667472": [
-        22054,
-        "Dane Myers"
-    ],
-    "686555": [
-        25477,
-        "Isaac Collins"
-    ],
-    "669392": [
-        22274,
-        "Samad Taylor"
-    ],
-    "608369": [
-        13624,
-        "Corey Seager"
-    ],
-    "668723": [
-        22165,
-        "Ryan Vilade"
-    ],
-    "660670": [
-        18401,
-        "Ronald Acu\u00f1a Jr."
-    ],
-    "656811": [
-        16442,
-        "Ryan O'Hearn"
-    ],
-    "679845": [
-        27630,
-        "Nick Loftin"
-    ],
-    "672386": [
-        22581,
-        "Alejandro Kirk"
-    ],
-    "657041": [
-        16939,
-        "Lane Thomas"
-    ],
-    "671218": [
-        22515,
-        "Heliot Ramos"
-    ],
-    "663457": [
-        21454,
-        "Lars Nootbaar"
-    ],
-    "672724": [
-        22823,
-        "Oswald Peraza"
-    ],
-    "647304": [
-        18839,
-        "Josh Naylor"
-    ],
-    "805811": [
-        33390,
-        "Bryce Eldridge"
-    ],
-    "663757": [
-        18564,
-        "Trent Grisham"
-    ],
-    "663728": [
-        21534,
-        "Cal Raleigh"
-    ],
-    "680664": [
-        24574,
-        "Eduardo Valencia"
-    ],
-    "642350": [
-        17452,
-        "Jose Siri"
-    ],
-    "703607": [
-        31448,
-        "Henry Bolte"
-    ],
-    "595978": [
-        12976,
-        "Austin Hedges"
-    ],
-    "680977": [
-        24679,
-        "Brendan Donovan"
-    ],
-    "622268": [
-        19314,
-        "Donovan Walton"
-    ],
-    "694362": [
-        29487,
-        "Blake Dunn"
-    ],
-    "642201": [
-        19346,
-        "Eli White"
-    ],
-    "606192": [
-        13066,
-        "Teoscar Hern\u00e1ndez"
-    ],
-    "682657": [
-        26540,
-        "Angel Mart\u00ednez"
-    ],
-    "668904": [
-        20437,
-        "Royce Lewis"
-    ],
-    "641857": [
-        15112,
-        "Ryan McMahon"
-    ],
-    "624424": [
-        16376,
-        "Michael Conforto"
-    ],
-    "665750": [
-        18900,
-        "Leody Taveras"
-    ],
-    "500743": [
-        7802,
-        "Miguel Rojas"
-    ],
-    "545341": [
-        10243,
-        "Randal Grichuk"
-    ],
-    "687952": [
-        30011,
-        "Christian Encarnacion-Strand"
-    ],
-    "622761": [
-        17273,
-        "Jorge Mateo"
-    ],
-    "823550": [
-        37122,
-        "Sung-Mun Song"
-    ],
-    "543807": [
-        12856,
-        "George Springer"
-    ],
-    "665953": [
-        21797,
-        "Andr\u00e9s Chaparro"
-    ],
-    "682177": [
-        25180,
-        "Daniel Schneemann"
-    ],
-    "691783": [
-        29976,
-        "Jordan Lawlar"
-    ],
-    "807713": [
-        33322,
-        "Matt Shaw"
-    ],
-    "514888": [
-        5417,
-        "Jose Altuve"
-    ],
-    "678391": [
-        23917,
-        "Jorbit Vivas"
-    ],
-    "691723": [
-        28312,
-        "Coby Mayo"
-    ],
-    "664728": [
-        21614,
-        "Kyle Isbel"
-    ],
-    "663494": [
-        21464,
-        "Bryan Torres"
-    ],
-    "670764": [
-        22458,
-        "Taylor Walls"
-    ],
-    "687551": [
-        31545,
-        "Drew Gilbert"
-    ],
-    "624431": [
-        16725,
-        "Jose Trevino"
-    ],
-    "694203": [
-        28816,
-        "Denzer Guzman"
-    ],
-    "621438": [
-        13675,
-        "Tyrone Taylor"
-    ],
-    "670032": [
-        19339,
-        "Nicky Lopez"
-    ],
-    "670231": [
-        26284,
-        "John Rave"
-    ],
-    "553869": [
-        11680,
-        "Elias D\u00edaz"
-    ],
-    "650489": [
-        17338,
-        "Willi Castro"
-    ],
-    "690976": [
-        31665,
-        "Alex Freeland"
-    ],
-    "669743": [
-        19296,
-        "Alex Call"
-    ],
-    "686780": [
-        25782,
-        "Pedro Pag\u00e9s"
-    ],
-    "666126": [
-        21842,
-        "Carlos Cortes"
-    ],
-    "676439": [
-        23372,
-        "Hunter Feduccia"
-    ],
-    "663586": [
-        18360,
-        "Austin Riley"
-    ],
-    "810938": [
-        33197,
-        "Ben Williamson"
-    ],
-    "669397": [
-        22277,
-        "Nick Allen"
-    ],
-    "687231": [
-        26224,
-        "Darell Hernaiz"
-    ],
-    "682729": [
-        26599,
-        "Jonatan Clase"
-    ],
-    "808975": [
-        35322,
-        "Hyeseong Kim"
-    ],
-    "682987": [
-        31532,
-        "Spencer Jones"
-    ],
-    "686765": [
-        25483,
-        "Nick Sogard"
-    ],
-    "805347": [
-        33492,
-        "Jim Jarvis"
-    ],
-    "694378": [
-        33225,
-        "Jacob Gonzalez"
-    ],
-    "701162": [
-        29577,
-        "Ben Malgeri"
-    ],
-    "805300": [
-        31370,
-        "Jakob Marsee"
-    ],
-    "645305": [
-        18551,
-        "Ali S\u00e1nchez"
-    ],
-    "650559": [
-        19600,
-        "Bryan De La Cruz"
-    ],
-    "543309": [
-        5517,
-        "Kyle Higashioka"
-    ],
-    "642715": [
-        15986,
-        "Willy Adames"
-    ],
-    "701350": [
-        31812,
-        "Roman Anthony"
-    ],
-    "663611": [
-        20521,
-        "Nick Madrigal"
-    ],
-    "640902": [
-        19802,
-        "Jhonny Pereda"
-    ],
-    "592885": [
-        11477,
-        "Christian Yelich"
-    ],
-    "666211": [
-        19960,
-        "Taylor Trammell"
-    ],
-    "656716": [
-        19392,
-        "Zach McKinstry"
-    ],
-    "663604": [
-        21496,
-        "Brandon Lockridge"
-    ],
-    "673237": [
-        23003,
-        "Yainer Diaz"
-    ],
-    "670042": [
-        19354,
-        "Luke Raley"
-    ],
-    "595879": [
-        12979,
-        "Javier B\u00e1ez"
-    ],
-    "649966": [
-        16622,
-        "Luis Ur\u00edas"
-    ],
-    "813841": [
-        33270,
-        "Jonah Cox"
-    ],
-    "571771": [
-        10472,
-        "Enrique Hern\u00e1ndez"
-    ],
-    "669707": [
-        25807,
-        "Jared Triolo"
-    ],
-    "663993": [
-        19566,
-        "Nathaniel Lowe"
-    ],
-    "666152": [
-        27531,
-        "David Hamilton"
-    ],
-    "640492": [
-        18821,
-        "Jos\u00e9 Az\u00f3car"
-    ],
-    "657757": [
-        19901,
-        "Gavin Sheets"
-    ],
-    "800325": [
-        30675,
-        "Luis Lara"
-    ],
-    "676551": [
-        20450,
-        "Brewer Hicklen"
-    ],
-    "669899": [
-        27449,
-        "Ryan Ward"
-    ],
-    "678489": [
-        23968,
-        "Jorge Barrosa"
-    ],
-    "663698": [
-        21524,
-        "Joey Bart"
-    ],
-    "696135": [
-        29905,
-        "Kahlil Watson"
-    ],
-    "680779": [
-        29617,
-        "Henry Davis"
-    ],
-    "678009": [
-        23800,
-        "Parker Meadows"
-    ],
-    "703601": [
-        33381,
-        "Max Clark"
-    ],
-    "680474": [
-        24488,
-        "Max Schuemann"
-    ],
-    "655316": [
-        19455,
-        "Andruw Monasterio"
-    ],
-    "657136": [
-        19896,
-        "Connor Wong"
-    ],
-    "573262": [
-        14854,
-        "Mike Yastrzemski"
-    ],
-    "694388": [
-        29630,
-        "Joey Loperfido"
-    ],
-    "806068": [
-        33575,
-        "Colt Emerson"
-    ],
-    "666023": [
-        21840,
-        "Freddy Fermin"
-    ],
-    "681909": [
-        25005,
-        "Justin Dean"
-    ],
-    "672275": [
-        27478,
-        "Patrick Bailey"
-    ],
-    "643217": [
-        17901,
-        "Andrew Benintendi"
-    ],
-    "695670": [
-        29958,
-        "Harry Ford"
-    ],
-    "657656": [
-        17128,
-        "Ram\u00f3n Laureano"
-    ],
-    "675961": [
-        27604,
-        "Alika Williams"
-    ],
-    "678011": [
-        23802,
-        "Anthony Seigler"
-    ],
-    "543510": [
-        12859,
-        "James McCann"
-    ],
-    "681393": [
-        29592,
-        "Connor Norby"
-    ],
-    "645302": [
-        18363,
-        "Victor Robles"
-    ],
-    "687957": [
-        25705,
-        "Dustin Harris"
-    ],
-    "682674": [
-        26468,
-        "Victor Bericoto"
-    ],
-    "641598": [
-        15161,
-        "Mitch Garver"
-    ],
-    "669236": [
-        22239,
-        "Jeremiah Jackson"
-    ],
-    "665877": [
-        21746,
-        "Jos\u00e9 Ferm\u00edn"
-    ],
-    "666176": [
-        20220,
-        "Jo Adell"
-    ],
-    "690984": [
-        27931,
-        "Petey Halpin"
-    ],
-    "641555": [
-        20084,
-        "J.C. Escarra"
-    ],
-    "694728": [
-        33280,
-        "Brice Matthews"
-    ],
-    "666139": [
-        19953,
-        "Josh Lowe"
-    ],
-    "656577": [
-        17276,
-        "Alex Jackson"
-    ],
-    "672012": [
-        29949,
-        "Tyler Black"
-    ],
-    "665861": [
-        21735,
-        "Sebasti\u00e1n Rivero"
-    ],
-    "680700": [
-        24589,
-        "Richie Palacios"
-    ],
-    "701852": [
-        33380,
-        "Drew Cavanaugh"
-    ],
-    "661531": [
-        19422,
-        "Brian Serven"
-    ],
-    "694371": [
-        33279,
-        "Tommy Troy"
-    ],
-    "641584": [
-        19260,
-        "Jake Fraley"
-    ],
-    "677592": [
-        23695,
-        "Everson Pereira"
-    ],
-    "660710": [
-        20958,
-        "Rodolfo Dur\u00e1n"
-    ],
-    "664702": [
-        17620,
-        "Myles Straw"
-    ],
-    "687859": [
-        26143,
-        "Troy Johnston"
-    ],
-    "807799": [
-        31837,
-        "Masataka Yoshida"
-    ],
-    "804668": [
-        31991,
-        "Rafael Flores Jr."
-    ],
-    "669717": [
-        25434,
-        "Will Wilson"
-    ],
-    "641933": [
-        15711,
-        "Tyler O'Neill"
-    ],
-    "682515": [
-        20626,
-        "Logan Porter"
-    ],
-    "702222": [
-        31791,
-        "Justin Crawford"
-    ],
-    "694224": [
-        28833,
-        "Gabriel Gonzalez"
-    ],
-    "519317": [
-        4949,
-        "Giancarlo Stanton"
-    ],
-    "669004": [
-        22197,
-        "MJ Melendez"
-    ],
-    "680574": [
-        29695,
-        "Matt McLain"
-    ],
-    "679529": [
-        27465,
-        "Spencer Torkelson"
-    ],
-    "606115": [
-        13185,
-        "Orlando Arcia"
-    ],
-    "676566": [
-        32054,
-        "Shawn Ross"
-    ],
-    "669326": [
-        29524,
-        "Bryce Teodosio"
-    ],
-    "669224": [
-        27562,
-        "Austin Wells"
-    ],
-    "669289": [
-        19997,
-        "Santiago Espinal"
-    ],
-    "623168": [
-        13897,
-        "Tyler Heineman"
-    ],
-    "681987": [
-        25055,
-        "Nate Eaton"
-    ],
-    "683021": [
-        25353,
-        "Michael Stefanic"
-    ],
-    "701649": [
-        29795,
-        "James Triantos"
-    ],
-    "571912": [
-        13355,
-        "Luke Maile"
-    ],
-    "665856": [
-        21730,
-        "Jair Camargo"
-    ],
-    "665966": [
-        19722,
-        "Carlos Narv\u00e1ez"
-    ],
-    "694673": [
-        29539,
-        "Abimelec Ortiz"
-    ],
-    "678577": [
-        23989,
-        "Junior Perez"
-    ],
-    "691907": [
-        28344,
-        "Tsung-Che Cheng"
-    ],
-    "669699": [
-        25817,
-        "Braden Shewmake"
-    ],
-    "660821": [
-        19913,
-        "Jes\u00fas S\u00e1nchez"
-    ],
-    "682989": [
-        31533,
-        "Victor Mederos"
-    ],
-    "656413": [
-        20321,
-        "Stuart Fairchild"
-    ],
-    "663897": [
-        19931,
-        "Luke Williams"
-    ],
-    "642133": [
-        15679,
-        "Rowdy Tellez"
+    "808982": [
+        33824,
+        "Jung Hoo Lee"
+    ],
+    "663616": [
+        21501,
+        "Trevor Larnach"
     ],
     "686469": [
         27676,
         "Vinnie Pasquantino"
     ],
-    "605137": [
-        13145,
-        "Josh Bell"
+    "689414": [
+        29844,
+        "Liam Hicks"
     ],
-    "691620": [
-        28272,
-        "Jeferson Quero"
+    "592626": [
+        11899,
+        "Joc Pederson"
     ],
-    "701678": [
-        30080,
-        "Hao-Yu Lee"
+    "605170": [
+        14968,
+        "Victor Caratini"
+    ],
+    "645302": [
+        18363,
+        "Victor Robles"
+    ],
+    "624641": [
+        17022,
+        "Edmundo Sosa"
+    ],
+    "671976": [
+        30063,
+        "Tristan Peters"
+    ],
+    "686527": [
+        26438,
+        "Dominic Canzone"
+    ],
+    "665019": [
+        20572,
+        "Kody Clemens"
+    ],
+    "686668": [
+        25479,
+        "Brenton Doyle"
+    ],
+    "671218": [
+        22515,
+        "Heliot Ramos"
+    ],
+    "596115": [
+        12564,
+        "Trevor Story"
+    ],
+    "669242": [
+        19470,
+        "Tommy Edman"
+    ],
+    "663968": [
+        26202,
+        "Jake Mangum"
     ],
     "643446": [
         15362,
         "Jeff McNeil"
     ],
-    "691277": [
-        27969,
-        "Deyvison De Los Santos"
+    "664728": [
+        21614,
+        "Kyle Isbel"
     ],
-    "518595": [
-        7739,
-        "Travis d'Arnaud"
+    "676356": [
+        26365,
+        "Jonny DeLuca"
     ],
-    "640459": [
-        16398,
-        "Brian Navarreto"
+    "663993": [
+        19566,
+        "Nathaniel Lowe"
     ],
-    "664774": [
-        18126,
-        "LaMonte Wade Jr."
+    "502671": [
+        9218,
+        "Paul Goldschmidt"
     ],
-    "677588": [
-        23691,
-        "Jos\u00e9 Tena"
+    "668904": [
+        20437,
+        "Royce Lewis"
     ],
-    "666969": [
-        19287,
-        "Adolis Garc\u00eda"
+    "701807": [
+        35177,
+        "Carson Benge"
+    ],
+    "681481": [
+        25961,
+        "Kerry Carpenter"
+    ],
+    "686681": [
+        27684,
+        "Michael Massey"
+    ],
+    "805300": [
+        31370,
+        "Jakob Marsee"
+    ],
+    "701350": [
+        31812,
+        "Roman Anthony"
+    ],
+    "666149": [
+        26208,
+        "Tyler Fitzgerald"
+    ],
+    "669477": [
+        27577,
+        "Casey Schmitt"
+    ],
+    "664034": [
+        17982,
+        "Ty France"
+    ],
+    "686555": [
+        25477,
+        "Isaac Collins"
+    ],
+    "807712": [
+        33321,
+        "Luke Keaschall"
+    ],
+    "543309": [
+        5517,
+        "Kyle Higashioka"
+    ],
+    "694497": [
+        27790,
+        "Evan Carter"
+    ],
+    "663698": [
+        21524,
+        "Joey Bart"
+    ],
+    "663697": [
+        21523,
+        "Jonathan India"
+    ],
+    "683146": [
+        26123,
+        "Brett Baty"
+    ],
+    "800050": [
+        32127,
+        "Chase DeLauter"
+    ],
+    "660821": [
+        19913,
+        "Jes\u00fas S\u00e1nchez"
+    ],
+    "669221": [
+        19352,
+        "Sean Murphy"
+    ],
+    "802415": [
+        31912,
+        "Chandler Simpson"
+    ],
+    "669394": [
+        22275,
+        "Jake Burger"
+    ],
+    "670042": [
+        19354,
+        "Luke Raley"
+    ],
+    "641933": [
+        15711,
+        "Tyler O'Neill"
+    ],
+    "701398": [
+        31505,
+        "Sal Stewart"
+    ],
+    "519317": [
+        4949,
+        "Giancarlo Stanton"
+    ],
+    "663457": [
+        21454,
+        "Lars Nootbaar"
+    ],
+    "521692": [
+        7304,
+        "Salvador Perez"
+    ],
+    "467793": [
+        2396,
+        "Carlos Santana"
+    ],
+    "681715": [
+        24878,
+        "Heriberto Hern\u00e1ndez"
+    ],
+    "669743": [
+        19296,
+        "Alex Call"
+    ],
+    "621438": [
+        13675,
+        "Tyrone Taylor"
+    ],
+    "670242": [
+        26466,
+        "Matt Wallner"
+    ],
+    "808959": [
+        37120,
+        "Munetaka Murakami"
+    ],
+    "670770": [
+        19522,
+        "TJ Friedl"
+    ],
+    "695600": [
+        29478,
+        "Carter Jensen"
+    ],
+    "680869": [
+        29766,
+        "Zack Gelof"
+    ],
+    "665804": [
+        21693,
+        "Miguel Amaya"
+    ],
+    "673357": [
+        20043,
+        "Luis Robert Jr."
+    ],
+    "686780": [
+        25782,
+        "Pedro Pag\u00e9s"
+    ],
+    "668670": [
+        19452,
+        "Jake Rogers"
+    ],
+    "678009": [
+        23800,
+        "Parker Meadows"
+    ],
+    "663743": [
+        21538,
+        "Nick Fortes"
+    ],
+    "643565": [
+        15274,
+        "Mike Tauchman"
+    ],
+    "677942": [
+        23789,
+        "Blaze Alexander"
+    ],
+    "695734": [
+        29995,
+        "Daylen Lile"
+    ],
+    "666310": [
+        21865,
+        "Bo Naylor"
+    ],
+    "679529": [
+        27465,
+        "Spencer Torkelson"
+    ],
+    "595978": [
+        12976,
+        "Austin Hedges"
+    ],
+    "701358": [
+        35108,
+        "Cam Smith"
+    ],
+    "623993": [
+        14551,
+        "Anthony Santander"
+    ],
+    "578428": [
+        10231,
+        "Jose Iglesias"
+    ],
+    "691594": [
+        28253,
+        "Javier Sanoja"
+    ],
+    "545341": [
+        10243,
+        "Randal Grichuk"
+    ],
+    "665966": [
+        19722,
+        "Carlos Narv\u00e1ez"
+    ],
+    "666152": [
+        27531,
+        "David Hamilton"
+    ],
+    "680574": [
+        29695,
+        "Matt McLain"
+    ],
+    "672761": [
+        22857,
+        "Wenceel P\u00e9rez"
+    ],
+    "623168": [
+        13897,
+        "Tyler Heineman"
+    ],
+    "686797": [
+        31595,
+        "Brooks Lee"
+    ],
+    "624431": [
+        16725,
+        "Jose Trevino"
+    ],
+    "664702": [
+        17620,
+        "Myles Straw"
+    ],
+    "642350": [
+        17452,
+        "Jose Siri"
+    ],
+    "691788": [
+        29780,
+        "Joe Mack"
+    ],
+    "664238": [
+        18042,
+        "Dylan Moore"
+    ],
+    "669707": [
+        25807,
+        "Jared Triolo"
+    ],
+    "672960": [
+        37123,
+        "Kazuma Okamoto"
+    ],
+    "666176": [
+        20220,
+        "Jo Adell"
+    ],
+    "668901": [
+        22184,
+        "Mark Vientos"
+    ],
+    "807713": [
+        33322,
+        "Matt Shaw"
+    ],
+    "702616": [
+        31781,
+        "Jackson Holliday"
+    ],
+    "682177": [
+        25180,
+        "Daniel Schneemann"
+    ],
+    "666971": [
+        19238,
+        "Lourdes Gurriel Jr."
+    ],
+    "666158": [
+        19955,
+        "Gavin Lux"
     ],
     "691019": [
         33549,
         "Kyle Teel"
     ],
-    "695508": [
-        29710,
-        "Cam Cauley"
+    "657557": [
+        18015,
+        "Paul DeJong"
     ],
-    "691781": [
-        29993,
-        "Brady House"
+    "666160": [
+        19956,
+        "Mickey Moniak"
+    ],
+    "668885": [
+        27462,
+        "Austin Martin"
+    ],
+    "683734": [
+        26197,
+        "Andrew Vaughn"
+    ],
+    "691720": [
+        33252,
+        "Kyle Karros"
+    ],
+    "680474": [
+        24488,
+        "Max Schuemann"
+    ],
+    "681198": [
+        29805,
+        "TJ Rumfield"
+    ],
+    "678218": [
+        23813,
+        "Brandon Valenzuela"
+    ],
+    "673490": [
+        27506,
+        "Ha-Seong Kim"
+    ],
+    "680718": [
+        24598,
+        "Addison Barger"
+    ],
+    "803011": [
+        35101,
+        "Sam Antonacci"
+    ],
+    "663837": [
+        21558,
+        "Matt Vierling"
+    ],
+    "650859": [
+        19858,
+        "Luis Rengifo"
+    ],
+    "683953": [
+        34967,
+        "Travis Bazzana"
+    ],
+    "680700": [
+        24589,
+        "Richie Palacios"
+    ],
+    "656537": [
+        16947,
+        "Derek Hill"
+    ],
+    "699013": [
+        29005,
+        "Esmerlyn Valdez"
+    ],
+    "643376": [
+        16535,
+        "Danny Jansen"
+    ],
+    "663853": [
+        21562,
+        "Romy Gonzalez"
+    ],
+    "642201": [
+        19346,
+        "Eli White"
+    ],
+    "602104": [
+        18795,
+        "Ram\u00f3n Ur\u00edas"
+    ],
+    "665052": [
+        21626,
+        "Griffin Conine"
+    ],
+    "657041": [
+        16939,
+        "Lane Thomas"
+    ],
+    "702284": [
+        31680,
+        "Cole Young"
+    ],
+    "667472": [
+        22054,
+        "Dane Myers"
+    ],
+    "641584": [
+        19260,
+        "Jake Fraley"
+    ],
+    "593871": [
+        13152,
+        "Jorge Polanco"
+    ],
+    "518595": [
+        7739,
+        "Travis d'Arnaud"
+    ],
+    "624424": [
+        16376,
+        "Michael Conforto"
+    ],
+    "609280": [
+        15878,
+        "Miguel Andujar"
+    ],
+    "679032": [
+        24336,
+        "Johan Rojas"
+    ],
+    "703607": [
+        31448,
+        "Henry Bolte"
+    ],
+    "608701": [
+        13770,
+        "Rob Refsnyder"
+    ],
+    "686765": [
+        25483,
+        "Nick Sogard"
+    ],
+    "663368": [
+        19921,
+        "Blake Perkins"
+    ],
+    "805999": [
+        33656,
+        "A.J. Ewing"
+    ],
+    "678554": [
+        23986,
+        "Curtis Mead"
+    ],
+    "686475": [
+        25779,
+        "Tyler Tolbert"
+    ],
+    "814439": [
+        35061,
+        "Ryan Waldschmidt"
+    ],
+    "694249": [
+        33253,
+        "Cole Carrigg"
+    ],
+    "518735": [
+        11368,
+        "Yasmani Grandal"
+    ],
+    "685133": [
+        31490,
+        "Wade Meckler"
+    ],
+    "676914": [
+        23565,
+        "Davis Schneider"
+    ],
+    "807799": [
+        31837,
+        "Masataka Yoshida"
+    ],
+    "683748": [
+        25999,
+        "Victor Mesa Jr."
+    ],
+    "687221": [
+        31382,
+        "Dalton Rushing"
+    ],
+    "666139": [
+        19953,
+        "Josh Lowe"
+    ],
+    "543877": [
+        9774,
+        "Christian V\u00e1zquez"
+    ],
+    "691023": [
+        27475,
+        "Jordan Walker"
+    ],
+    "681393": [
+        29592,
+        "Connor Norby"
+    ],
+    "683083": [
+        25979,
+        "Nasim Nu\u00f1ez"
+    ],
+    "543510": [
+        12859,
+        "James McCann"
+    ],
+    "808975": [
+        35322,
+        "Hyeseong Kim"
+    ],
+    "669720": [
+        19363,
+        "Austin Hays"
+    ],
+    "608385": [
+        13590,
+        "Jesse Winker"
+    ],
+    "596146": [
+        12144,
+        "Max Kepler"
+    ],
+    "553869": [
+        11680,
+        "Elias D\u00edaz"
+    ],
+    "665750": [
+        18900,
+        "Leody Taveras"
+    ],
+    "672356": [
+        22563,
+        "Gabriel Arias"
+    ],
+    "804606": [
+        35376,
+        "Konnor Griffin"
+    ],
+    "663624": [
+        18373,
+        "Ryan Mountcastle"
+    ],
+    "656577": [
+        17276,
+        "Alex Jackson"
+    ],
+    "806198": [
+        33530,
+        "Cooper Pratt"
+    ],
+    "691740": [
+        31441,
+        "Daniel Susac"
+    ],
+    "665923": [
+        21780,
+        "Esteury Ruiz"
+    ],
+    "687551": [
+        31545,
+        "Drew Gilbert"
+    ],
+    "699393": [
+        29218,
+        "Pedro Ram\u00edrez"
+    ],
+    "694388": [
+        29630,
+        "Joey Loperfido"
+    ],
+    "687363": [
+        31349,
+        "Victor Scott II"
+    ],
+    "596142": [
+        11442,
+        "Gary S\u00e1nchez"
+    ],
+    "679845": [
+        27630,
+        "Nick Loftin"
+    ],
+    "700932": [
+        29794,
+        "Kyle Manzardo"
+    ],
+    "670032": [
+        19339,
+        "Nicky Lopez"
+    ],
+    "681807": [
+        24934,
+        "David Fry"
+    ],
+    "672279": [
+        22557,
+        "Michael Siani"
+    ],
+    "656976": [
+        19892,
+        "Pavin Smith"
+    ],
+    "686611": [
+        33541,
+        "Dylan Crews"
+    ],
+    "676724": [
+        20404,
+        "Jared Young"
+    ],
+    "811965": [
+        35121,
+        "Joshua Kuroda-Grauer"
+    ],
+    "457759": [
+        5235,
+        "Justin Turner"
+    ],
+    "672016": [
+        29858,
+        "Denzel Clarke"
+    ],
+    "687637": [
+        31695,
+        "Dylan Beavers"
+    ],
+    "682657": [
+        26540,
+        "Angel Mart\u00ednez"
+    ],
+    "686894": [
+        27690,
+        "Joey Wiemer"
+    ],
+    "680664": [
+        24574,
+        "Eduardo Valencia"
+    ],
+    "695731": [
+        35423,
+        "Braden Montgomery"
+    ],
+    "545121": [
+        13324,
+        "Ildemaro Vargas"
+    ],
+    "694212": [
+        28824,
+        "Samuel Basallo"
+    ],
+    "660162": [
+        17232,
+        "Yo\u00e1n Moncada"
+    ],
+    "456781": [
+        8623,
+        "Donovan Solano"
+    ],
+    "663330": [
+        18872,
+        "Jahmai Jones"
+    ],
+    "622761": [
+        17273,
+        "Jorge Mateo"
+    ],
+    "621028": [
+        17696,
+        "Kevin Newman"
+    ],
+    "810938": [
+        33197,
+        "Ben Williamson"
+    ],
+    "672820": [
+        22896,
+        "Lenyn Sosa"
+    ],
+    "694362": [
+        29487,
+        "Blake Dunn"
+    ],
+    "657136": [
+        19896,
+        "Connor Wong"
+    ],
+    "657757": [
+        19901,
+        "Gavin Sheets"
+    ],
+    "624512": [
+        15674,
+        "Reese McGuire"
+    ],
+    "656555": [
+        16472,
+        "Rhys Hoskins"
+    ],
+    "595879": [
+        12979,
+        "Javier B\u00e1ez"
+    ],
+    "666163": [
+        20287,
+        "Ben Rortvedt"
+    ],
+    "681351": [
+        24729,
+        "Logan O'Hoppe"
+    ],
+    "690976": [
+        31665,
+        "Alex Freeland"
+    ],
+    "656541": [
+        17954,
+        "Sam Hilliard"
+    ],
+    "665828": [
+        21707,
+        "Oswaldo Cabrera"
+    ],
+    "669392": [
+        22274,
+        "Samad Taylor"
+    ],
+    "703520": [
+        33312,
+        "Brett Bateman"
+    ],
+    "682668": [
+        26548,
+        "Luisangel Acu\u00f1a"
+    ],
+    "669304": [
+        20538,
+        "Jose F Miranda"
+    ],
+    "669236": [
+        22239,
+        "Jeremiah Jackson"
+    ],
+    "805811": [
+        33390,
+        "Bryce Eldridge"
+    ],
+    "666126": [
+        21842,
+        "Carlos Cortes"
+    ],
+    "516782": [
+        9241,
+        "Starling Marte"
+    ],
+    "666969": [
+        19287,
+        "Adolis Garc\u00eda"
+    ],
+    "663647": [
+        18577,
+        "Ke'Bryan Hayes"
+    ],
+    "670231": [
+        26284,
+        "John Rave"
+    ],
+    "682987": [
+        31532,
+        "Spencer Jones"
+    ],
+    "701785": [
+        35111,
+        "Kaelen Culpepper"
+    ],
+    "804668": [
+        31991,
+        "Rafael Flores Jr."
+    ],
+    "686452": [
+        25643,
+        "Drew Millas"
+    ],
+    "691723": [
+        28312,
+        "Coby Mayo"
+    ],
+    "687859": [
+        26143,
+        "Troy Johnston"
+    ],
+    "695506": [
+        35041,
+        "Jac Caglianone"
+    ],
+    "642851": [
+        15271,
+        "Austin Wynns"
+    ],
+    "571771": [
+        10472,
+        "Enrique Hern\u00e1ndez"
+    ],
+    "641555": [
+        20084,
+        "J.C. Escarra"
+    ],
+    "605137": [
+        13145,
+        "Josh Bell"
+    ],
+    "640902": [
+        19802,
+        "Jhonny Pereda"
+    ],
+    "670764": [
+        22458,
+        "Taylor Walls"
+    ],
+    "642136": [
+        19318,
+        "Matt Thaiss"
+    ],
+    "660844": [
+        21009,
+        "Leo Rivas"
+    ],
+    "663604": [
+        21496,
+        "Brandon Lockridge"
+    ],
+    "682848": [
+        25332,
+        "Endy Rodr\u00edguez"
+    ],
+    "683766": [
+        27653,
+        "Christian Koss"
+    ],
+    "665953": [
+        21797,
+        "Andr\u00e9s Chaparro"
+    ],
+    "502110": [
+        6184,
+        "J.D. Martinez"
+    ],
+    "663898": [
+        17907,
+        "Brendan Rodgers"
+    ],
+    "669369": [
+        20002,
+        "Bryce Johnson"
+    ],
+    "655316": [
+        19455,
+        "Andruw Monasterio"
+    ],
+    "663494": [
+        21464,
+        "Bryan Torres"
+    ],
+    "680737": [
+        24605,
+        "Michael Helman"
+    ],
+    "624428": [
+        15223,
+        "Adam Frazier"
+    ],
+    "444482": [
+        2136,
+        "David Peralta"
+    ],
+    "701162": [
+        29577,
+        "Ben Malgeri"
+    ],
+    "668723": [
+        22165,
+        "Ryan Vilade"
+    ],
+    "628451": [
+        18819,
+        "Andy Ib\u00e1\u00f1ez"
+    ],
+    "701675": [
+        31357,
+        "Nathan Church"
+    ],
+    "689172": [
+        27735,
+        "Brett Wisely"
+    ],
+    "694197": [
+        28811,
+        "Angel Genao"
+    ],
+    "678391": [
+        23917,
+        "Jorbit Vivas"
+    ],
+    "703601": [
+        33381,
+        "Max Clark"
+    ],
+    "649966": [
+        16622,
+        "Luis Ur\u00edas"
+    ],
+    "669326": [
+        29524,
+        "Bryce Teodosio"
+    ],
+    "656413": [
+        20321,
+        "Stuart Fairchild"
+    ],
+    "680118": [
+        19779,
+        "Dairon Blanco"
+    ],
+    "669134": [
+        22217,
+        "Luis Campusano"
+    ],
+    "593160": [
+        11281,
+        "Whit Merrifield"
+    ],
+    "666703": [
+        19964,
+        "Eguy Rosario"
+    ],
+    "699912": [
+        28020,
+        "Jose Fernandez"
+    ],
+    "605113": [
+        12147,
+        "Nick Ahmed"
+    ],
+    "665561": [
+        21646,
+        "Rafael March\u00e1n"
+    ],
+    "800325": [
+        30675,
+        "Luis Lara"
+    ],
+    "606992": [
+        14111,
+        "Eric Haase"
+    ],
+    "691785": [
+        29668,
+        "Marcelo Mayer"
+    ],
+    "681146": [
+        24703,
+        "Jonah Bride"
+    ],
+    "681987": [
+        25055,
+        "Nate Eaton"
+    ],
+    "672642": [
+        22766,
+        "Steward Berroa"
+    ],
+    "607680": [
+        12434,
+        "Kevin Pillar"
+    ],
+    "669397": [
+        22277,
+        "Nick Allen"
+    ],
+    "813841": [
+        33270,
+        "Jonah Cox"
+    ],
+    "688363": [
+        31363,
+        "Graham Pauley"
+    ],
+    "669208": [
+        29547,
+        "Ryan Bliss"
+    ],
+    "690984": [
+        27931,
+        "Petey Halpin"
+    ],
+    "642708": [
+        15518,
+        "Amed Rosario"
+    ],
+    "518792": [
+        4940,
+        "Jason Heyward"
+    ],
+    "642086": [
+        15653,
+        "Dominic Smith"
+    ],
+    "622268": [
+        19314,
+        "Donovan Walton"
+    ],
+    "823550": [
+        37122,
+        "Sung-Mun Song"
+    ],
+    "695670": [
+        29958,
+        "Harry Ford"
+    ],
+    "660766": [
+        18400,
+        "Juan Yepez"
+    ],
+    "680837": [
+        24622,
+        "Ryan Fitzgerald"
+    ],
+    "679822": [
+        27501,
+        "Justin Foscue"
+    ],
+    "572191": [
+        11489,
+        "Michael A. Taylor"
+    ],
+    "805904": [
+        31583,
+        "Zach Cole"
+    ],
+    "687957": [
+        25705,
+        "Dustin Harris"
+    ],
+    "676632": [
+        20054,
+        "Bligh Madris"
+    ],
+    "623520": [
+        14593,
+        "David Bote"
+    ],
+    "663967": [
+        21587,
+        "C\u00e9sar Salazar"
+    ],
+    "691176": [
+        28080,
+        "Jasson Dom\u00ednguez"
+    ],
+    "676439": [
+        23372,
+        "Hunter Feduccia"
+    ],
+    "695238": [
+        29634,
+        "Will Wagner"
+    ],
+    "702222": [
+        31791,
+        "Justin Crawford"
+    ],
+    "676551": [
+        20450,
+        "Brewer Hicklen"
+    ],
+    "656448": [
+        19273,
+        "Stone Garrett"
+    ],
+    "668853": [
+        25425,
+        "Austin Shenton"
+    ],
+    "595281": [
+        11038,
+        "Kevin Kiermaier"
+    ],
+    "669899": [
+        27449,
+        "Ryan Ward"
+    ],
+    "641658": [
+        19262,
+        "Garrett Hampson"
+    ],
+    "621545": [
+        19788,
+        "Zach Remillard"
+    ],
+    "621512": [
+        13755,
+        "Tom\u00e1s Nido"
+    ],
+    "678011": [
+        23802,
+        "Anthony Seigler"
+    ],
+    "624585": [
+        14221,
+        "Jorge Soler"
+    ],
+    "806146": [
+        33433,
+        "George Lombard Jr."
+    ],
+    "694728": [
+        33280,
+        "Brice Matthews"
+    ],
+    "605131": [
+        12158,
+        "Austin Barnes"
+    ],
+    "542194": [
+        10028,
+        "Christian Bethancourt"
+    ],
+    "668942": [
+        19734,
+        "Josh Rojas"
+    ],
+    "806367": [
+        32053,
+        "Turner Hill"
+    ],
+    "696135": [
+        29905,
+        "Kahlil Watson"
+    ],
+    "681909": [
+        25005,
+        "Justin Dean"
+    ],
+    "640459": [
+        16398,
+        "Brian Navarreto"
+    ],
+    "701852": [
+        33380,
+        "Drew Cavanaugh"
+    ],
+    "814430": [
+        33514,
+        "Brett Callahan"
+    ],
+    "668832": [
+        25575,
+        "Kyle McCann"
+    ],
+    "642731": [
+        16426,
+        "Thairo Estrada"
+    ],
+    "671117": [
+        29912,
+        "Darren Baker"
+    ],
+    "570482": [
+        10681,
+        "Gio Urshela"
+    ],
+    "690022": [
+        31500,
+        "Ryan Ritter"
+    ],
+    "807727": [
+        33323,
+        "Charles McAdoo"
+    ],
+    "682729": [
+        26599,
+        "Jonatan Clase"
+    ],
+    "622110": [
+        13836,
+        "Matt Duffy"
+    ],
+    "691783": [
+        29976,
+        "Jordan Lawlar"
+    ],
+    "660636": [
+        19906,
+        "Diego Castillo"
+    ],
+    "592192": [
+        11445,
+        "Mark Canha"
+    ],
+    "687605": [
+        33357,
+        "Andrew Pinckney"
+    ],
+    "669200": [
+        22232,
+        "Mason McCoy"
+    ],
+    "676946": [
+        20157,
+        "Matthew Batten"
+    ],
+    "543063": [
+        5343,
+        "Brandon Crawford"
+    ],
+    "650968": [
+        18848,
+        "Yohel Pozo"
+    ],
+    "694371": [
+        33279,
+        "Tommy Troy"
+    ],
+    "501303": [
+        8418,
+        "Ehire Adrianza"
+    ],
+    "640492": [
+        18821,
+        "Jos\u00e9 Az\u00f3car"
+    ],
+    "665877": [
+        21746,
+        "Jos\u00e9 Ferm\u00edn"
+    ],
+    "700652": [
+        29962,
+        "Kenny Piper"
+    ],
+    "682515": [
+        20626,
+        "Logan Porter"
+    ],
+    "677950": [
+        23792,
+        "Alek Thomas"
+    ],
+    "641645": [
+        16451,
+        "Luis Guillorme"
+    ],
+    "621311": [
+        13744,
+        "David Dahl"
+    ],
+    "660710": [
+        20958,
+        "Rodolfo Dur\u00e1n"
+    ],
+    "699302": [
+        29189,
+        "H\u00e9ctor Rodr\u00edguez"
+    ],
+    "641511": [
+        19806,
+        "Jason Delay"
+    ],
+    "694374": [
+        29571,
+        "Tim Tawa"
+    ],
+    "681047": [
+        29896,
+        "Christian Franklin"
+    ],
+    "606115": [
+        13185,
+        "Orlando Arcia"
+    ],
+    "671213": [
+        22514,
+        "Triston Casas"
+    ],
+    "453568": [
+        7859,
+        "Charlie Blackmon"
+    ],
+    "645305": [
+        18551,
+        "Ali S\u00e1nchez"
+    ],
+    "643217": [
+        17901,
+        "Andrew Benintendi"
+    ],
+    "694224": [
+        28833,
+        "Gabriel Gonzalez"
+    ],
+    "672012": [
+        29949,
+        "Tyler Black"
+    ],
+    "675961": [
+        27604,
+        "Alika Williams"
+    ],
+    "670869": [
+        22471,
+        "Livan Soto"
+    ],
+    "682663": [
+        26546,
+        "Agust\u00edn Ram\u00edrez"
+    ],
+    "686482": [
+        25475,
+        "Logan Driscoll"
+    ],
+    "656896": [
+        19890,
+        "Emmanuel Rivera"
+    ],
+    "677595": [
+        23698,
+        "Ronny Mauricio"
+    ],
+    "647351": [
+        19844,
+        "Abraham Toro"
+    ],
+    "669194": [
+        26253,
+        "Ryne Nelson"
+    ],
+    "641779": [
+        19813,
+        "Charles Leblanc"
+    ],
+    "695257": [
+        29573,
+        "Billy Cook"
+    ],
+    "676566": [
+        32054,
+        "Shawn Ross"
+    ],
+    "691277": [
+        27969,
+        "Deyvison De Los Santos"
+    ],
+    "695391": [
+        29788,
+        "Brett Harris"
+    ],
+    "664314": [
+        19151,
+        "Estevan Florial"
+    ],
+    "695336": [
+        27883,
+        "Thomas Saggese"
+    ],
+    "682989": [
+        31533,
+        "Victor Mederos"
+    ],
+    "678577": [
+        23989,
+        "Junior Perez"
+    ],
+    "680728": [
+        29554,
+        "Adrian Del Castillo"
+    ],
+    "687799": [
+        25505,
+        "Cade Marlowe"
+    ],
+    "691458": [
+        28199,
+        "Blaze Jordan"
+    ],
+    "605353": [
+        17684,
+        "Vimael Mach\u00edn"
+    ],
+    "664954": [
+        18217,
+        "Brett Sullivan"
+    ],
+    "691620": [
+        28272,
+        "Jeferson Quero"
+    ],
+    "685744": [
+        26244,
+        "Kenedy Corona"
+    ],
+    "641432": [
+        17838,
+        "Willie Calhoun"
+    ],
+    "701678": [
+        30080,
+        "Hao-Yu Lee"
+    ],
+    "592325": [
+        12160,
+        "Ben Gamel"
+    ],
+    "541645": [
+        5760,
+        "Avisa\u00edl Garc\u00eda"
+    ],
+    "657193": [
+        16959,
+        "Eddy Alvarez"
+    ],
+    "676113": [
+        27471,
+        "Zach DeLoach"
+    ],
+    "622491": [
+        15689,
+        "Luis Castillo"
+    ],
+    "543518": [
+        12056,
+        "Scott McGough"
+    ],
+    "493603": [
+        1247,
+        "Adam Ottavino"
+    ],
+    "519043": [
+        1890,
+        "Matt Moore"
+    ],
+    "477132": [
+        2036,
+        "Clayton Kershaw"
+    ],
+    "458681": [
+        2520,
+        "Lance Lynn"
     ],
     "445276": [
         3096,
@@ -1599,6 +2211,42 @@
         3137,
         "Max Scherzer"
     ],
+    "519008": [
+        3237,
+        "T.J. McFarland"
+    ],
+    "521230": [
+        3548,
+        "Liam Hendriks"
+    ],
+    "458677": [
+        4301,
+        "Justin Wilson"
+    ],
+    "450203": [
+        4676,
+        "Charlie Morton"
+    ],
+    "448179": [
+        4806,
+        "Rich Hill"
+    ],
+    "518617": [
+        5003,
+        "Jake Diekman"
+    ],
+    "543238": [
+        5097,
+        "Anthony Gose"
+    ],
+    "445926": [
+        5448,
+        "Jesse Chavez"
+    ],
+    "518489": [
+        5615,
+        "Ryan Brasier"
+    ],
     "623211": [
         6107,
         "Huascar Brazob\u00e1n"
@@ -1606,6 +2254,18 @@
     "544150": [
         6175,
         "Albert Su\u00e1rez"
+    ],
+    "542585": [
+        6399,
+        "Jos\u00e9 Cisnero"
+    ],
+    "502171": [
+        6562,
+        "Alex Cobb"
+    ],
+    "476594": [
+        6576,
+        "Robert Stock"
     ],
     "471911": [
         6632,
@@ -1615,6 +2275,18 @@
         6655,
         "Craig Kimbrel"
     ],
+    "527054": [
+        6797,
+        "Julio Teheran"
+    ],
+    "456501": [
+        6893,
+        "Johnny Cueto"
+    ],
+    "502624": [
+        6895,
+        "Chase Anderson"
+    ],
     "527048": [
         6902,
         "Mart\u00edn P\u00e9rez"
@@ -1623,13 +2295,53 @@
         6984,
         "Luis Garc\u00eda"
     ],
+    "519151": [
+        7005,
+        "Ryan Pressly"
+    ],
     "518585": [
         7048,
         "Fernando Cruz"
     ],
+    "543339": [
+        7146,
+        "Daniel Hudson"
+    ],
+    "543351": [
+        7432,
+        "Jay Jackson"
+    ],
+    "543475": [
+        7593,
+        "Jordan Lyles"
+    ],
+    "519326": [
+        7836,
+        "Hunter Strickland"
+    ],
+    "519293": [
+        8048,
+        "Will Smith"
+    ],
+    "543766": [
+        8110,
+        "Bryan Shaw"
+    ],
+    "502085": [
+        8241,
+        "David Robertson"
+    ],
+    "502179": [
+        8246,
+        "Paolo Espino"
+    ],
     "434378": [
         8700,
         "Justin Verlander"
+    ],
+    "489119": [
+        8779,
+        "Wade Miley"
     ],
     "489446": [
         9073,
@@ -1639,13 +2351,25 @@
         9132,
         "Nathan Eovaldi"
     ],
+    "543391": [
+        9174,
+        "Casey Kelly"
+    ],
     "571578": [
         9323,
         "Patrick Corbin"
     ],
-    "571945": [
-        9803,
-        "Miles Mikolas"
+    "572971": [
+        9434,
+        "Dallas Keuchel"
+    ],
+    "523260": [
+        9761,
+        "Joe Kelly"
+    ],
+    "554431": [
+        10058,
+        "Tyler Matzek"
     ],
     "548384": [
         10061,
@@ -1655,6 +2379,14 @@
         10078,
         "Caleb Thielbar"
     ],
+    "502043": [
+        10123,
+        "Kyle Gibson"
+    ],
+    "571946": [
+        10197,
+        "Shelby Miller"
+    ],
     "547973": [
         10233,
         "Aroldis Chapman"
@@ -1663,17 +2395,41 @@
         10310,
         "Zack Wheeler"
     ],
+    "541640": [
+        10314,
+        "Erasmo Ram\u00edrez"
+    ],
+    "543859": [
+        10315,
+        "Michael Tonkin"
+    ],
+    "518397": [
+        10591,
+        "Scott Alexander"
+    ],
     "519242": [
         10603,
         "Chris Sale"
+    ],
+    "592741": [
+        10855,
+        "Chasen Shreve"
     ],
     "594798": [
         10954,
         "Jacob deGrom"
     ],
+    "596271": [
+        11121,
+        "Casey Lawrence"
+    ],
     "518876": [
         11156,
         "Merrill Kelly"
+    ],
+    "571527": [
+        11176,
+        "David Buchanan"
     ],
     "592826": [
         11189,
@@ -1695,6 +2451,14 @@
         11486,
         "Robbie Ray"
     ],
+    "570257": [
+        11487,
+        "Joely Rodr\u00edguez"
+    ],
+    "570632": [
+        11589,
+        "Jos\u00e9 Ure\u00f1a"
+    ],
     "592791": [
         11674,
         "Jameson Taillon"
@@ -1702,6 +2466,22 @@
     "594027": [
         11691,
         "Tyron Guerrero"
+    ],
+    "592426": [
+        11752,
+        "Luke Jackson"
+    ],
+    "592767": [
+        11760,
+        "Drew Smyly"
+    ],
+    "593576": [
+        11804,
+        "H\u00e9ctor Neris"
+    ],
+    "572020": [
+        11828,
+        "James Paxton"
     ],
     "592836": [
         11836,
@@ -1715,6 +2495,18 @@
         11861,
         "Jason Adam"
     ],
+    "542882": [
+        12022,
+        "Matt Andriese"
+    ],
+    "543294": [
+        12049,
+        "Kyle Hendricks"
+    ],
+    "554340": [
+        12095,
+        "Yimi Garc\u00eda"
+    ],
     "605156": [
         12272,
         "Aaron Brooks"
@@ -1723,9 +2515,9 @@
         12304,
         "Chris Bassitt"
     ],
-    "607067": [
-        12317,
-        "Colin Rea"
+    "606930": [
+        12323,
+        "Jacob Barnes"
     ],
     "607625": [
         12447,
@@ -1735,6 +2527,10 @@
         12572,
         "Blake Treinen"
     ],
+    "598286": [
+        12575,
+        "Nick Ramirez"
+    ],
     "605288": [
         12718,
         "Adrian Houser"
@@ -1742,6 +2538,10 @@
     "607259": [
         12730,
         "Nick Martinez"
+    ],
+    "606160": [
+        12760,
+        "Rafael Montero"
     ],
     "606965": [
         12763,
@@ -1763,6 +2563,10 @@
         12791,
         "Michael Kelly"
     ],
+    "605182": [
+        12808,
+        "Mike Clevinger"
+    ],
     "552640": [
         12828,
         "Andrew Kittredge"
@@ -1771,17 +2575,69 @@
         12857,
         "Shawn Armstrong"
     ],
+    "598264": [
+        12863,
+        "Matt Barnes"
+    ],
+    "542881": [
+        12880,
+        "Tyler Anderson"
+    ],
+    "605397": [
+        12970,
+        "Joe Musgrove"
+    ],
     "605452": [
         12972,
         "Joe Ross"
+    ],
+    "605177": [
+        12988,
+        "Andrew Chafin"
+    ],
+    "605155": [
+        12997,
+        "Colten Brewer"
+    ],
+    "543101": [
+        13050,
+        "Anthony DeSclafani"
+    ],
+    "506433": [
+        13074,
+        "Yu Darvish"
     ],
     "543037": [
         13125,
         "Gerrit Cole"
     ],
+    "571882": [
+        13133,
+        "Derek Law"
+    ],
     "593958": [
         13164,
         "Eduardo Rodriguez"
+    ],
+    "607179": [
+        13190,
+        "Jordan Weems"
+    ],
+    "605242": [
+        13218,
+        "Michael Fulmer"
+    ],
+    "548389": [
+        13273,
+        "Ross Stripling"
+    ],
+    "571539": [
+        13276,
+        "Matt Carasiti"
+    ],
+    "534910": [
+        13287,
+        "Jesse Hahn"
     ],
     "543056": [
         13293,
@@ -1795,6 +2651,18 @@
         13361,
         "Steven Matz"
     ],
+    "571670": [
+        13394,
+        "Dylan Floro"
+    ],
+    "571863": [
+        13420,
+        "Matt Koch"
+    ],
+    "573186": [
+        13431,
+        "Marcus Stroman"
+    ],
     "572955": [
         13435,
         "Pierce Johnson"
@@ -1807,6 +2675,10 @@
         13470,
         "Lucas Sims"
     ],
+    "621199": [
+        13528,
+        "Matt Bowman"
+    ],
     "605483": [
         13543,
         "Blake Snell"
@@ -1814,6 +2686,10 @@
     "595345": [
         13580,
         "Steven Okert"
+    ],
+    "596112": [
+        13594,
+        "Robert Stephenson"
     ],
     "605218": [
         13607,
@@ -1827,21 +2703,53 @@
         13649,
         "Clay Holmes"
     ],
+    "605463": [
+        13652,
+        "Tayler Scott"
+    ],
     "608331": [
         13743,
         "Max Fried"
+    ],
+    "608648": [
+        13758,
+        "Tyler Duffey"
+    ],
+    "608717": [
+        13761,
+        "Chris Stratton"
+    ],
+    "608678": [
+        13763,
+        "Dominic Leone"
+    ],
+    "608638": [
+        13767,
+        "JT Chargois"
     ],
     "621107": [
         13774,
         "Zach Eflin"
     ],
+    "622072": [
+        13781,
+        "Alex Wood"
+    ],
     "621381": [
         13799,
         "Matt Strahm"
     ],
+    "613534": [
+        13801,
+        "Austin Adams"
+    ],
     "623149": [
         13892,
         "Paul Sewald"
+    ],
+    "623167": [
+        13896,
+        "Chris Flexen"
     ],
     "608650": [
         13932,
@@ -1863,6 +2771,10 @@
         14120,
         "Lance McCullers Jr."
     ],
+    "621244": [
+        14168,
+        "Jos\u00e9 Berr\u00edos"
+    ],
     "623352": [
         14212,
         "Josh Hader"
@@ -1870,6 +2782,10 @@
     "593974": [
         14295,
         "Wandy Peralta"
+    ],
+    "593423": [
+        14309,
+        "Frankie Montas"
     ],
     "606303": [
         14332,
@@ -1883,13 +2799,41 @@
         14374,
         "Tyler Glasnow"
     ],
+    "607237": [
+        14375,
+        "Amir Garrett"
+    ],
+    "621529": [
+        14412,
+        "Joe Hudson"
+    ],
     "628708": [
         14416,
         "Yunior Marte"
     ],
+    "623451": [
+        14420,
+        "Jackson Stephens"
+    ],
+    "600986": [
+        14510,
+        "Thyago Vieira"
+    ],
+    "600917": [
+        14524,
+        "Jos\u00e9 Leclerc"
+    ],
+    "605347": [
+        14527,
+        "Jorge L\u00f3pez"
+    ],
     "608032": [
         14542,
         "Carlos Est\u00e9vez"
+    ],
+    "614179": [
+        14552,
+        "Jos\u00e9 Ruiz"
     ],
     "607455": [
         14706,
@@ -1903,9 +2847,17 @@
         14739,
         "Paul Blackburn"
     ],
+    "641149": [
+        14764,
+        "Wes Parsons"
+    ],
     "641941": [
         14771,
         "Emilio Pag\u00e1n"
+    ],
+    "571656": [
+        14814,
+        "Buck Farmer"
     ],
     "547179": [
         14843,
@@ -1918,6 +2870,22 @@
     "594580": [
         14874,
         "Sam Moll"
+    ],
+    "592351": [
+        14916,
+        "Jon Gray"
+    ],
+    "594902": [
+        14932,
+        "Ben Lively"
+    ],
+    "641771": [
+        14975,
+        "Chad Kuhl"
+    ],
+    "606149": [
+        14986,
+        "Giovanny Gallegos"
     ],
     "605130": [
         14993,
@@ -1947,6 +2915,18 @@
         15047,
         "Austin Voth"
     ],
+    "622075": [
+        15068,
+        "Yency Almonte"
+    ],
+    "642239": [
+        15094,
+        "Rob Zastryzny"
+    ],
+    "621294": [
+        15100,
+        "Ben Heller"
+    ],
     "623454": [
         15130,
         "Drew Anderson"
@@ -1955,9 +2935,29 @@
         15145,
         "Justin Topa"
     ],
+    "641427": [
+        15239,
+        "Alan Busenitz"
+    ],
     "642121": [
         15256,
         "Cole Sulser"
+    ],
+    "643256": [
+        15288,
+        "Adam Cimber"
+    ],
+    "643493": [
+        15290,
+        "Austin Pruitt"
+    ],
+    "643361": [
+        15369,
+        "Kevin Herget"
+    ],
+    "571760": [
+        15423,
+        "Andrew Heaney"
     ],
     "571510": [
         15440,
@@ -1966,6 +2966,10 @@
     "601713": [
         15454,
         "Nick Pivetta"
+    ],
+    "592254": [
+        15463,
+        "Jos\u00e9 De Le\u00f3n"
     ],
     "594835": [
         15467,
@@ -1983,6 +2987,10 @@
         15507,
         "Hunter Harvey"
     ],
+    "608665": [
+        15514,
+        "Kendall Graveman"
+    ],
     "643511": [
         15541,
         "Tyler Rogers"
@@ -1991,13 +2999,21 @@
         15551,
         "Mark Leiter Jr."
     ],
-    "622491": [
-        15689,
-        "Luis Castillo"
+    "643338": [
+        15552,
+        "Chad Green"
+    ],
+    "612434": [
+        15684,
+        "Miguel Castro"
     ],
     "641745": [
         15734,
         "Brad Keller"
+    ],
+    "641729": [
+        15761,
+        "Joe Jim\u00e9nez"
     ],
     "642207": [
         15816,
@@ -2006,6 +3022,14 @@
     "641793": [
         15823,
         "Zack Littell"
+    ],
+    "592288": [
+        15849,
+        "Kent Emanuel"
+    ],
+    "593833": [
+        15855,
+        "Wander Suero"
     ],
     "640455": [
         15873,
@@ -2019,13 +3043,29 @@
         15947,
         "Ryne Stanek"
     ],
+    "621399": [
+        15968,
+        "Brady Feigl"
+    ],
     "592155": [
         16061,
         "Cam Booser"
     ],
+    "595897": [
+        16074,
+        "Nick Burdi"
+    ],
+    "605507": [
+        16094,
+        "Zach Thompson"
+    ],
     "605447": [
         16122,
         "Jordan Romano"
+    ],
+    "595928": [
+        16128,
+        "John Curtiss"
     ],
     "605335": [
         16135,
@@ -2043,6 +3083,14 @@
         16162,
         "Brandon Woodruff"
     ],
+    "605121": [
+        16201,
+        "Justin Anderson"
+    ],
+    "605513": [
+        16207,
+        "Spencer Turnbull"
+    ],
     "622088": [
         16233,
         "Tejay Antone"
@@ -2054,6 +3102,22 @@
     "607481": [
         16258,
         "Aaron Bummer"
+    ],
+    "607644": [
+        16269,
+        "John Means"
+    ],
+    "622786": [
+        16300,
+        "Jesus Tinoco"
+    ],
+    "622103": [
+        16306,
+        "Gerardo Reyes"
+    ],
+    "620982": [
+        16318,
+        "Ricardo Pinto"
     ],
     "621366": [
         16350,
@@ -2067,6 +3131,14 @@
         16400,
         "Reynaldo L\u00f3pez"
     ],
+    "630023": [
+        16401,
+        "Yonny Chirinos"
+    ],
+    "624647": [
+        16408,
+        "Victor Gonz\u00e1lez"
+    ],
     "656240": [
         16427,
         "Scott Blewett"
@@ -2075,21 +3147,57 @@
         16432,
         "Foster Griffin"
     ],
+    "641703": [
+        16466,
+        "Brent Honeywell"
+    ],
     "642232": [
         16502,
         "Ryan Yarbrough"
+    ],
+    "656186": [
+        16507,
+        "Dan Altavilla"
+    ],
+    "656756": [
+        16511,
+        "Jordan Montgomery"
+    ],
+    "596295": [
+        16561,
+        "Austin Gomber"
+    ],
+    "657024": [
+        16587,
+        "Erik Swanson"
     ],
     "650556": [
         16609,
         "Bryan Abreu"
     ],
+    "656420": [
+        16610,
+        "J.P. Feyereisen"
+    ],
+    "656257": [
+        16631,
+        "Jeff Brigham"
+    ],
     "657044": [
         16647,
         "Ryan Thompson"
     ],
+    "657240": [
+        16703,
+        "Julian Merryweather"
+    ],
     "592779": [
         16727,
         "Brock Stewart"
+    ],
+    "657697": [
+        16754,
+        "Vinny Nittoli"
     ],
     "657612": [
         16814,
@@ -2099,13 +3207,25 @@
         16835,
         "Brennan Bernardino"
     ],
+    "657585": [
+        16866,
+        "Reed Garrett"
+    ],
     "596133": [
         16918,
         "Luke Weaver"
     ],
+    "657053": [
+        16929,
+        "Touki Toussaint"
+    ],
     "622694": [
         16933,
         "Elieser Hern\u00e1ndez"
+    ],
+    "656814": [
+        16942,
+        "Luis Ortiz"
     ],
     "656794": [
         16943,
@@ -2119,17 +3239,49 @@
         16977,
         "Trevor Williams"
     ],
+    "595881": [
+        16981,
+        "Tyler Beede"
+    ],
     "621383": [
         16990,
         "Tanner Banks"
+    ],
+    "656887": [
+        17034,
+        "Sean Reid-Foley"
+    ],
+    "641154": [
+        17085,
+        "Pablo L\u00f3pez"
+    ],
+    "656354": [
+        17117,
+        "Austin Davis"
     ],
     "628452": [
         17130,
         "Raisel Iglesias"
     ],
+    "593334": [
+        17149,
+        "Domingo Germ\u00e1n"
+    ],
+    "595453": [
+        17161,
+        "Chad Wallach"
+    ],
+    "620454": [
+        17169,
+        "Jos\u00e9 Castillo"
+    ],
     "642100": [
         17170,
         "Gabe Speier"
+    ],
+    "659275": [
+        17186,
+        "Dinelson Lamet"
     ],
     "656222": [
         17192,
@@ -2143,9 +3295,21 @@
         17281,
         "Thomas Pannone"
     ],
+    "656629": [
+        17282,
+        "Michael Kopech"
+    ],
     "664285": [
         17295,
         "Framber Valdez"
+    ],
+    "642629": [
+        17304,
+        "Emmanuel Ramirez"
+    ],
+    "657006": [
+        17312,
+        "Justin Steele"
     ],
     "657424": [
         17381,
@@ -2171,6 +3335,18 @@
         17480,
         "Daniel Duarte"
     ],
+    "650893": [
+        17490,
+        "G\u00e9nesis Cabrera"
+    ],
+    "650895": [
+        17496,
+        "Diego Castillo"
+    ],
+    "621114": [
+        17536,
+        "Ryan Burr"
+    ],
     "623474": [
         17556,
         "Jimmy Herget"
@@ -2190,6 +3366,10 @@
     "664299": [
         17606,
         "Cristian Javier"
+    ],
+    "663432": [
+        17610,
+        "Tanner Rainey"
     ],
     "664199": [
         17611,
@@ -2211,17 +3391,45 @@
         17722,
         "Trevor Megill"
     ],
+    "622503": [
+        17732,
+        "Nabil Crismatt"
+    ],
     "623465": [
         17734,
         "Evan Phillips"
     ],
-    "641302": [
-        17735,
-        "Tyler Alexander"
+    "622098": [
+        17755,
+        "Drew Smith"
+    ],
+    "622780": [
+        17759,
+        "Angel Perdomo"
     ],
     "621237": [
         17780,
         "Jos\u00e9 Alvarado"
+    ],
+    "622259": [
+        17793,
+        "Trey Wingenter"
+    ],
+    "622253": [
+        17796,
+        "Dillon Tate"
+    ],
+    "640470": [
+        17859,
+        "Adbert Alzolay"
+    ],
+    "664139": [
+        17871,
+        "Ian Gibaut"
+    ],
+    "641482": [
+        17874,
+        "Nestor Cortes"
     ],
     "642701": [
         17878,
@@ -2243,6 +3451,10 @@
         17948,
         "Trent Thornton"
     ],
+    "664079": [
+        17952,
+        "Tyler Jay"
+    ],
     "656457": [
         17964,
         "Tyler Gilbert"
@@ -2263,6 +3475,10 @@
         17998,
         "Pete Fairbanks"
     ],
+    "663474": [
+        18000,
+        "Triston McKenzie"
+    ],
     "664208": [
         18064,
         "Phil Maton"
@@ -2271,21 +3487,53 @@
         18138,
         "Ryan Helsley"
     ],
+    "664948": [
+        18152,
+        "Anthony Misiewicz"
+    ],
     "641755": [
         18297,
         "Tyler Kinley"
+    ],
+    "608334": [
+        18311,
+        "Carson Fulmer"
     ],
     "621097": [
         18318,
         "Jacob Waguespack"
     ],
+    "622250": [
+        18323,
+        "Josh Sborz"
+    ],
+    "622065": [
+        18333,
+        "Alex Young"
+    ],
+    "622251": [
+        18335,
+        "Josh Staumont"
+    ],
+    "623433": [
+        18337,
+        "Nick Anderson"
+    ],
     "642759": [
         18341,
         "Julian Fern\u00e1ndez"
     ],
+    "663399": [
+        18347,
+        "Brandon Waddell"
+    ],
     "647336": [
         18383,
         "Michael Soroka"
+    ],
+    "664123": [
+        18384,
+        "Scott Effross"
     ],
     "660853": [
         18403,
@@ -2299,6 +3547,18 @@
         18439,
         "Danny Young"
     ],
+    "628317": [
+        18498,
+        "Kenta Maeda"
+    ],
+    "642028": [
+        18510,
+        "Josh Rogers"
+    ],
+    "641360": [
+        18519,
+        "Phil Bickford"
+    ],
     "656302": [
         18525,
         "Dylan Cease"
@@ -2310,6 +3570,10 @@
     "646241": [
         18554,
         "Enmanuel De Jesus"
+    ],
+    "663531": [
+        18555,
+        "Logan Allen"
     ],
     "621345": [
         18655,
@@ -2331,17 +3595,45 @@
         18694,
         "Kolby Allard"
     ],
+    "547001": [
+        18769,
+        "Cody Poteet"
+    ],
+    "622766": [
+        18815,
+        "Miguel D\u00edaz"
+    ],
+    "658648": [
+        18864,
+        "Pedro Avila"
+    ],
     "667297": [
         19178,
         "Tommy Nance"
+    ],
+    "669912": [
+        19179,
+        "Kirby Snead"
+    ],
+    "650671": [
+        19200,
+        "Jos\u00e9 Quijada"
     ],
     "669947": [
         19205,
         "Jesse Scholtens"
     ],
+    "641712": [
+        19206,
+        "Dakota Hudson"
+    ],
     "669199": [
         19222,
         "Lake Bachar"
+    ],
+    "669952": [
+        19225,
+        "Mitch White"
     ],
     "608344": [
         19244,
@@ -2355,9 +3647,21 @@
         19261,
         "Ian Hamilton"
     ],
+    "641672": [
+        19264,
+        "Thomas Hatch"
+    ],
     "657097": [
         19274,
         "Jacob Webb"
+    ],
+    "661269": [
+        19278,
+        "Vladimir Gutierrez"
+    ],
+    "663321": [
+        19281,
+        "Nick Hernandez"
     ],
     "668678": [
         19291,
@@ -2391,6 +3695,14 @@
         19337,
         "Richard Lovelady"
     ],
+    "640462": [
+        19343,
+        "A.J. Puk"
+    ],
+    "641726": [
+        19345,
+        "Daulton Jefferies"
+    ],
     "657571": [
         19349,
         "Caleb Ferguson"
@@ -2403,6 +3715,10 @@
         19360,
         "Lucas Erceg"
     ],
+    "669203": [
+        19361,
+        "Corbin Burnes"
+    ],
     "669211": [
         19362,
         "Keegan Akin"
@@ -2411,9 +3727,21 @@
         19374,
         "Walker Buehler"
     ],
+    "664062": [
+        19388,
+        "Tony Gonsolin"
+    ],
+    "621363": [
+        19403,
+        "Colin Poche"
+    ],
     "669854": [
         19407,
         "Ronel Blanco"
+    ],
+    "641540": [
+        19409,
+        "Dane Dunning"
     ],
     "669456": [
         19427,
@@ -2434,6 +3762,10 @@
     "621074": [
         19454,
         "Michael Rucker"
+    ],
+    "660896": [
+        19459,
+        "Jorge Alcala"
     ],
     "650644": [
         19479,
@@ -2463,6 +3795,10 @@
         19574,
         "JoJo Romero"
     ],
+    "666215": [
+        19586,
+        "Forrest Whitley"
+    ],
     "670871": [
         19588,
         "Guillo Zu\u00f1iga"
@@ -2483,6 +3819,10 @@
         19646,
         "Kyle Hart"
     ],
+    "641582": [
+        19647,
+        "Matt Foster"
+    ],
     "669920": [
         19666,
         "Jason Alexander"
@@ -2491,6 +3831,10 @@
         19677,
         "Gregory Soto"
     ],
+    "664350": [
+        19680,
+        "Sixto S\u00e1nchez"
+    ],
     "657756": [
         19695,
         "Connor Seabold"
@@ -2498,6 +3842,10 @@
     "669160": [
         19716,
         "Dustin May"
+    ],
+    "676961": [
+        19736,
+        "Caleb Boushley"
     ],
     "669622": [
         19742,
@@ -2515,6 +3863,10 @@
         19769,
         "Will Vest"
     ],
+    "621057": [
+        19784,
+        "Justin Garza"
+    ],
     "624522": [
         19795,
         "Keegan Thompson"
@@ -2522,6 +3874,10 @@
     "641329": [
         19804,
         "Bryan Baker"
+    ],
+    "642520": [
+        19835,
+        "Gerson Garabito"
     ],
     "650633": [
         19853,
@@ -2531,13 +3887,29 @@
         19865,
         "Charlie Barnes"
     ],
+    "656232": [
+        19866,
+        "Brandon Bielak"
+    ],
     "656288": [
         19867,
         "Griffin Canning"
     ],
+    "656353": [
+        19871,
+        "Tucker Davidson"
+    ],
+    "656412": [
+        19874,
+        "Alex Faedo"
+    ],
     "656464": [
         19876,
         "Kevin Ginkel"
+    ],
+    "656557": [
+        19879,
+        "Tanner Houck"
     ],
     "656638": [
         19883,
@@ -2546,6 +3918,14 @@
     "656686": [
         19884,
         "Corbin Martin"
+    ],
+    "656924": [
+        19891,
+        "Ryder Ryan"
+    ],
+    "657376": [
+        19899,
+        "Clarke Schmidt"
     ],
     "660761": [
         19911,
@@ -2559,9 +3939,25 @@
         19926,
         "Tony Santillan"
     ],
+    "666120": [
+        19951,
+        "Ian Anderson"
+    ],
     "666200": [
         19959,
         "Jes\u00fas Luzardo"
+    ],
+    "666214": [
+        19962,
+        "Joey Wentz"
+    ],
+    "668338": [
+        19976,
+        "Tyson Miller"
+    ],
+    "668676": [
+        19979,
+        "Zach Plesac"
     ],
     "669060": [
         19990,
@@ -2579,9 +3975,17 @@
         20000,
         "Tyler Wells"
     ],
+    "670046": [
+        20009,
+        "Kenny Rosenberg"
+    ],
     "670090": [
         20010,
         "Wyatt Mills"
+    ],
+    "670161": [
+        20018,
+        "Parker Dunshee"
     ],
     "670167": [
         20020,
@@ -2591,9 +3995,21 @@
         20023,
         "Rico Garcia"
     ],
+    "670766": [
+        20038,
+        "Darren McCaughan"
+    ],
     "670970": [
         20039,
         "Adrian Morejon"
+    ],
+    "674944": [
+        20045,
+        "Sean Guenther"
+    ],
+    "672391": [
+        20061,
+        "Kaleb Ort"
     ],
     "663559": [
         20070,
@@ -2607,13 +4023,25 @@
         20116,
         "Calvin Faucher"
     ],
+    "670124": [
+        20132,
+        "Adam Oller"
+    ],
     "675916": [
         20151,
         "James Karinchak"
     ],
+    "656793": [
+        20153,
+        "Nick Nelson"
+    ],
     "663878": [
         20160,
         "Nate Pearson"
+    ],
+    "666205": [
+        20167,
+        "Kyle Muller"
     ],
     "647315": [
         20185,
@@ -2623,13 +4051,45 @@
         20191,
         "Garrett Whitlock"
     ],
+    "641386": [
+        20198,
+        "Ben Bowden"
+    ],
     "669212": [
         20203,
         "Eli Morgan"
     ],
+    "657508": [
+        20206,
+        "Mike Baumann"
+    ],
+    "656657": [
+        20231,
+        "Zach Logue"
+    ],
+    "675656": [
+        20242,
+        "Kevin Smith"
+    ],
     "643377": [
         20253,
         "Griffin Jax"
+    ],
+    "676620": [
+        20257,
+        "Blake Weiman"
+    ],
+    "678226": [
+        20271,
+        "Daysbel Hern\u00e1ndez"
+    ],
+    "665620": [
+        20276,
+        "Deivi Garc\u00eda"
+    ],
+    "646242": [
+        20298,
+        "Jhonathan D\u00edaz"
     ],
     "656849": [
         20302,
@@ -2646,6 +4106,18 @@
     "677161": [
         20349,
         "Zack Kelly"
+    ],
+    "621051": [
+        20353,
+        "Steven Wilson"
+    ],
+    "660813": [
+        20367,
+        "Brusdar Graterol"
+    ],
+    "666159": [
+        20369,
+        "Matt Manning"
     ],
     "669145": [
         20370,
@@ -2671,6 +4143,10 @@
         20387,
         "Anthony Kay"
     ],
+    "681871": [
+        20408,
+        "Eli Villalobos"
+    ],
     "676596": [
         20418,
         "Josh Fleming"
@@ -2683,17 +4159,45 @@
         20423,
         "Ryan Walker"
     ],
+    "660600": [
+        20447,
+        "Enoli Paredes"
+    ],
+    "676614": [
+        20462,
+        "Bryan Sammons"
+    ],
+    "656266": [
+        20491,
+        "J.B. Bukauskas"
+    ],
     "663554": [
         20492,
         "Casey Mize"
+    ],
+    "669459": [
+        20515,
+        "Kyle Nelson"
     ],
     "680704": [
         20517,
         "Nick Sandlin"
     ],
+    "676710": [
+        20531,
+        "Kutter Crawford"
+    ],
+    "670955": [
+        20539,
+        "Edwin Uceta"
+    ],
     "681982": [
         20546,
         "Grant Anderson"
+    ],
+    "670102": [
+        20548,
+        "Bowden Francis"
     ],
     "663969": [
         20629,
@@ -2703,13 +4207,29 @@
         20633,
         "Yusei Kikuchi"
     ],
+    "622379": [
+        20638,
+        "Luis F. Castillo"
+    ],
+    "642585": [
+        20666,
+        "F\u00e9lix Bautista"
+    ],
     "650911": [
         20778,
         "Cristopher S\u00e1nchez"
     ],
+    "655889": [
+        20794,
+        "Manuel Rodr\u00edguez"
+    ],
     "656848": [
         20827,
         "Michael Petersen"
+    ],
+    "660730": [
+        20962,
+        "Elvin Rodr\u00edguez"
     ],
     "660825": [
         20997,
@@ -2719,13 +4239,41 @@
         21029,
         "Jhoan Duran"
     ],
+    "661403": [
+        21032,
+        "Emmanuel Clase"
+    ],
+    "661527": [
+        21045,
+        "Seth Martinez"
+    ],
     "661563": [
         21052,
         "Luis Gil"
     ],
+    "663989": [
+        21093,
+        "Nick Vespi"
+    ],
+    "664294": [
+        21101,
+        "Dauri Moreta"
+    ],
     "664744": [
         21131,
         "Jose Espada"
+    ],
+    "664747": [
+        21132,
+        "Alexis D\u00edaz"
+    ],
+    "666204": [
+        21170,
+        "Dany Jim\u00e9nez"
+    ],
+    "528748": [
+        21183,
+        "Humberto Castellanos"
     ],
     "621139": [
         21189,
@@ -2743,13 +4291,41 @@
         21224,
         "Bailey Ober"
     ],
+    "642016": [
+        21229,
+        "Daniel Robert"
+    ],
+    "642216": [
+        21238,
+        "Allan Winans"
+    ],
+    "642834": [
+        21241,
+        "Jonathan Berm\u00fadez"
+    ],
     "656234": [
         21267,
         "Jake Bird"
     ],
+    "656458": [
+        21290,
+        "Lucas Gilbreath"
+    ],
     "656641": [
         21306,
         "Jacob Latz"
+    ],
+    "656671": [
+        21310,
+        "Josh Maciejewski"
+    ],
+    "656731": [
+        21318,
+        "Tylor Megill"
+    ],
+    "656786": [
+        21324,
+        "Parker Mushinski"
     ],
     "656986": [
         21345,
@@ -2775,6 +4351,10 @@
         21448,
         "Davis Martin"
     ],
+    "663455": [
+        21453,
+        "Konnor Pilkington"
+    ],
     "663460": [
         21455,
         "Kris Bubic"
@@ -2782,6 +4362,10 @@
     "663485": [
         21461,
         "Cole Sands"
+    ],
+    "663546": [
+        21481,
+        "Sean Hjelle"
     ],
     "663556": [
         21483,
@@ -2799,6 +4383,10 @@
         21520,
         "Hogan Harris"
     ],
+    "663704": [
+        21527,
+        "James McArthur"
+    ],
     "663738": [
         21537,
         "Daniel Lynch IV"
@@ -2806,6 +4394,18 @@
     "663767": [
         21544,
         "Chase Shugart"
+    ],
+    "663795": [
+        21546,
+        "Justin Hagenman"
+    ],
+    "663804": [
+        21549,
+        "Jackson Kowar"
+    ],
+    "663884": [
+        21573,
+        "Nolan Kingham"
     ],
     "663893": [
         21574,
@@ -2815,6 +4415,10 @@
         21584,
         "Tristan Beck"
     ],
+    "664776": [
+        21620,
+        "Jake Cousins"
+    ],
     "664991": [
         21623,
         "Grant Wolfram"
@@ -2822,6 +4426,10 @@
     "665622": [
         21649,
         "Luis Medina"
+    ],
+    "665625": [
+        21652,
+        "Elvis Peguero"
     ],
     "665645": [
         21656,
@@ -2839,6 +4447,10 @@
         21741,
         "Javier Assad"
     ],
+    "665896": [
+        21761,
+        "Jos\u00e9 Marte"
+    ],
     "666129": [
         21844,
         "Braxton Garrett"
@@ -2846,6 +4458,18 @@
     "666142": [
         21846,
         "Cole Ragans"
+    ],
+    "666168": [
+        21850,
+        "Mason Thompson"
+    ],
+    "666207": [
+        21858,
+        "Riley Pint"
+    ],
+    "666208": [
+        21859,
+        "Alex Speas"
     ],
     "666277": [
         21863,
@@ -2855,6 +4479,10 @@
         21894,
         "Gregory Santos"
     ],
+    "666659": [
+        21922,
+        "Sauryn Lao"
+    ],
     "666661": [
         21924,
         "Juan Morillo"
@@ -2863,13 +4491,25 @@
         21951,
         "Joel Peguero"
     ],
+    "666720": [
+        21955,
+        "Yerry Rodr\u00edguez"
+    ],
     "666808": [
         21992,
         "Camilo Doval"
     ],
+    "666818": [
+        21997,
+        "Luis Fr\u00edas"
+    ],
     "667463": [
         22051,
         "John King"
+    ],
+    "667725": [
+        22092,
+        "Kyle Tyler"
     ],
     "667755": [
         22100,
@@ -2878,6 +4518,10 @@
     "668390": [
         22113,
         "Cole Winn"
+    ],
+    "668472": [
+        22117,
+        "Nick Pratto"
     ],
     "668820": [
         22175,
@@ -2891,9 +4535,17 @@
         22182,
         "Hunter Greene"
     ],
+    "668943": [
+        22187,
+        "Ryan Miller"
+    ],
     "668964": [
         22191,
         "Tobias Myers"
+    ],
+    "668968": [
+        22192,
+        "Hans Crouse"
     ],
     "669020": [
         22200,
@@ -2919,6 +4571,10 @@
         22250,
         "Logan Gilbert"
     ],
+    "669308": [
+        22253,
+        "Sean Reynolds"
+    ],
     "669358": [
         22264,
         "Shane Baz"
@@ -2927,9 +4583,17 @@
         22267,
         "Tarik Skubal"
     ],
-    "669432": [
-        22286,
-        "Trevor Rogers"
+    "669391": [
+        22273,
+        "Owen White"
+    ],
+    "669395": [
+        22276,
+        "Dylan Coleman"
+    ],
+    "669422": [
+        22284,
+        "Matt Sauer"
     ],
     "669438": [
         22288,
@@ -2943,6 +4607,10 @@
         22304,
         "Brenan Hanifee"
     ],
+    "669796": [
+        22318,
+        "Jose E. Hernandez"
+    ],
     "670059": [
         22361,
         "Colin Holderman"
@@ -2951,9 +4619,25 @@
         22362,
         "Julian Garcia"
     ],
+    "670103": [
+        22370,
+        "Raymond Burgos"
+    ],
+    "670174": [
+        22387,
+        "Josh Winckowski"
+    ],
+    "670810": [
+        22461,
+        "Logan Gillaspie"
+    ],
     "670912": [
         22487,
         "Johan Oviedo"
+    ],
+    "671305": [
+        22533,
+        "Michel Ota\u00f1ez"
     ],
     "671737": [
         22543,
@@ -2967,6 +4651,14 @@
         22630,
         "Keider Montero"
     ],
+    "672552": [
+        22690,
+        "Jack O'Loughlin"
+    ],
+    "672578": [
+        22713,
+        "Carlos Hern\u00e1ndez"
+    ],
     "672582": [
         22717,
         "Angel Zerpa"
@@ -2975,13 +4667,45 @@
         22754,
         "Gerardo Carrillo"
     ],
+    "672710": [
+        22810,
+        "Roansy Contreras"
+    ],
     "672782": [
         22872,
         "Yoendrys G\u00f3mez"
     ],
+    "672841": [
+        22915,
+        "Carlos Vargas"
+    ],
+    "672851": [
+        22925,
+        "Joan Adon"
+    ],
+    "672860": [
+        22932,
+        "Prelander Berroa"
+    ],
+    "673380": [
+        23055,
+        "Dedniel N\u00fa\u00f1ez"
+    ],
+    "673820": [
+        23091,
+        "Robinson Pi\u00f1a"
+    ],
+    "674285": [
+        23135,
+        "Eduardo Salazar"
+    ],
     "674370": [
         23150,
         "Osvaldo Bido"
+    ],
+    "674384": [
+        23162,
+        "Eduarniel N\u00fa\u00f1ez"
     ],
     "674444": [
         23165,
@@ -2991,9 +4715,17 @@
         23221,
         "Michael Grove"
     ],
+    "675650": [
+        23223,
+        "Michael Mercado"
+    ],
     "675848": [
         23237,
         "Juan Mejia"
+    ],
+    "675921": [
+        23252,
+        "Spencer Howard"
     ],
     "675989": [
         23265,
@@ -3007,9 +4739,17 @@
         23301,
         "Janson Junk"
     ],
+    "676092": [
+        23307,
+        "Collin Snider"
+    ],
     "676130": [
         23313,
         "Jos\u00e9 Butt\u00f3"
+    ],
+    "676206": [
+        23324,
+        "Freddy Tarnok"
     ],
     "676282": [
         23335,
@@ -3047,6 +4787,10 @@
         23455,
         "Hunter Stratton"
     ],
+    "676714": [
+        23460,
+        "Brandon Hughes"
+    ],
     "676742": [
         23479,
         "Cam Sanders"
@@ -3071,9 +4815,21 @@
         23590,
         "Ben Brown"
     ],
+    "676969": [
+        23592,
+        "Brett de Geus"
+    ],
     "677020": [
         23617,
         "Josh Walker"
+    ],
+    "677076": [
+        23631,
+        "Clayton Andrews"
+    ],
+    "677651": [
+        23735,
+        "Luis Garcia"
     ],
     "677865": [
         23779,
@@ -3091,6 +4847,18 @@
         23798,
         "Randy Dobnak"
     ],
+    "678061": [
+        23809,
+        "Ray Kerr"
+    ],
+    "678215": [
+        23811,
+        "Luarbert Arias"
+    ],
+    "678316": [
+        23875,
+        "Omar Cruz"
+    ],
     "678368": [
         23899,
         "Valente Bellozo"
@@ -3099,6 +4867,10 @@
         23920,
         "Brayan Bello"
     ],
+    "678495": [
+        23974,
+        "Randy Rodr\u00edguez"
+    ],
     "678576": [
         23988,
         "Wilkin Ramos"
@@ -3106,6 +4878,14 @@
     "678606": [
         24017,
         "Jos\u00e9 A. Ferrer"
+    ],
+    "678692": [
+        24094,
+        "Ronny Henriquez"
+    ],
+    "678821": [
+        24203,
+        "Luis Peralta"
     ],
     "678868": [
         24248,
@@ -3119,13 +4899,29 @@
         24452,
         "Luinder Avila"
     ],
+    "679885": [
+        24453,
+        "Justin Martinez"
+    ],
+    "679922": [
+        24458,
+        "Carlos Duran"
+    ],
     "680570": [
         24492,
         "Grayson Rodriguez"
     ],
+    "680572": [
+        24493,
+        "Adam Kloffenstein"
+    ],
     "680573": [
         24494,
         "Simeon Woods Richardson"
+    ],
+    "680686": [
+        24580,
+        "Josiah Gray"
     ],
     "680689": [
         24581,
@@ -3135,6 +4931,10 @@
         24586,
         "Kyle Bradish"
     ],
+    "680701": [
+        24590,
+        "John Rooney"
+    ],
     "680702": [
         24591,
         "Joey Gerber"
@@ -3142,6 +4942,14 @@
     "680723": [
         24602,
         "Drew Rom"
+    ],
+    "680735": [
+        24604,
+        "Austin Cox"
+    ],
+    "680739": [
+        24606,
+        "Josh Winder"
     ],
     "680742": [
         24607,
@@ -3199,13 +5007,25 @@
         24937,
         "Austin Warren"
     ],
+    "681857": [
+        24968,
+        "Reese Olson"
+    ],
     "681867": [
         24975,
         "Cooper Criswell"
     ],
+    "681869": [
+        24977,
+        "Shawn Dubin"
+    ],
     "681870": [
         24978,
         "Erik Sabrowski"
+    ],
+    "681882": [
+        24986,
+        "Colin Selby"
     ],
     "681892": [
         24993,
@@ -3227,6 +5047,18 @@
         25139,
         "Tim Herrin"
     ],
+    "682144": [
+        25158,
+        "Jayvien Sandridge"
+    ],
+    "682171": [
+        25174,
+        "Penn Murfee"
+    ],
+    "682175": [
+        25178,
+        "Joe Jacques"
+    ],
     "682274": [
         25215,
         "Yaramil Hiraldo"
@@ -3247,6 +5079,10 @@
         25327,
         "Abner Uribe"
     ],
+    "683068": [
+        25368,
+        "Zach Penrod"
+    ],
     "683232": [
         25376,
         "Nick Mears"
@@ -3254,6 +5090,10 @@
     "663903": [
         25377,
         "Brady Singer"
+    ],
+    "669674": [
+        25379,
+        "Sam Long"
     ],
     "656876": [
         25385,
@@ -3279,6 +5119,10 @@
         25463,
         "Brandon Williamson"
     ],
+    "686249": [
+        25474,
+        "Nathan Wiles"
+    ],
     "686678": [
         25480,
         "Chase Solesky"
@@ -3294,6 +5138,14 @@
     "663362": [
         25550,
         "Matt Waldron"
+    ],
+    "663462": [
+        25551,
+        "Isaiah Campbell"
+    ],
+    "663671": [
+        25553,
+        "Nic Enright"
     ],
     "669620": [
         25582,
@@ -3327,9 +5179,21 @@
         25636,
         "Hunter Gaddis"
     ],
+    "686539": [
+        25645,
+        "Declan Cronin"
+    ],
     "686580": [
         25648,
         "Justin Slaten"
+    ],
+    "686654": [
+        25651,
+        "Ty Adcock"
+    ],
+    "687014": [
+        25667,
+        "Nick Avila"
     ],
     "687330": [
         25679,
@@ -3347,6 +5211,18 @@
         25796,
         "Anthony Nunez"
     ],
+    "691094": [
+        25804,
+        "Randy Wynne"
+    ],
+    "664351": [
+        25839,
+        "Luis Contreras"
+    ],
+    "663562": [
+        25862,
+        "Noah Davis"
+    ],
     "671162": [
         25873,
         "Connor Thomas"
@@ -3363,9 +5239,17 @@
         25911,
         "Yennier Cano"
     ],
+    "668868": [
+        25918,
+        "Zack Thompson"
+    ],
     "668984": [
         25921,
         "Casey Legumina"
+    ],
+    "670241": [
+        25928,
+        "Darius Vines"
     ],
     "677053": [
         25942,
@@ -3375,13 +5259,45 @@
         25957,
         "Josh Simpson"
     ],
+    "682990": [
+        25977,
+        "Quinn Priester"
+    ],
     "686751": [
         26020,
         "Seth Johnson"
     ],
+    "687074": [
+        26030,
+        "Tyler Owens"
+    ],
+    "687424": [
+        26034,
+        "Anthony Maldonado"
+    ],
+    "687830": [
+        26048,
+        "Sawyer Gipson-Long"
+    ],
+    "687888": [
+        26056,
+        "Brandon Walter"
+    ],
+    "687922": [
+        26058,
+        "Easton Lucas"
+    ],
     "689225": [
         26079,
         "Beau Brieske"
+    ],
+    "690440": [
+        26097,
+        "Bradley Hanner"
+    ],
+    "667652": [
+        26104,
+        "Jack Ralston"
     ],
     "669467": [
         26108,
@@ -3391,9 +5307,33 @@
         26117,
         "Blas Casta\u00f1o"
     ],
+    "686294": [
+        26128,
+        "Amos Willingham"
+    ],
+    "687166": [
+        26136,
+        "Austin Pope"
+    ],
+    "669193": [
+        26152,
+        "Jack Little"
+    ],
+    "687362": [
+        26171,
+        "Connor Gillispie"
+    ],
+    "668874": [
+        26190,
+        "Blair Henley"
+    ],
     "669704": [
         26191,
         "Kade Strowd"
+    ],
+    "685314": [
+        26203,
+        "Andrew Saalfrank"
     ],
     "668873": [
         26213,
@@ -3406,6 +5346,14 @@
     "671131": [
         26215,
         "Jackson Rutledge"
+    ],
+    "686752": [
+        26221,
+        "Ryan Pepiot"
+    ],
+    "687798": [
+        26226,
+        "Nick Robertson"
     ],
     "687941": [
         26227,
@@ -3423,9 +5371,9 @@
         26252,
         "Erik Miller"
     ],
-    "669194": [
-        26253,
-        "Ryne Nelson"
+    "673965": [
+        26255,
+        "Caleb Freeman"
     ],
     "683155": [
         26257,
@@ -3439,6 +5387,22 @@
         26260,
         "Drey Jameson"
     ],
+    "686796": [
+        26270,
+        "Blake Walston"
+    ],
+    "674072": [
+        26285,
+        "Tommy Henry"
+    ],
+    "663773": [
+        26304,
+        "Bryan Hoeing"
+    ],
+    "674073": [
+        26333,
+        "Jack Weisenburger"
+    ],
     "688497": [
         26344,
         "Taylor Rashi"
@@ -3447,9 +5411,17 @@
         26349,
         "Gavin Collyer"
     ],
+    "687847": [
+        26353,
+        "Marc Church"
+    ],
     "666157": [
         26378,
         "Nick Lodolo"
+    ],
+    "687792": [
+        26389,
+        "DJ Herz"
     ],
     "687239": [
         26406,
@@ -3458,6 +5430,14 @@
     "666201": [
         26410,
         "Alek Manoah"
+    ],
+    "687863": [
+        26413,
+        "Porter Hodge"
+    ],
+    "687134": [
+        26419,
+        "Bradley Blalock"
     ],
     "689520": [
         26429,
@@ -3475,13 +5455,25 @@
         26448,
         "Trevor McDonald"
     ],
+    "692024": [
+        26463,
+        "Alex Carrillo"
+    ],
     "681151": [
         26482,
         "Jayden Murray"
     ],
+    "682790": [
+        26641,
+        "Wikelman Gonz\u00e1lez"
+    ],
     "683409": [
         26790,
         "Angel Chivilli"
+    ],
+    "683568": [
+        26907,
+        "Jairo Iriarte"
     ],
     "683618": [
         26944,
@@ -3502,6 +5494,14 @@
     "691548": [
         27407,
         "Rolddy Mu\u00f1oz"
+    ],
+    "679525": [
+        27451,
+        "Alec Marsh"
+    ],
+    "685107": [
+        27453,
+        "Anthony Veneziano"
     ],
     "676979": [
         27463,
@@ -3527,9 +5527,17 @@
         27474,
         "Max Meyer"
     ],
+    "686826": [
+        27477,
+        "Bryce Jarvis"
+    ],
     "677961": [
         27481,
         "Cole Wilcox"
+    ],
+    "676272": [
+        27483,
+        "Bobby Miller"
     ],
     "668831": [
         27485,
@@ -3551,6 +5559,10 @@
         27500,
         "Slade Cecconi"
     ],
+    "685068": [
+        27508,
+        "Carson Ragsdale"
+    ],
     "669165": [
         27514,
         "Kyle Hurt"
@@ -3558,6 +5570,10 @@
     "657649": [
         27517,
         "Jared Koenig"
+    ],
+    "667478": [
+        27536,
+        "Evan Kravetz"
     ],
     "668933": [
         27552,
@@ -3583,9 +5599,17 @@
         27581,
         "Hayden Wesneski"
     ],
+    "669721": [
+        27582,
+        "Davis Daniel"
+    ],
     "670183": [
         27583,
         "Garrett Acton"
+    ],
+    "670219": [
+        27585,
+        "Zac Kristofak"
     ],
     "671106": [
         27589,
@@ -3595,9 +5619,17 @@
         27590,
         "Jake Eder"
     ],
+    "674003": [
+        27597,
+        "Cody Bradford"
+    ],
     "676105": [
         27608,
         "Jeff Criswell"
+    ],
+    "679156": [
+        27624,
+        "Walter Pennington"
     ],
     "679358": [
         27626,
@@ -3606,6 +5638,10 @@
     "680730": [
         27636,
         "Mitchell Parker"
+    ],
+    "682847": [
+        27646,
+        "Luis Ortiz"
     ],
     "683175": [
         27649,
@@ -3631,6 +5667,10 @@
         27681,
         "Ken Waldichuk"
     ],
+    "686730": [
+        27685,
+        "Carson Spiers"
+    ],
     "686799": [
         27688,
         "Jack Kochanowicz"
@@ -3642,6 +5682,10 @@
     "686993": [
         27694,
         "Justin Sterner"
+    ],
+    "687003": [
+        27695,
+        "Brian Van Belle"
     ],
     "687396": [
         27702,
@@ -3655,6 +5699,10 @@
         27741,
         "Nick Davila"
     ],
+    "690544": [
+        27753,
+        "Bailey Horn"
+    ],
     "690953": [
         27756,
         "Mick Abel"
@@ -3666,6 +5714,10 @@
     "690986": [
         27758,
         "Kyle Harrison"
+    ],
+    "691172": [
+        27765,
+        "Yosver Zulueta"
     ],
     "691587": [
         27768,
@@ -3691,6 +5743,14 @@
         27787,
         "Will Klein"
     ],
+    "694813": [
+        27792,
+        "Gavin Stone"
+    ],
+    "699911": [
+        27812,
+        "Dugan Darnell"
+    ],
     "675660": [
         27814,
         "Shane Drohan"
@@ -3702,6 +5762,10 @@
     "670245": [
         27853,
         "Ryan Watson"
+    ],
+    "693308": [
+        27861,
+        "Nick Frasso"
     ],
     "683003": [
         27863,
@@ -3719,9 +5783,17 @@
         27889,
         "J.T. Ginn"
     ],
+    "642376": [
+        27902,
+        "Jefry Yan"
+    ],
     "668716": [
         27908,
         "Noah Murdock"
+    ],
+    "685116": [
+        27910,
+        "Austin Kitchen"
     ],
     "694037": [
         27914,
@@ -3734,6 +5806,18 @@
     "693855": [
         27932,
         "Ian Seymour"
+    ],
+    "669111": [
+        27942,
+        "John McMillon"
+    ],
+    "691251": [
+        27967,
+        "Andry Lara"
+    ],
+    "691441": [
+        27974,
+        "Cristian Mena"
     ],
     "692030": [
         27984,
@@ -3754,6 +5838,10 @@
     "684049": [
         28052,
         "Brandan Bidois"
+    ],
+    "691384": [
+        28148,
+        "Luis Perales"
     ],
     "692437": [
         28489,
@@ -3799,13 +5887,29 @@
         29423,
         "Kendry Rojas"
     ],
+    "689981": [
+        29514,
+        "River Ryan"
+    ],
     "700669": [
         29519,
         "Gordon Graceffo"
     ],
+    "702795": [
+        29521,
+        "Ryan Loutos"
+    ],
+    "686642": [
+        29530,
+        "Fraser Ellard"
+    ],
     "701552": [
         29542,
         "Andre Granillo"
+    ],
+    "687287": [
+        29564,
+        "Patrick Monteverde"
     ],
     "695445": [
         29574,
@@ -3847,9 +5951,17 @@
         29812,
         "Robert Gasser"
     ],
+    "681066": [
+        29823,
+        "Ky Bush"
+    ],
     "695049": [
         29826,
         "Brett Kerry"
+    ],
+    "680897": [
+        29833,
+        "Nick Nastrini"
     ],
     "682243": [
         29837,
@@ -3858,6 +5970,10 @@
     "686218": [
         29839,
         "Emmet Sheehan"
+    ],
+    "686701": [
+        29863,
+        "Ryan Bergert"
     ],
     "694646": [
         29866,
@@ -3875,6 +5991,14 @@
         29878,
         "Sean Burke"
     ],
+    "701780": [
+        29887,
+        "Tanner McDougal"
+    ],
+    "703231": [
+        29891,
+        "James Meeker"
+    ],
     "671096": [
         29911,
         "Andrew Abbott"
@@ -3887,6 +6011,10 @@
         29921,
         "Spencer Arrighetti"
     ],
+    "681544": [
+        29922,
+        "Wyatt Olds"
+    ],
     "689266": [
         29928,
         "Dylan Dodd"
@@ -3894,6 +6022,10 @@
     "702303": [
         29934,
         "Riley Martin"
+    ],
+    "701643": [
+        29946,
+        "Grant Hartwig"
     ],
     "673929": [
         29950,
@@ -3911,17 +6043,37 @@
         29961,
         "Tyler Uberstine"
     ],
+    "680880": [
+        30002,
+        "Grant Holman"
+    ],
     "683352": [
         30003,
         "Mitch Bratt"
+    ],
+    "685326": [
+        30004,
+        "McCade Brown"
+    ],
+    "687145": [
+        30008,
+        "Evan Justice"
     ],
     "697812": [
         30016,
         "Joe Rock"
     ],
+    "687924": [
+        30031,
+        "Julian Aguiar"
+    ],
     "700249": [
         30055,
         "Cade Povich"
+    ],
+    "701581": [
+        30056,
+        "David Festa"
     ],
     "702021": [
         30061,
@@ -3959,9 +6111,21 @@
         30094,
         "Jordan Wicks"
     ],
+    "678024": [
+        30105,
+        "Mike Vasil"
+    ],
+    "680891": [
+        30106,
+        "Jack Neely"
+    ],
     "681035": [
         30107,
         "Christian Scott"
+    ],
+    "681320": [
+        30109,
+        "Nate Lavender"
     ],
     "694477": [
         30113,
@@ -3999,17 +6163,25 @@
         30145,
         "Dylan Smith"
     ],
-    "683004": [
-        30146,
-        "Jack Leiter"
+    "687589": [
+        30153,
+        "Dom Hamel"
     ],
     "689149": [
         30158,
         "Chad Dallas"
     ],
+    "690916": [
+        30160,
+        "Richard Fitts"
+    ],
     "692230": [
         30161,
         "Carlos Rodriguez"
+    ],
+    "694357": [
+        30165,
+        "Ricky Tiedemann"
     ],
     "694397": [
         30166,
@@ -4026,6 +6198,10 @@
     "696131": [
         30171,
         "Mason Black"
+    ],
+    "701487": [
+        30179,
+        "Pierson Ohl"
     ],
     "701519": [
         30180,
@@ -4046,6 +6222,14 @@
     "680916": [
         30195,
         "Franco Aleman"
+    ],
+    "695549": [
+        30203,
+        "Jackson Jobe"
+    ],
+    "801216": [
+        30206,
+        "Christian Montes De Oca"
     ],
     "702352": [
         30226,
@@ -4079,6 +6263,10 @@
         30661,
         "Didier Fuentes"
     ],
+    "692285": [
+        31184,
+        "Luis Guerrero"
+    ],
     "680736": [
         31204,
         "Justin Wrobleski"
@@ -4095,6 +6283,14 @@
         31312,
         "Colton Gordon"
     ],
+    "680684": [
+        31318,
+        "Gunnar Hoglund"
+    ],
+    "690829": [
+        31461,
+        "Ben Joyce"
+    ],
     "678022": [
         31468,
         "Jack Perkins"
@@ -4102,6 +6298,18 @@
     "701656": [
         31475,
         "Logan Henderson"
+    ],
+    "687060": [
+        31492,
+        "Blake Adams"
+    ],
+    "690382": [
+        31501,
+        "Michael Darrell-Hicks"
+    ],
+    "702674": [
+        31508,
+        "Caden Dana"
     ],
     "688642": [
         31552,
@@ -4114,6 +6322,10 @@
     "801434": [
         31571,
         "Paul Gervase"
+    ],
+    "669449": [
+        31598,
+        "Jake Palisch"
     ],
     "687209": [
         31610,
@@ -4147,6 +6359,14 @@
         31624,
         "Brian Fitzpatrick"
     ],
+    "806185": [
+        31635,
+        "Hayden Birdsong"
+    ],
+    "690279": [
+        31663,
+        "Mason Adams"
+    ],
     "687931": [
         31676,
         "Carson Whisenhunt"
@@ -4178,6 +6398,10 @@
     "689818": [
         31743,
         "David Sandlin"
+    ],
+    "680729": [
+        31751,
+        "Garrett McDaniels"
     ],
     "695243": [
         31757,
@@ -4227,6 +6451,10 @@
         31843,
         "Kumar Rocker"
     ],
+    "680885": [
+        31846,
+        "Spencer Schwellenbach"
+    ],
     "687570": [
         31857,
         "Connor Prielipp"
@@ -4255,6 +6483,10 @@
         31880,
         "Alex Hoppe"
     ],
+    "700187": [
+        31883,
+        "Troy Taylor"
+    ],
     "701121": [
         31884,
         "Logan VanWey"
@@ -4271,9 +6503,17 @@
         31893,
         "Robby Snelling"
     ],
+    "800049": [
+        31900,
+        "Adam Mazur"
+    ],
     "802408": [
         31910,
         "Brycen Mautz"
+    ],
+    "802686": [
+        31913,
+        "Hayden Harris"
     ],
     "805326": [
         31920,
@@ -4295,6 +6535,10 @@
         31959,
         "Jake Bennett"
     ],
+    "689672": [
+        31967,
+        "Drew Thorpe"
+    ],
     "695418": [
         31972,
         "Brad Lord"
@@ -4302,6 +6546,10 @@
     "800048": [
         31986,
         "Parker Messick"
+    ],
+    "802419": [
+        31989,
+        "Thomas Harrington"
     ],
     "702047": [
         32015,
@@ -4314,6 +6562,10 @@
     "702273": [
         32056,
         "Noah Schultz"
+    ],
+    "680899": [
+        32065,
+        "Erik Tolman"
     ],
     "684442": [
         32070,
@@ -4347,9 +6599,17 @@
         33043,
         "Brendan Beck"
     ],
+    "814005": [
+        33168,
+        "Jake Bloss"
+    ],
     "682995": [
         33174,
         "Hunter Barco"
+    ],
+    "805345": [
+        33214,
+        "Trent Harris"
     ],
     "684974": [
         33248,
@@ -4371,6 +6631,10 @@
         33502,
         "Sean Sullivan"
     ],
+    "814490": [
+        33515,
+        "Ethan Pecko"
+    ],
     "694462": [
         33527,
         "Hurston Waldrep"
@@ -4379,9 +6643,17 @@
         33568,
         "Brandyn Garcia"
     ],
+    "815081": [
+        33603,
+        "Mark Manfredi"
+    ],
     "815083": [
         33628,
         "Mitch Farris"
+    ],
+    "808825": [
+        33664,
+        "Andrew Sears"
     ],
     "813349": [
         33666,
@@ -4391,9 +6663,17 @@
         33677,
         "Paul Skenes"
     ],
+    "688138": [
+        33699,
+        "Logan Evans"
+    ],
     "690997": [
         33703,
         "Nolan McLean"
+    ],
+    "683363": [
+        33760,
+        "Matt Wilkinson"
     ],
     "694795": [
         33785,
@@ -4423,9 +6703,17 @@
         33827,
         "Woo-Suk Go"
     ],
+    "683822": [
+        33828,
+        "Naoyuki Uwasawa"
+    ],
     "684007": [
         33829,
         "Shota Imanaga"
+    ],
+    "689958": [
+        33834,
+        "Andrew Walters"
     ],
     "684320": [
         33838,
@@ -4434,6 +6722,10 @@
     "687075": [
         33850,
         "Brandon Sproat"
+    ],
+    "687273": [
+        33851,
+        "Quinn Mathews"
     ],
     "694753": [
         33865,
@@ -4463,6 +6755,10 @@
         34847,
         "Tyler Davis"
     ],
+    "696146": [
+        35205,
+        "Hagen Smith"
+    ],
     "608372": [
         35321,
         "Tomoyuki Sugano"
@@ -4487,6 +6783,10 @@
         35456,
         "Trey Yesavage"
     ],
+    "800600": [
+        35462,
+        "Jackson Kent"
+    ],
     "801139": [
         35466,
         "Payton Tolle"
@@ -4495,856 +6795,1372 @@
         37124,
         "Tatsuya Imai"
     ],
-    "624428": [
-        15223,
-        "Adam Frazier"
+    "807739": [
+        37238,
+        "Kade Anderson"
     ],
-    "596103": [
-        16153,
-        "Austin Slater"
-    ],
-    "691011": [
-        27763,
-        "Drew Romo"
-    ],
-    "663624": [
-        18373,
-        "Ryan Mountcastle"
-    ],
-    "691176": [
-        28080,
-        "Jasson Dom\u00ednguez"
+    "693049": [
+        30162,
+        "Oscar Col\u00e1s"
     ],
     "641820": [
         15149,
         "Trey Mancini"
     ],
-    "609280": [
-        15878,
-        "Miguel Andujar"
+    "666165": [
+        25805,
+        "Blake Sabol"
     ],
-    "695391": [
-        29788,
-        "Brett Harris"
+    "679881": [
+        24451,
+        "J.P. Mart\u00ednez"
     ],
-    "650859": [
-        19858,
-        "Luis Rengifo"
+    "683004": [
+        30146,
+        "Jack Leiter"
+    ],
+    "607067": [
+        12317,
+        "Colin Rea"
+    ],
+    "641302": [
+        17735,
+        "Tyler Alexander"
+    ],
+    "829272": [
+        35324,
+        "Shinnosuke Ogasawara"
+    ],
+    "672569": [
+        22707,
+        "Gustavo Campero"
+    ],
+    "672701": [
+        20540,
+        "Jos\u00e9 Devers"
+    ],
+    "677588": [
+        23691,
+        "Jos\u00e9 Tena"
+    ],
+    "669289": [
+        19997,
+        "Santiago Espinal"
     ],
     "687394": [
         31471,
         "Jack Brannigan"
     ],
-    "682663": [
-        26546,
-        "Agust\u00edn Ram\u00edrez"
+    "543685": [
+        12861,
+        "Anthony Rendon"
     ],
-    "680716": [
-        24597,
-        "Jonathan Ornelas"
+    "650907": [
+        19859,
+        "Ren\u00e9 Pinto"
     ],
-    "668974": [
-        26106,
-        "Maverick Handley"
+    "675915": [
+        23250,
+        "David Ba\u00f1uelos"
     ],
-    "672279": [
-        22557,
-        "Michael Siani"
+    "669432": [
+        22286,
+        "Trevor Rogers"
+    ],
+    "624513": [
+        15055,
+        "Dom Nu\u00f1ez"
     ],
     "805672": [
         31415,
         "Collin Price"
     ],
-    "690291": [
-        31437,
-        "Jace Jung"
+    "679631": [
+        24400,
+        "Terrin Vavra"
     ],
-    "690022": [
-        31500,
-        "Ryan Ritter"
+    "676896": [
+        23557,
+        "Chris Roller"
     ],
-    "680776": [
-        24617,
-        "Jarren Duran"
-    ],
-    "701305": [
-        31562,
-        "Zach Dezenzo"
-    ],
-    "683679": [
-        26991,
-        "Jesus Rodriguez"
-    ],
-    "687529": [
-        25690,
-        "Grant McCray"
-    ],
-    "673357": [
-        20043,
-        "Luis Robert Jr."
+    "687066": [
+        27698,
+        "Eric Yang"
     ],
     "681190": [
         24719,
         "Randy V\u00e1squez"
     ],
-    "596146": [
-        12144,
-        "Max Kepler"
+    "695681": [
+        34979,
+        "Christian Moore"
     ],
-    "682641": [
-        26467,
-        "Luis Matos"
+    "571945": [
+        9803,
+        "Miles Mikolas"
     ],
-    "663697": [
-        21523,
-        "Jonathan India"
+    "670276": [
+        22411,
+        "Cal Stevenson"
     ],
-    "680718": [
-        24598,
-        "Addison Barger"
-    ],
-    "672642": [
-        22766,
-        "Steward Berroa"
-    ],
-    "683079": [
-        25369,
-        "Omar Martinez"
-    ],
-    "678545": [
-        23985,
-        "Osleivis Basabe"
+    "664058": [
+        17992,
+        "David Fletcher"
     ],
     "664731": [
         18433,
         "P.J. Higgins"
     ],
-    "695720": [
-        35107,
-        "Tommy White"
-    ],
-    "691458": [
-        28199,
-        "Blaze Jordan"
-    ],
-    "663609": [
-        21497,
-        "Luken Baker"
-    ],
-    "694208": [
-        28820,
-        "Mois\u00e9s Ballesteros"
-    ],
-    "666931": [
-        19968,
-        "Jared Oliva"
-    ],
-    "571657": [
-        14813,
-        "Kyle Farmer"
-    ],
-    "675448": [
-        23209,
-        "Blake Hunt"
-    ],
-    "695020": [
-        28848,
-        "Tanner Murray"
-    ],
-    "682818": [
-        26664,
-        "Yohendrick Pi\u00f1ango"
-    ],
-    "669256": [
-        19294,
-        "Nick Solak"
-    ],
-    "695238": [
-        29634,
-        "Will Wagner"
-    ],
-    "683146": [
-        26123,
-        "Brett Baty"
-    ],
-    "676694": [
-        20308,
-        "Jake Meyers"
-    ],
-    "669208": [
-        29547,
-        "Ryan Bliss"
-    ],
-    "650391": [
-        17484,
-        "Eloy Jim\u00e9nez"
-    ],
-    "673995": [
-        26469,
-        "Davis Wendzel"
-    ],
-    "687637": [
-        31695,
-        "Dylan Beavers"
-    ],
-    "677950": [
-        23792,
-        "Alek Thomas"
-    ],
-    "694376": [
-        27789,
-        "Shay Whitcomb"
-    ],
-    "660644": [
-        20536,
-        "Vidal Bruj\u00e1n"
-    ],
-    "691785": [
-        29668,
-        "Marcelo Mayer"
-    ],
-    "683227": [
-        25629,
-        "Cody Freeman"
-    ],
-    "669288": [
-        19643,
-        "Daniel Johnson"
-    ],
-    "642708": [
-        15518,
-        "Amed Rosario"
-    ],
-    "682997": [
-        27497,
-        "Tyler Callihan"
-    ],
-    "605244": [
-        16925,
-        "Aramis Garcia"
-    ],
-    "686554": [
-        26295,
-        "Oliver Dunn"
-    ],
-    "686452": [
-        25643,
-        "Drew Millas"
-    ],
-    "543877": [
-        9774,
-        "Christian V\u00e1zquez"
-    ],
-    "681807": [
-        24934,
-        "David Fry"
-    ],
-    "699912": [
-        28020,
-        "Jose Fernandez"
-    ],
-    "671286": [
-        22530,
-        "Johnathan Rodr\u00edguez"
-    ],
-    "669369": [
-        20002,
-        "Bryce Johnson"
-    ],
-    "672613": [
-        22741,
-        "Eliezer Alfonzo"
-    ],
-    "667670": [
-        19627,
-        "Brent Rooker"
-    ],
-    "664068": [
-        17975,
-        "Scott Kingery"
-    ],
-    "596117": [
-        18067,
-        "Garrett Stubbs"
-    ],
-    "630105": [
-        18036,
-        "Jake Cronenworth"
-    ],
-    "695257": [
-        29573,
-        "Billy Cook"
-    ],
-    "671155": [
-        27593,
-        "Ivan Johnson"
-    ],
-    "807747": [
-        33795,
-        "Rikuu Nishida"
-    ],
-    "669360": [
-        27569,
-        "Trei Cruz"
-    ],
-    "642086": [
-        15653,
-        "Dominic Smith"
-    ],
-    "694410": [
-        33552,
-        "LuJames Groover"
-    ],
-    "663967": [
-        21587,
-        "C\u00e9sar Salazar"
-    ],
-    "669384": [
-        22272,
-        "Raynel Delgado"
-    ],
-    "663584": [
-        21489,
-        "Hayden Senger"
-    ],
-    "672284": [
-        22558,
-        "Jarred Kelenic"
-    ],
-    "805904": [
-        31583,
-        "Zach Cole"
-    ],
-    "666185": [
-        20126,
-        "Dylan Carlson"
-    ],
-    "682988": [
-        31396,
-        "Tyler Locklear"
-    ],
-    "699625": [
-        31354,
-        "Jimmy Crooks"
-    ],
-    "671083": [
-        22505,
-        "Buddy Kennedy"
-    ],
-    "694377": [
-        27504,
-        "Nick Yorke"
-    ],
-    "691777": [
-        29779,
-        "Max Muncy"
-    ],
-    "669087": [
-        22209,
-        "Sam Huff"
-    ],
-    "701675": [
-        31357,
-        "Nathan Church"
-    ],
-    "664954": [
-        18217,
-        "Brett Sullivan"
-    ],
-    "606992": [
-        14111,
-        "Eric Haase"
-    ],
-    "656582": [
-        16572,
-        "Connor Joe"
-    ],
-    "680737": [
-        24605,
-        "Michael Helman"
-    ],
-    "676369": [
-        23359,
-        "Nelson Vel\u00e1zquez"
-    ],
-    "664238": [
-        18042,
-        "Dylan Moore"
-    ],
-    "695490": [
-        29957,
-        "Edwin Arroyo"
-    ],
-    "676572": [
-        23395,
-        "Eric Wagaman"
-    ],
-    "623205": [
-        14196,
-        "Andrew Velazquez"
+    "660688": [
+        19610,
+        "Keibert Ruiz"
+    ],
+    "683679": [
+        26991,
+        "Jesus Rodriguez"
+    ],
+    "664874": [
+        18887,
+        "Seby Zavala"
+    ],
+    "663796": [
+        21547,
+        "Coco Montes"
+    ],
+    "687093": [
+        26031,
+        "Vaughn Grissom"
     ],
     "692216": [
         33704,
         "CJ Kayfus"
     ],
-    "666181": [
-        21853,
-        "Will Benson"
+    "661531": [
+        19422,
+        "Brian Serven"
     ],
-    "668670": [
-        19452,
-        "Jake Rogers"
+    "677592": [
+        23695,
+        "Everson Pereira"
     ],
-    "660844": [
-        21009,
-        "Leo Rivas"
+    "683079": [
+        25369,
+        "Omar Martinez"
     ],
-    "670097": [
-        19562,
-        "Zack Short"
+    "677941": [
+        23788,
+        "Jordyn Adams"
     ],
-    "700932": [
-        29794,
-        "Kyle Manzardo"
+    "656883": [
+        17837,
+        "Jakson Reetz"
     ],
-    "516782": [
-        9241,
-        "Starling Marte"
+    "678489": [
+        23968,
+        "Jorge Barrosa"
     ],
-    "668942": [
-        19734,
-        "Josh Rojas"
-    ],
-    "687749": [
-        26047,
-        "Jase Bowen"
-    ],
-    "694374": [
-        29571,
-        "Tim Tawa"
-    ],
-    "694514": [
-        31443,
-        "Sterlin Thompson"
-    ],
-    "663853": [
-        21562,
-        "Romy Gonzalez"
-    ],
-    "703492": [
-        32119,
-        "Nick Morabito"
-    ],
-    "686217": [
-        29622,
-        "Sal Frelick"
-    ],
-    "650968": [
-        18848,
-        "Yohel Pozo"
-    ],
-    "807727": [
-        33323,
-        "Charles McAdoo"
-    ],
-    "669221": [
-        19352,
-        "Sean Murphy"
-    ],
-    "664059": [
-        18054,
-        "Sam Haggerty"
-    ],
-    "687363": [
-        31349,
-        "Victor Scott II"
+    "689041": [
+        31793,
+        "Rhylan Thomas"
     ],
     "702176": [
         31564,
         "Alan Roden"
     ],
-    "670156": [
-        20017,
-        "Miles Mastrobuoni"
+    "694378": [
+        33225,
+        "Jacob Gonzalez"
     ],
-    "683766": [
-        27653,
-        "Christian Koss"
+    "683227": [
+        25629,
+        "Cody Freeman"
     ],
-    "656484": [
-        19877,
-        "Tristan Gray"
+    "666931": [
+        19968,
+        "Jared Oliva"
     ],
-    "683357": [
-        27496,
-        "Owen Caissie"
+    "665861": [
+        21735,
+        "Sebasti\u00e1n Rivero"
     ],
-    "643376": [
-        16535,
-        "Danny Jansen"
+    "675448": [
+        23209,
+        "Blake Hunt"
     ],
-    "624512": [
-        15674,
-        "Reese McGuire"
+    "593934": [
+        12164,
+        "Miguel San\u00f3"
     ],
-    "624641": [
-        17022,
-        "Edmundo Sosa"
+    "677347": [
+        26420,
+        "Kyren Paris"
     ],
-    "669357": [
-        22263,
-        "Nolan Gorman"
+    "668843": [
+        19983,
+        "Conner Capel"
     ],
-    "602104": [
-        18795,
-        "Ram\u00f3n Ur\u00edas"
+    "701649": [
+        29795,
+        "James Triantos"
     ],
-    "688363": [
-        31363,
-        "Graham Pauley"
+    "667690": [
+        25814,
+        "C.J. Stubbs"
     ],
-    "502054": [
-        2967,
-        "Tommy Pham"
+    "695020": [
+        28848,
+        "Tanner Murray"
     ],
-    "672016": [
-        29858,
-        "Denzel Clarke"
+    "682619": [
+        25967,
+        "Orelvis Martinez"
     ],
-    "677060": [
-        29614,
-        "Chad Stevens"
+    "665856": [
+        21730,
+        "Jair Camargo"
     ],
-    "682668": [
-        26548,
-        "Luisangel Acu\u00f1a"
+    "681460": [
+        31394,
+        "Brooks Baldwin"
     ],
-    "660162": [
-        17232,
-        "Yo\u00e1n Moncada"
+    "678894": [
+        24273,
+        "Liover Peguero"
     ],
-    "828599": [
-        35126,
-        "Lucas Spence"
+    "682818": [
+        26664,
+        "Yohendrick Pi\u00f1ango"
     ],
-    "681508": [
-        24759,
-        "Mickey Gasper"
+    "596117": [
+        18067,
+        "Garrett Stubbs"
     ],
-    "642215": [
-        19358,
-        "Weston Wilson"
+    "621458": [
+        18316,
+        "Edwin Rios"
     ],
-    "677870": [
-        23782,
-        "Leo Jim\u00e9nez"
+    "663630": [
+        19928,
+        "Ryan McKenna"
     ],
-    "664761": [
-        21618,
-        "Alec Bohm"
+    "645444": [
+        17040,
+        "Jose Herrera"
     ],
-    "682877": [
-        26693,
-        "Juan Brito"
+    "806068": [
+        33575,
+        "Colt Emerson"
     ],
-    "665828": [
-        21707,
-        "Oswaldo Cabrera"
+    "688760": [
+        25714,
+        "Blaine Crim"
     ],
-    "669701": [
-        26396,
-        "Josh Smith"
+    "672284": [
+        22558,
+        "Jarred Kelenic"
     ],
-    "682634": [
-        25971,
-        "Kevin Alc\u00e1ntara"
+    "691907": [
+        28344,
+        "Tsung-Che Cheng"
     ],
-    "815873": [
-        35094,
-        "Sean Keys"
+    "695491": [
+        29596,
+        "Joshua B\u00e1ez"
     ],
-    "696030": [
-        27915,
-        "Alejandro Osuna"
+    "605119": [
+        18289,
+        "Brian Anderson"
     ],
-    "656555": [
-        16472,
-        "Rhys Hoskins"
+    "624415": [
+        19252,
+        "Cavan Biggio"
     ],
-    "669720": [
-        19363,
-        "Austin Hays"
+    "660758": [
+        19910,
+        "Sandro Fabian"
     ],
-    "693459": [
-        29930,
-        "Kyler Fedko"
+    "805347": [
+        33492,
+        "Jim Jarvis"
     ],
-    "663837": [
-        21558,
-        "Matt Vierling"
+    "678760": [
+        24151,
+        "Eddys Leonard"
     ],
-    "671655": [
-        22541,
-        "George Valera"
+    "694355": [
+        27784,
+        "Tyler Gentry"
     ],
-    "690924": [
-        29704,
-        "Braxton Fulford"
+    "674441": [
+        27599,
+        "Jacob Hurtubise"
     ],
-    "665561": [
-        21646,
-        "Rafael March\u00e1n"
+    "664774": [
+        18126,
+        "LaMonte Wade Jr."
     ],
-    "695681": [
-        34979,
-        "Christian Moore"
+    "694673": [
+        29539,
+        "Abimelec Ortiz"
     ],
-    "694025": [
-        28763,
-        "Felix Reyes"
+    "667428": [
+        22045,
+        "Grant Koch"
     ],
-    "670224": [
-        26374,
-        "Kameron Misner"
+    "666211": [
+        19960,
+        "Taylor Trammell"
     ],
-    "681546": [
-        24770,
-        "James Outman"
+    "694203": [
+        28816,
+        "Denzer Guzman"
     ],
-    "695336": [
-        27883,
-        "Thomas Saggese"
+    "680862": [
+        24641,
+        "Willie MacIver"
     ],
-    "677956": [
-        27493,
-        "Rece Hinds"
+    "691185": [
+        27963,
+        "Maximo Acosta"
     ],
-    "543760": [
-        12533,
-        "Marcus Semien"
+    "669352": [
+        22261,
+        "Bubba Thompson"
     ],
-    "691373": [
-        28142,
-        "Jhostynxon Garcia"
+    "695490": [
+        29957,
+        "Edwin Arroyo"
     ],
-    "600869": [
-        13621,
-        "Jeimer Candelario"
+    "668752": [
+        27543,
+        "Duke Ellis"
     ],
-    "672761": [
-        22857,
-        "Wenceel P\u00e9rez"
+    "542364": [
+        10323,
+        "Rafael Ortega"
     ],
-    "693409": [
-        30163,
-        "C\u00e9sar Prieto"
+    "643393": [
+        14894,
+        "Tony Kemp"
     ],
-    "669398": [
-        27573,
-        "Gage Workman"
+    "663584": [
+        21489,
+        "Hayden Senger"
     ],
-    "621550": [
-        13602,
-        "Patrick Wisdom"
+    "642727": [
+        16417,
+        "Sergio Alc\u00e1ntara"
     ],
-    "642020": [
-        19824,
-        "Chuckie Robinson"
+    "665120": [
+        18607,
+        "Jared Walsh"
     ],
-    "676914": [
-        23565,
-        "Davis Schneider"
+    "665782": [
+        21682,
+        "Luis De Los Santos"
     ],
-    "664056": [
-        18030,
-        "Harrison Bader"
+    "694410": [
+        33552,
+        "LuJames Groover"
     ],
-    "457705": [
-        9847,
-        "Andrew McCutchen"
+    "596103": [
+        16153,
+        "Austin Slater"
+    ],
+    "692225": [
+        33644,
+        "Kristian Campbell"
+    ],
+    "595284": [
+        14942,
+        "Andrew Knapp"
+    ],
+    "807747": [
+        33795,
+        "Rikuu Nishida"
+    ],
+    "642197": [
+        15504,
+        "Jamie Westbrook"
+    ],
+    "691781": [
+        29993,
+        "Brady House"
+    ],
+    "664901": [
+        18889,
+        "Danny Mendick"
+    ],
+    "669360": [
+        27569,
+        "Trei Cruz"
     ],
     "686823": [
         25660,
         "Will Brennan"
     ],
-    "666464": [
-        21871,
-        "Jerar Encarnacion"
+    "542963": [
+        10655,
+        "Rob Brantly"
     ],
-    "596115": [
-        12564,
-        "Trevor Story"
+    "666198": [
+        19958,
+        "Carter Kieboom"
     ],
-    "694876": [
-        33708,
-        "Cooper Ingle"
+    "676466": [
+        29830,
+        "Jack Winkler"
     ],
-    "608841": [
-        14366,
-        "Joey Meneses"
+    "663609": [
+        21497,
+        "Luken Baker"
     ],
-    "700246": [
-        30038,
-        "Carson Williams"
+    "677956": [
+        27493,
+        "Rece Hinds"
     ],
-    "675659": [
-        25448,
-        "Greg Jones"
+    "663731": [
+        21535,
+        "Connor Kaiser"
+    ],
+    "681584": [
+        24782,
+        "David Villar"
+    ],
+    "542932": [
+        12037,
+        "Jon Berti"
+    ],
+    "613564": [
+        16686,
+        "Jason Vosler"
+    ],
+    "623205": [
+        14196,
+        "Andrew Velazquez"
+    ],
+    "686676": [
+        25543,
+        "Korey Lee"
+    ],
+    "657088": [
+        16496,
+        "Forrest Wall"
+    ],
+    "669357": [
+        22263,
+        "Nolan Gorman"
+    ],
+    "682119": [
+        25138,
+        "Levi Jordan"
+    ],
+    "669384": [
+        22272,
+        "Raynel Delgado"
+    ],
+    "672359": [
+        22566,
+        "Tirso Ornelas"
+    ],
+    "663550": [
+        21078,
+        "Trey Cabbage"
+    ],
+    "502054": [
+        2967,
+        "Tommy Pham"
+    ],
+    "680911": [
+        24655,
+        "Owen Miller"
+    ],
+    "671155": [
+        27593,
+        "Ivan Johnson"
+    ],
+    "694514": [
+        31443,
+        "Sterlin Thompson"
+    ],
+    "672613": [
+        22741,
+        "Eliezer Alfonzo"
+    ],
+    "801501": [
+        31988,
+        "Nate Furman"
+    ],
+    "801126": [
+        33191,
+        "Brock Rodden"
+    ],
+    "572761": [
+        8090,
+        "Matt Carpenter"
+    ],
+    "641856": [
+        15654,
+        "Billy McKinney"
+    ],
+    "641598": [
+        15161,
+        "Mitch Garver"
+    ],
+    "703492": [
+        32119,
+        "Nick Morabito"
+    ],
+    "457705": [
+        9847,
+        "Andrew McCutchen"
+    ],
+    "676480": [
+        23378,
+        "Jos\u00e9 Barrero"
+    ],
+    "621563": [
+        13853,
+        "Joey Wendle"
+    ],
+    "605346": [
+        13663,
+        "Jack L\u00f3pez"
+    ],
+    "683090": [
+        25980,
+        "Matthew Lugo"
+    ],
+    "621466": [
+        17766,
+        "DJ Stewart"
+    ],
+    "665155": [
+        21635,
+        "Nick Maton"
+    ],
+    "682997": [
+        27497,
+        "Tyler Callihan"
+    ],
+    "519203": [
+        3473,
+        "Anthony Rizzo"
+    ],
+    "608336": [
+        14128,
+        "Joey Gallo"
+    ],
+    "672744": [
+        22842,
+        "Alexander Canario"
+    ],
+    "687952": [
+        30011,
+        "Christian Encarnacion-Strand"
+    ],
+    "677943": [
+        23790,
+        "Will Banfield"
+    ],
+    "669137": [
+        19292,
+        "Armando Alvarez"
+    ],
+    "682634": [
+        25971,
+        "Kevin Alc\u00e1ntara"
+    ],
+    "664059": [
+        18054,
+        "Sam Haggerty"
+    ],
+    "701305": [
+        31562,
+        "Zach Dezenzo"
+    ],
+    "669288": [
+        19643,
+        "Daniel Johnson"
+    ],
+    "682073": [
+        25111,
+        "David Hensley"
+    ],
+    "518934": [
+        9874,
+        "DJ LeMahieu"
+    ],
+    "665506": [
+        19948,
+        "Cristian Pache"
     ],
     "644433": [
         16953,
         "Chadwick Tromp"
     ],
-    "687515": [
-        31855,
-        "Colby Thomas"
+    "608671": [
+        13768,
+        "Travis Jankowski"
     ],
-    "506702": [
-        5273,
-        "Sandy Le\u00f3n"
+    "686554": [
+        26295,
+        "Oliver Dunn"
+    ],
+    "572138": [
+        10441,
+        "Jon Singleton"
+    ],
+    "595751": [
+        12180,
+        "Jorge Alfaro"
+    ],
+    "683021": [
+        25353,
+        "Michael Stefanic"
+    ],
+    "805373": [
+        31765,
+        "Nacho Alvarez Jr."
+    ],
+    "694377": [
+        27504,
+        "Nick Yorke"
+    ],
+    "687749": [
+        26047,
+        "Jase Bowen"
+    ],
+    "690291": [
+        31437,
+        "Jace Jung"
+    ],
+    "695508": [
+        29710,
+        "Cam Cauley"
+    ],
+    "668731": [
+        22168,
+        "Akil Baddoo"
+    ],
+    "668845": [
+        25524,
+        "Aaron Schunk"
+    ],
+    "685301": [
+        25855,
+        "Matt Gorski"
+    ],
+    "828599": [
+        35126,
+        "Lucas Spence"
+    ],
+    "682674": [
+        26468,
+        "Victor Bericoto"
+    ],
+    "682183": [
+        25183,
+        "Drew Avans"
+    ],
+    "605244": [
+        16925,
+        "Aramis Garcia"
+    ],
+    "670224": [
+        26374,
+        "Kameron Misner"
+    ],
+    "595909": [
+        14477,
+        "Jake Cave"
+    ],
+    "689200": [
+        31661,
+        "Jacob Melton"
+    ],
+    "695720": [
+        35107,
+        "Tommy White"
+    ],
+    "681508": [
+        24759,
+        "Mickey Gasper"
+    ],
+    "682877": [
+        26693,
+        "Juan Brito"
+    ],
+    "671655": [
+        22541,
+        "George Valera"
+    ],
+    "663536": [
+        26148,
+        "Tristin English"
+    ],
+    "683357": [
+        27496,
+        "Owen Caissie"
+    ],
+    "660644": [
+        20536,
+        "Vidal Bruj\u00e1n"
+    ],
+    "676679": [
+        23442,
+        "Luis V\u00e1zquez"
+    ],
+    "657061": [
+        17326,
+        "Cole Tucker"
+    ],
+    "666135": [
+        20325,
+        "Alex Kirilloff"
+    ],
+    "669450": [
+        19458,
+        "Cooper Hummel"
+    ],
+    "815873": [
+        35094,
+        "Sean Keys"
+    ],
+    "596129": [
+        14130,
+        "Daniel Vogelbach"
+    ],
+    "668800": [
+        19514,
+        "Andrew Knizner"
+    ],
+    "656185": [
+        16623,
+        "Greg Allen"
+    ],
+    "676044": [
+        30028,
+        "Bob Seymour"
+    ],
+    "669087": [
+        22209,
+        "Sam Huff"
+    ],
+    "660757": [
+        20970,
+        "Oscar Gonzalez"
+    ],
+    "622534": [
+        14712,
+        "Manuel Margot"
+    ],
+    "669717": [
+        25434,
+        "Will Wilson"
+    ],
+    "676801": [
+        19599,
+        "Chas McCormick"
+    ],
+    "670156": [
+        20017,
+        "Miles Mastrobuoni"
+    ],
+    "673995": [
+        26469,
+        "Davis Wendzel"
+    ],
+    "643265": [
+        15279,
+        "Garrett Cooper"
+    ],
+    "571912": [
+        13355,
+        "Luke Maile"
+    ],
+    "694208": [
+        28820,
+        "Mois\u00e9s Ballesteros"
+    ],
+    "691011": [
+        27763,
+        "Drew Romo"
+    ],
+    "691728": [
+        27770,
+        "Zac Veen"
+    ],
+    "693459": [
+        29930,
+        "Kyler Fedko"
+    ],
+    "543592": [
+        15941,
+        "Austin Nola"
+    ],
+    "663611": [
+        20521,
+        "Nick Madrigal"
+    ],
+    "682653": [
+        26536,
+        "Warming Bernabel"
+    ],
+    "656484": [
+        19877,
+        "Tristan Gray"
+    ],
+    "666197": [
+        25813,
+        "Grae Kessinger"
+    ],
+    "672724": [
+        22823,
+        "Oswald Peraza"
+    ],
+    "677870": [
+        23782,
+        "Leo Jim\u00e9nez"
+    ],
+    "642133": [
+        15679,
+        "Rowdy Tellez"
+    ],
+    "694025": [
+        28763,
+        "Felix Reyes"
+    ],
+    "676812": [
+        33098,
+        "Carson McCusker"
+    ],
+    "592200": [
+        12510,
+        "Curt Casali"
+    ],
+    "669256": [
+        19294,
+        "Nick Solak"
+    ],
+    "687478": [
+        25688,
+        "Cam Devanney"
+    ],
+    "657077": [
+        17027,
+        "Alex Verdugo"
+    ],
+    "675659": [
+        25448,
+        "Greg Jones"
+    ],
+    "607054": [
+        12325,
+        "Jace Peterson"
+    ],
+    "682868": [
+        25621,
+        "Bryan Ramos"
+    ],
+    "680716": [
+        24597,
+        "Jonathan Ornelas"
+    ],
+    "664068": [
+        17975,
+        "Scott Kingery"
+    ],
+    "666150": [
+        26149,
+        "Dominic Fletcher"
+    ],
+    "663527": [
+        17893,
+        "Tyler Nevin"
+    ],
+    "666464": [
+        21871,
+        "Jerar Encarnacion"
+    ],
+    "668952": [
+        25867,
+        "Ryan Kreidler"
+    ],
+    "571466": [
+        10200,
+        "Tucker Barnhart"
+    ],
+    "694175": [
+        27781,
+        "Pedro Le\u00f3n"
+    ],
+    "493329": [
+        19198,
+        "Yuli Gurriel"
+    ],
+    "694876": [
+        33708,
+        "Cooper Ingle"
+    ],
+    "656582": [
+        16572,
+        "Connor Joe"
+    ],
+    "696030": [
+        27915,
+        "Alejandro Osuna"
+    ],
+    "678545": [
+        23985,
+        "Osleivis Basabe"
+    ],
+    "678877": [
+        24257,
+        "Jhonkensy Noel"
+    ],
+    "607732": [
+        13723,
+        "Jacob Stallings"
+    ],
+    "608596": [
+        13499,
+        "Tom Murphy"
+    ],
+    "665839": [
+        21716,
+        "Enmanuel Valdez"
+    ],
+    "663905": [
+        18395,
+        "Travis Blankenhorn"
+    ],
+    "543305": [
+        5297,
+        "Aaron Hicks"
+    ],
+    "690987": [
+        27482,
+        "Robert Hassell III"
+    ],
+    "680779": [
+        29617,
+        "Henry Davis"
+    ],
+    "571745": [
+        14274,
+        "Mitch Haniger"
+    ],
+    "663662": [
+        18353,
+        "Daz Cameron"
+    ],
+    "700242": [
+        29575,
+        "Trey Sweeney"
+    ],
+    "669374": [
+        20003,
+        "Keston Hiura"
+    ],
+    "649557": [
+        15937,
+        "Aledmys D\u00edaz"
+    ],
+    "571657": [
+        14813,
+        "Kyle Farmer"
+    ],
+    "543257": [
+        5254,
+        "Robbie Grossman"
+    ],
+    "671284": [
+        31522,
+        "Tim Elko"
+    ],
+    "666181": [
+        21853,
+        "Will Benson"
+    ],
+    "671083": [
+        22505,
+        "Buddy Kennedy"
     ],
     "687282": [
         31958,
         "Gabriel Rincones Jr."
     ],
-    "686668": [
-        25479,
-        "Brenton Doyle"
+    "694359": [
+        29782,
+        "Niko Kavadas"
     ],
-    "467793": [
-        2396,
-        "Carlos Santana"
+    "669234": [
+        29606,
+        "Justyn-Henry Malloy"
     ],
-    "666310": [
-        21865,
-        "Bo Naylor"
+    "680769": [
+        20557,
+        "CJ Alexander"
     ],
-    "628451": [
-        18819,
-        "Andy Ib\u00e1\u00f1ez"
+    "676572": [
+        23395,
+        "Eric Wagaman"
     ],
-    "681481": [
-        25961,
-        "Kerry Carpenter"
+    "641943": [
+        19818,
+        "Joshua Palacios"
     ],
-    "677595": [
-        23698,
-        "Ronny Mauricio"
+    "663897": [
+        19931,
+        "Luke Williams"
     ],
-    "624585": [
-        14221,
-        "Jorge Soler"
+    "670097": [
+        19562,
+        "Zack Short"
     ],
-    "663368": [
-        19921,
-        "Blake Perkins"
+    "666915": [
+        19966,
+        "Bobby Dalbec"
     ],
-    "670770": [
-        19522,
-        "TJ Friedl"
+    "669222": [
+        19293,
+        "Nick Senzel"
     ],
-    "687597": [
-        31431,
-        "Jordan Beck"
+    "669722": [
+        25844,
+        "Logan Davidson"
     ],
-    "680728": [
-        29554,
-        "Adrian Del Castillo"
+    "667452": [
+        20311,
+        "Corey Julks"
     ],
-    "805249": [
-        31792,
-        "Otto Kemp"
+    "669398": [
+        27573,
+        "Gage Workman"
     ],
-    "656976": [
-        19892,
-        "Pavin Smith"
+    "668974": [
+        26106,
+        "Maverick Handley"
     ],
-    "672820": [
-        22896,
-        "Lenyn Sosa"
+    "645801": [
+        15585,
+        "Mike Ford"
+    ],
+    "671221": [
+        20505,
+        "Drew Waters"
+    ],
+    "693409": [
+        30163,
+        "C\u00e9sar Prieto"
+    ],
+    "605204": [
+        16219,
+        "J.D. Davis"
+    ],
+    "641680": [
+        16930,
+        "Jonah Heim"
+    ],
+    "699625": [
+        31354,
+        "Jimmy Crooks"
+    ],
+    "506702": [
+        5273,
+        "Sandy Le\u00f3n"
+    ],
+    "623912": [
+        14387,
+        "Harold Ram\u00edrez"
+    ],
+    "677060": [
+        29614,
+        "Chad Stevens"
     ],
     "700337": [
         28022,
         "Edgar Quero"
     ],
-    "666624": [
-        21897,
-        "Christopher Morel"
+    "687231": [
+        26224,
+        "Darell Hernaiz"
     ],
-    "666397": [
-        27534,
-        "Edouard Julien"
+    "691373": [
+        28142,
+        "Jhostynxon Garcia"
     ],
-    "670242": [
-        26466,
-        "Matt Wallner"
+    "624503": [
+        16337,
+        "Nick Gordon"
+    ],
+    "669699": [
+        25817,
+        "Braden Shewmake"
+    ],
+    "687515": [
+        31855,
+        "Colby Thomas"
+    ],
+    "682617": [
+        25616,
+        "Marco Luciano"
+    ],
+    "682927": [
+        25346,
+        "Ronny Simon"
+    ],
+    "670092": [
+        19384,
+        "Trenton Brooks"
+    ],
+    "621550": [
+        13602,
+        "Patrick Wisdom"
+    ],
+    "692585": [
+        28552,
+        "Yanquiel Fern\u00e1ndez"
+    ],
+    "687597": [
+        31431,
+        "Jordan Beck"
+    ],
+    "694376": [
+        27789,
+        "Shay Whitcomb"
+    ],
+    "669004": [
+        22197,
+        "MJ Melendez"
+    ],
+    "642180": [
+        15730,
+        "Tyler Wade"
+    ],
+    "664913": [
+        18171,
+        "Seth Brown"
+    ],
+    "700246": [
+        30038,
+        "Carson Williams"
+    ],
+    "642215": [
+        19358,
+        "Weston Wilson"
+    ],
+    "677008": [
+        31166,
+        "Heston Kjerstad"
+    ],
+    "592348": [
+        12092,
+        "Niko Goodrum"
+    ],
+    "671286": [
+        22530,
+        "Johnathan Rodr\u00edguez"
+    ],
+    "683770": [
+        25467,
+        "Will Robertson"
+    ],
+    "592669": [
+        15464,
+        "Hunter Renfroe"
+    ],
+    "670223": [
+        27845,
+        "Matt Mervis"
+    ],
+    "678225": [
+        23818,
+        "Jihwan Bae"
+    ],
+    "702358": [
+        31567,
+        "Trey Lipscomb"
+    ],
+    "621035": [
+        13757,
+        "Chris Taylor"
+    ],
+    "680577": [
+        24496,
+        "DaShawn Keirsey Jr."
+    ],
+    "527038": [
+        5827,
+        "Wilmer Flores"
+    ],
+    "605361": [
+        12005,
+        "Nick Martini"
+    ],
+    "690924": [
+        29704,
+        "Braxton Fulford"
+    ],
+    "691777": [
+        29779,
+        "Max Muncy"
+    ],
+    "682988": [
+        31396,
+        "Tyler Locklear"
+    ],
+    "656180": [
+        19864,
+        "Riley Adams"
+    ],
+    "676369": [
+        23359,
+        "Nelson Vel\u00e1zquez"
+    ],
+    "687529": [
+        25690,
+        "Grant McCray"
+    ],
+    "658668": [
+        19698,
+        "Edward Olivares"
+    ],
+    "805249": [
+        31792,
+        "Otto Kemp"
+    ],
+    "681546": [
+        24770,
+        "James Outman"
+    ],
+    "676116": [
+        23312,
+        "Ryan Noda"
+    ],
+    "553882": [
+        13338,
+        "Omar Narv\u00e1ez"
+    ],
+    "642020": [
+        19824,
+        "Chuckie Robinson"
+    ],
+    "594807": [
+        10950,
+        "Adam Duvall"
+    ],
+    "681962": [
+        25040,
+        "Vinny Capra"
+    ],
+    "650391": [
+        17484,
+        "Eloy Jim\u00e9nez"
+    ],
+    "676701": [
+        20056,
+        "Alan Trejo"
+    ],
+    "691182": [
+        27962,
+        "Adael Amador"
+    ],
+    "650559": [
+        19600,
+        "Bryan De La Cruz"
+    ],
+    "622569": [
+        16357,
+        "Pablo Reyes"
+    ],
+    "682641": [
+        26467,
+        "Luis Matos"
+    ],
+    "676070": [
+        23296,
+        "Jacob Amaya"
+    ],
+    "600869": [
+        13621,
+        "Jeimer Candelario"
+    ],
+    "543228": [
+        9627,
+        "Yan Gomes"
+    ],
+    "656248": [
+        21270,
+        "Sean Bouchard"
+    ],
+    "641313": [
+        15172,
+        "Tim Anderson"
+    ],
+    "592178": [
+        15429,
+        "Kris Bryant"
+    ],
+    "666134": [
+        20529,
+        "Nolan Jones"
     ],
     "592206": [
         11737,
         "Nick Castellanos"
     ],
-    "642851": [
-        15271,
-        "Austin Wynns"
-    ],
-    "681351": [
-        24729,
-        "Logan O'Hoppe"
-    ],
-    "553993": [
-        12552,
-        "Eugenio Su\u00e1rez"
-    ],
-    "663330": [
-        18872,
-        "Jahmai Jones"
-    ],
-    "666971": [
-        19238,
-        "Lourdes Gurriel Jr."
-    ],
-    "671732": [
-        22542,
-        "Lawrence Butler"
-    ],
-    "682622": [
-        26517,
-        "Noelvi Marte"
-    ],
-    "542303": [
-        10324,
-        "Marcell Ozuna"
-    ],
-    "608701": [
-        13770,
-        "Rob Refsnyder"
+    "547989": [
+        15676,
+        "Jos\u00e9 Abreu"
     ],
     "671289": [
         22532,
         "Tyler Freeman"
     ],
-    "663647": [
-        18577,
-        "Ke'Bryan Hayes"
+    "608841": [
+        14366,
+        "Joey Meneses"
     ],
-    "521692": [
-        7304,
-        "Salvador Perez"
+    "666397": [
+        27534,
+        "Edouard Julien"
     ],
-    "668901": [
-        22184,
-        "Mark Vientos"
+    "666185": [
+        20126,
+        "Dylan Carlson"
     ],
-    "678662": [
-        24064,
-        "Ezequiel Tovar"
+    "682622": [
+        26517,
+        "Noelvi Marte"
     ],
-    "673490": [
-        27506,
-        "Ha-Seong Kim"
+    "669261": [
+        22244,
+        "Jack Suwinski"
     ],
-    "593871": [
-        13152,
-        "Jorge Polanco"
+    "660707": [
+        20543,
+        "Elehuris Montero"
+    ],
+    "666624": [
+        21897,
+        "Christopher Morel"
+    ],
+    "592273": [
+        11615,
+        "Brandon Drury"
+    ],
+    "592696": [
+        12155,
+        "Eddie Rosario"
+    ],
+    "669911": [
+        25845,
+        "Michael Toglia"
+    ],
+    "455117": [
+        6887,
+        "Mart\u00edn Maldonado"
     ]
 }
