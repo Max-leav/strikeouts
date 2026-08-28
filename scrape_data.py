@@ -70,9 +70,35 @@ def getAllGameInfo():
     file.close()
 
 
+def getAllPlateAppearances(gid):
+    url = f"https://ws.statsapi.mlb.com/api/v1.1/game/{gid}/feed/live?language=en"
+    
+    return get(url, headers).json()["liveData"]["plays"]["allPlays"]
+
+def getPAInfo(pa):
+    year = pa["playEndTime"][0:4]
+    batter = Batter(pa["matchup"]["batter"]["id"], year)
+    batSide = pa["matchup"]["batSide"]["code"]
+    pitcher = Pitcher(pa["matchup"]["pitcher"]["id"], year)
+    pitchSide = pa["matchup"]["pitchHand"]["code"]
+    isStrikeout = ("strikeout" in pa["result"]["event"])
+
+def getPAData(pa):
+    paInfo = getPAInfo(pa)
+
 def getAllAtBats(yearFrom, yearTo):
-    allGameIds = getGameIds(yearFrom, yearTo)
+    #allGameIds = getGameIds(yearFrom, yearTo)
+    allGameIds = [747060]
     allPlateAppearances = []
+    
+    for gid in allGameIds:
+        allPAs = getAllPlateAppearances(gid)
+        
+        for pa in allPAs[0:1]:
+            paData = getPAData(pa)
+            for key, value in paData.getDict():
+                print(key, value)
+            allPlateAppearances.append(paData)
     
 
 def getProbablePitchers(date):
