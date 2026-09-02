@@ -71,6 +71,11 @@ HIT_EVENTS = {
     "home_run"
 }
 
+STRIKEOUT_EVENTS = {
+    "strikeout",
+    "strikeout_double_play"
+}
+
 def pitchOutOfZone(zone):
     return zone >= 11 or zone <= 14
 
@@ -210,9 +215,12 @@ def getRawPitches(mlbid, startDate, endDate, position):
         df["n_thruorder_pitcher"],
         df["n_priorpa_thisgame_player_at_bat"] + 1
     )
-    
+
+    df["isPA"] = df["events"].notna()
     df["isAB"] = df["events"].isin(AB_EVENTS)
     df["isHit"] = df["events"].isin(HIT_EVENTS)
+    df["isStrikeout"] = df["events"].isin(STRIKEOUT_EVENTS)
+    df["isWalk"] = df["events"].equals("Walk")
 
     if len(df) == 0:
         raise RuntimeError(
@@ -237,7 +245,7 @@ def addStatPercentages(stats):
         stats["called_strikes"]
         / stats["pitches"]
         * 100
-    )
+    ).round(2)
     
     stats["csw_pct"] = (
         (
@@ -246,68 +254,72 @@ def addStatPercentages(stats):
         )
         / stats["pitches"]
         * 100
-    )
+    ).round(2)
 
     stats["whiff_pct"] = (
         stats["whiffs"]
         / stats["swings"]
         * 100
-    )
+    ).round(2)
 
     stats["swstr_pct"] = (
         stats["whiffs"]
         / stats["pitches"]
         * 100
-    )
+    ).round(2)
     
     stats["chase_pct"] = (
         stats["chases"]
         / stats["pitches_ooz"]
         * 100
-    )
+    ).round(2)
     
     stats["putaway_pct"] = (
         stats["putaways"]
         / stats["putaway_pitches"]
         * 100
-    )
+    ).round(2)
     
     stats["batting_avg"] = (
         stats["hits"]
         / stats["at_bats"]
-    )
+    ).round(3)
+
+    stats["bb_pct"] = (
+        stats["walks"]
+        / stats["plate_appearances"] * 100
+    ).round(2)
+
+    stats["k_pct"] = (
+        stats["strikeouts"]
+        / stats["plate_appearances"] * 100
+    ).round(2)
     
-    stats["pitch_group"] = stats["pitch_type"].map(PITCH_GROUPINGS)
+    # stats["pitch_group"] = stats["pitch_type"].map(PITCH_GROUPINGS)
     stats["usage"] = (stats["pitches"] / stats["pitches"].sum() * 100).round(2)
     stats["putaway_usg"] = (stats["putaway_pitches"] / stats["putaway_pitches"].sum() * 100).round(2)
-    
-    stats["cstr_pct"] = stats["cstr_pct"].round(2)
-    stats["csw_pct"] = stats["csw_pct"].round(2)
-    stats["whiff_pct"] = stats["whiff_pct"].round(2)
-    stats["swstr_pct"] = stats["swstr_pct"].round(2)
-    stats["chase_pct"] = stats["chase_pct"].round(2)
-    stats["putaway_pct"] = stats["putaway_pct"].round(2)
-    stats["batting_avg"] = stats["batting_avg"].round(3)
 
 def condenseStats(stats):
     stats = stats[
        [
-            "pitch_type",
-            "pitch_name",
-            "pitch_group",
+            # "pitch_type",
+            # "pitch_name",
+            # "pitch_group",
             "pitches",
-            "usage",
-            "called_strikes",
+            # "usage",
+            # "called_strikes",
             "whiffs",
-            "csw_pct",
+            # "csw_pct",
             "swings",
             "whiff_pct",
-            "swstr_pct",
-            "cstr_pct",
-            "chase_pct",
-            "putaway_pct",
-            "putaway_usg",
-            "batting_avg"
+            # "swstr_pct",
+            # "cstr_pct",
+            # "chase_pct",
+            # "putaway_pct",
+            # "putaway_usg",
+            "batting_avg",
+            "k_pct",
+            "bb_pct"
         ]
     ]
 
@@ -411,7 +423,7 @@ def groupBatter(df, byZone):
             dropna=False
         )
         .agg(
-            pitches=("pitch_group", "size"),
+            pitches=("batter", "size"),
 
             called_strikes=("called_strike", "sum"),
 
@@ -426,10 +438,16 @@ def groupBatter(df, byZone):
             putaway_pitches=("two_strike_pitch", "sum"),
             
             putaways=("putaway_pitch", "sum"),
+
+            plate_appearances=("isPA", "sum"),
             
             at_bats=("isAB", "sum"),
             
-            hits=("isHit", "sum")
+            hits=("isHit", "sum"),
+
+            strikeouts=("isStrikeout", "sum"),
+
+            walks=("isWalk", "sum")
         )
         .reset_index()
     )
@@ -442,3 +460,42 @@ def groupBatter(df, byZone):
     addStatPercentages(stats)
     
     return stats
+
+if __name__ == '__main__':
+    START_DATE = "2026-03-25"
+    END_DATE   = "2026-09-01"
+
+    ID = 660271
+
+    df = getRawPitches(670541, START_DATE, END_DATE, "batter")
+    LHB = df[df["stand"] == "L"]
+    RHB = df[df["stand"] == "R"]
+    LHP = df[df["p_throws"] == "L"]
+    RHP = df[df["p_throws"] == "R"]
+
+    # stats = groupBatterByPitchType(df, False)
+    stats2 = groupBatter(df, False)
+    # LHB_stats = groupBatterByPitchType(LHB, False)
+    # RHB_stats = groupBatterByPitchType(RHB, False)
+    # LHP_stats = groupBatterByPitchType(LHP, False)
+    # RHP_stats = groupBatterByPitchType(RHP, False)
+
+    # condenseStats(stats)
+    condenseStats(stats2)
+    # condenseStats(LHB_stats)
+    # condenseStats(RHB_stats)
+    # condenseStats(LHP_stats)
+    # condenseStats(RHP_stats)
+
+    print("\n")
+    print("=" * 100)
+    print("STATCAST")
+    print(f"{START_DATE} through {END_DATE}")
+    print("=" * 100)
+
+    print(
+        stats2.to_string(index=False)
+    )
+    # print(
+    #     LHP_stats.to_string(index=False)
+    # )

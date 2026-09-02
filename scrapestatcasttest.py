@@ -172,55 +172,55 @@ RHP = df[df["p_throws"] == "R"]
 # PITCH RESULT CLASSIFICATION
 # ============================================================
 
-SWING_DESCRIPTIONS = {
-    "foul",
-    "foul_bunt",
-    "foul_tip",
-    "swinging_pitchout",
-    "swinging_strike",
-    "swinging_strike_blocked",
-    "hit_into_play",
-    "hit_into_play_no_out",
-    "hit_into_play_score",
-}
+# SWING_DESCRIPTIONS = {
+#     "foul",
+#     "foul_bunt",
+#     "foul_tip",
+#     "swinging_pitchout",
+#     "swinging_strike",
+#     "swinging_strike_blocked",
+#     "hit_into_play",
+#     "hit_into_play_no_out",
+#     "hit_into_play_score",
+# }
 
 
-WHIFF_DESCRIPTIONS = {
-    "swinging_strike",
-    "swinging_strike_blocked",
-    "foul_tip_bunt",
-    "missed_bunt",
-    "foul_tip",
-    "swinging_pitchout"
-}
+# WHIFF_DESCRIPTIONS = {
+#     "swinging_strike",
+#     "swinging_strike_blocked",
+#     "foul_tip_bunt",
+#     "missed_bunt",
+#     "foul_tip",
+#     "swinging_pitchout"
+# }
 
-PITCH_GROUPINGS = {
-    "FF": "FB",
-    "SI": "FB",
-    "FC": "FB",
-    "CH": "OS",
-    "FS": "OS",
-    "FO": "OS",
-    "CU": "BR",
-    "KC": "BR",
-    "CS": "BR",
-    "SL": "BR",
-    "ST": "BR",
-    "SV": "BR",    
-}
+# PITCH_GROUPINGS = {
+#     "FF": "FB",
+#     "SI": "FB",
+#     "FC": "FB",
+#     "CH": "OS",
+#     "FS": "OS",
+#     "FO": "OS",
+#     "CU": "BR",
+#     "KC": "BR",
+#     "CS": "BR",
+#     "SL": "BR",
+#     "ST": "BR",
+#     "SV": "BR",    
+# }
 
-def pitchOutOfZone(zone):
-    return zone < 1 or zone > 9
+# def pitchOutOfZone(zone):
+#     return zone < 1 or zone > 9
 
-def isChase(row):
-    return row["pitch_out_of_zone"] and row["swing"]
+# def isChase(row):
+#     return row["pitch_out_of_zone"] and row["swing"]
 
-def isPutawayPitch(row):
-    return row["strikes"] == 2 and row["events"] == "strikeout"
+# def isPutawayPitch(row):
+#     return row["strikes"] == 2 and row["events"] == "strikeout"
 
-CALLED_STRIKE_DESCRIPTIONS = {
-    "called_strike",
-}
+# CALLED_STRIKE_DESCRIPTIONS = {
+#     "called_strike",
+# }
 
 # df["pitch_group"] = df["pitch_type"].map(PITCH_GROUPINGS)
 
