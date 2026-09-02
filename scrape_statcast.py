@@ -20,7 +20,7 @@ SWING_DESCRIPTIONS = {
 WHIFF_DESCRIPTIONS = {
     "swinging_strike",
     "swinging_strike_blocked",
-    "foul_tip_bunt",
+    # "foul_tip_bunt",
     "missed_bunt",
     "foul_tip",
     "swinging_pitchout"
@@ -45,6 +45,32 @@ PITCH_GROUPINGS = {
     "SV": "BR",    
 }
 
+AB_EVENTS = {
+    "single",
+    "double",
+    "triple",
+    "home_run",
+    "field_out",
+    "force_out",
+    "field_error",
+    "fielders_choice",
+    "fielders_choice_out",
+    "grounded_into_double_play",
+    "double_play",
+    "triple_play",
+    "strikeout",
+    "strikeout_double_play",
+    "other_out",
+    "catcher_interf"
+}
+
+HIT_EVENTS = {
+    "single",
+    "double",
+    "triple",
+    "home_run"
+}
+
 def pitchOutOfZone(zone):
     return zone >= 11 or zone <= 14
 
@@ -54,52 +80,84 @@ def isChase(row):
 def isPutawayPitch(row):
     return row["strikes"] == 2 and row["events"] == "strikeout"
 
-def getBatterParams(mlbid, startDate, endDate):
-    return {
-        "all": "true",
+def getParams(mlbid, startDate, endDate, position):
+    if position == "batter":
+        return {
+            "all": "true",
 
-        # Season type
-        "hfGT": "R|",
+            # Season type
+            "hfGT": "R|",
 
-        # Season
-        "hfSea": "2026|2025|2024",
+            # Season
+            "hfSea": "2026|2025|2024",
 
-        "player_type": "batter",
+            "player_type": "batter",
 
-        # Dates
-        "game_date_gt": startDate,
-        "game_date_lt": endDate,
+            # Dates
+            "game_date_gt": startDate,
+            "game_date_lt": endDate,
 
-        "batters_lookup[]": str(mlbid),
+            "batters_lookup[]": str(mlbid),
 
-        # Search settings
-        "min_pitches": "0",
-        "min_results": "0",
-        "min_pas": "0",
+            # Search settings
+            "min_pitches": "0",
+            "min_results": "0",
+            "min_pas": "0",
 
-        "group_by": "name",
+            "group_by": "name",
 
-        "sort_col": "pitches",
-        "player_event_sort": "api_p_release_speed",
-        "sort_order": "desc",
+            "sort_col": "pitches",
+            "player_event_sort": "api_p_release_speed",
+            "sort_order": "desc",
 
-        "min_abs": "0",
+            "min_abs": "0",
 
-        # Raw pitch-level data
-        "type": "details",
-    }
+            # Raw pitch-level data
+            "type": "details",
+        }
+    elif position == "pitcher":
+        return {
+            "all": "true",
+
+            # Season type
+            "hfGT": "R|",
+
+            # Season
+            "hfSea": "2026|2025|2024",
+
+            "player_type": "pitcher",
+
+            # Dates
+            "game_date_gt": startDate,
+            "game_date_lt": endDate,
+
+            "pitchers_lookup[]": str(mlbid),
+
+            # Search settings
+            "min_pitches": "0",
+            "min_results": "0",
+            "min_pas": "0",
+
+            "group_by": "name",
+
+            "sort_col": "pitches",
+            "player_event_sort": "api_p_release_speed",
+            "sort_order": "desc",
+
+            "min_abs": "0",
+
+            # Raw pitch-level data
+            "type": "details",
+        }
 
 def getRawPitches(mlbid, startDate, endDate, position):
-    if position == 'b':
-        params = getBatterParams(mlbid, startDate, endDate)
-    else:
-        params = None
+    params = getParams(mlbid, startDate, endDate, position)
     
-    response = get(url, params=params, timeout=120)
+    response = get(url, params=params, timeout=10)
     response.raise_for_status()
+    print(response.url)
 
     df = pd.read_csv(StringIO(response.text))
-    df.rename(columns={"pitch_type": "pitch_type", "pitch_name": "pitch_name"}, inplace=True)
     df = df[
         [
             "pitch_type",
@@ -152,6 +210,9 @@ def getRawPitches(mlbid, startDate, endDate, position):
         df["n_thruorder_pitcher"],
         df["n_priorpa_thisgame_player_at_bat"] + 1
     )
+    
+    df["isAB"] = df["events"].isin(AB_EVENTS)
+    df["isHit"] = df["events"].isin(HIT_EVENTS)
 
     if len(df) == 0:
         raise RuntimeError(
@@ -164,11 +225,20 @@ def getRawPitches(mlbid, startDate, endDate, position):
     )
     
     df = df.dropna(subset=["pitch_type"])
-    df = df[df["batter"] == mlbid].copy()
+    if position == "batter":
+        df = df[df["batter"] == mlbid].copy()
+    elif position == "pitcher":
+        df = df[df["pitcher"] == mlbid].copy()
     
     return df
 
 def addStatPercentages(stats):
+    stats["cstr_pct"] = (
+        stats["called_strikes"]
+        / stats["pitches"]
+        * 100
+    )
+    
     stats["csw_pct"] = (
         (
             stats["called_strikes"]
@@ -202,14 +272,22 @@ def addStatPercentages(stats):
         * 100
     )
     
+    stats["batting_avg"] = (
+        stats["hits"]
+        / stats["at_bats"]
+    )
+    
     stats["pitch_group"] = stats["pitch_type"].map(PITCH_GROUPINGS)
     stats["usage"] = (stats["pitches"] / stats["pitches"].sum() * 100).round(2)
+    stats["putaway_usg"] = (stats["putaway_pitches"] / stats["putaway_pitches"].sum() * 100).round(2)
     
+    stats["cstr_pct"] = stats["cstr_pct"].round(2)
     stats["csw_pct"] = stats["csw_pct"].round(2)
     stats["whiff_pct"] = stats["whiff_pct"].round(2)
     stats["swstr_pct"] = stats["swstr_pct"].round(2)
     stats["chase_pct"] = stats["chase_pct"].round(2)
     stats["putaway_pct"] = stats["putaway_pct"].round(2)
+    stats["batting_avg"] = stats["batting_avg"].round(3)
 
 def condenseStats(stats):
     stats = stats[
@@ -225,8 +303,11 @@ def condenseStats(stats):
             "swings",
             "whiff_pct",
             "swstr_pct",
+            "cstr_pct",
             "chase_pct",
-            "putaway_pct"
+            "putaway_pct",
+            "putaway_usg",
+            "batting_avg"
         ]
     ]
 
@@ -256,7 +337,11 @@ def groupBatterByPitchType(df, byZone):
             
             putaway_pitches=("two_strike_pitch", "sum"),
             
-            putaways=("putaway_pitch", "sum")
+            putaways=("putaway_pitch", "sum"),
+            
+            at_bats=("isAB", "sum"),
+            
+            hits=("isHit", "sum")
         )
         .reset_index()
     )
@@ -296,7 +381,55 @@ def groupBatterByPitchGroup(df, byZone):
             
             putaway_pitches=("two_strike_pitch", "sum"),
             
-            putaways=("putaway_pitch", "sum")
+            putaways=("putaway_pitch", "sum"),
+            
+            at_bats=("isAB", "sum"),
+            
+            hits=("isHit", "sum")
+        )
+        .reset_index()
+    )
+    
+    stats = stats.sort_values(
+        "pitches",
+        ascending=False
+    )
+    
+    addStatPercentages(stats)
+    
+    return stats
+
+def groupBatter(df, byZone):
+    if byZone:
+        grouping = ["batter", "zone"]
+    else:
+        grouping = ["batter"]
+        
+    stats = (
+        df.groupby(
+            grouping,
+            dropna=False
+        )
+        .agg(
+            pitches=("pitch_group", "size"),
+
+            called_strikes=("called_strike", "sum"),
+
+            swings=("swing", "sum"),
+
+            whiffs=("whiff", "sum"),
+        
+            pitches_ooz=("pitch_out_of_zone", "sum"),
+            
+            chases=("chase", "sum"),
+            
+            putaway_pitches=("two_strike_pitch", "sum"),
+            
+            putaways=("putaway_pitch", "sum"),
+            
+            at_bats=("isAB", "sum"),
+            
+            hits=("isHit", "sum")
         )
         .reset_index()
     )
