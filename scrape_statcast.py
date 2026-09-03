@@ -61,7 +61,6 @@ AB_EVENTS = {
     "strikeout",
     "strikeout_double_play",
     "other_out",
-    "catcher_interf"
 }
 
 HIT_EVENTS = {
@@ -77,8 +76,40 @@ STRIKEOUT_EVENTS = {
 }
 
 WALK_EVENTS = {
+    "intent_walk",
+    "walk"
+}
+
+ON_BASE_EVENTS = {
+    "intent_walk",
     "walk",
-    "intent_walk"
+    "single",
+    "double",
+    "triple",
+    "home_run",
+    "hit_by_pitch"
+}
+
+ON_BASE_OPPORTUNITIES = {
+    "single",
+    "double",
+    "triple",
+    "home_run",
+    "field_out",
+    "force_out",
+    "field_error",
+    "fielders_choice",
+    "fielders_choice_out",
+    "grounded_into_double_play",
+    "double_play",
+    "triple_play",
+    "strikeout",
+    "strikeout_double_play",
+    "other_out",
+    "intent_walk",
+    "walk",
+    "hit_by_pitch",
+    "sac_fly"
 }
 
 def pitchOutOfZone(zone):
@@ -89,6 +120,18 @@ def isChase(row):
 
 def isPutawayPitch(row):
     return row["strikes"] == 2 and row["events"] == "strikeout"
+
+def sluggingValue(event):
+    if event == "single":
+        return 1.0
+    elif event == "double":
+        return 2.0
+    elif event == "triple":
+        return 3.0
+    elif event == "home_run":
+        return 4.0
+    else:
+        return 0
 
 def getParams(mlbid, startDate, endDate, position):
     if position == "batter":
@@ -226,26 +269,18 @@ def getRawPitches(mlbid, startDate, endDate, position):
     df["isHit"] = df["events"].isin(HIT_EVENTS)
     df["isStrikeout"] = df["events"].isin(STRIKEOUT_EVENTS)
     df["isWalk"] = df["events"].isin(WALK_EVENTS)
+    df["isOnBase"] = df["events"].isin(ON_BASE_EVENTS)
+    df["onBaseOpp"] = df["events"].isin(ON_BASE_OPPORTUNITIES)
+    df["slug"] = df["events"].map(sluggingValue)
 
     if len(df) == 0:
         raise RuntimeError(
             "Baseball Savant returned zero rows.\n"
         )
-
-    df["batter"] = pd.to_numeric(
-        df["batter"],
-        errors="coerce"
-    )
-    
-    df = df.dropna(subset=["pitch_type"])
-    if position == "batter":
-        df = df[df["batter"] == mlbid].copy()
-    elif position == "pitcher":
-        df = df[df["pitcher"] == mlbid].copy()
     
     return df
 
-def addStatPercentages(stats):
+def addStatPercentages(stats, pitchGroup):
     stats["cstr_pct"] = (
         stats["called_strikes"]
         / stats["pitches"]
@@ -300,16 +335,29 @@ def addStatPercentages(stats):
         / stats["plate_appearances"] * 100
     ).round(2)
     
-    # stats["pitch_group"] = stats["pitch_type"].map(PITCH_GROUPINGS)
+    stats["obp"] = (
+        stats["timesOnBase"]
+        / stats["onBaseOpps"]
+    ).round(3)
+    
+    stats["slug_pct"] = (
+        stats["slugging"]
+        / stats["at_bats"]
+    ).round(3) 
+    
+    stats["ops"] = stats["obp"] + stats["slug_pct"]
+    stats["iso"] = stats["slug_pct"] - stats["batting_avg"]
+    
+    if pitchGroup:
+        stats["pitch_group"] = stats["pitch_type"].map(PITCH_GROUPINGS)
     stats["usage"] = (stats["pitches"] / stats["pitches"].sum() * 100).round(2)
     stats["putaway_usg"] = (stats["putaway_pitches"] / stats["putaway_pitches"].sum() * 100).round(2)
 
 def condenseStats(stats):
-    stats = stats[
+    return stats[
        [
             # "pitch_type",
             # "pitch_name",
-            # "pitch_group",
             "plate_appearances",
             "pitches",
             # "usage",
@@ -327,7 +375,11 @@ def condenseStats(stats):
             "strikeouts",
             "k_pct",
             "walks",
-            "bb_pct"
+            "bb_pct",
+            "obp",
+            "slug_pct",
+            "ops",
+            "iso"
         ]
     ]
 
@@ -358,10 +410,22 @@ def groupBatterByPitchType(df, byZone):
             putaway_pitches=("two_strike_pitch", "sum"),
             
             putaways=("putaway_pitch", "sum"),
+
+            plate_appearances=("isPA", "sum"),
             
             at_bats=("isAB", "sum"),
             
-            hits=("isHit", "sum")
+            hits=("isHit", "sum"),
+
+            strikeouts=("isStrikeout", "sum"),
+
+            walks=("isWalk", "sum"),
+            
+            timesOnBase=("isOnBase", "sum"),
+            
+            onBaseOpps=("onBaseOpp", "sum"),
+            
+            slugging=("slug", "sum")
         )
         .reset_index()
     )
@@ -371,7 +435,7 @@ def groupBatterByPitchType(df, byZone):
         ascending=False
     )
     
-    addStatPercentages(stats)
+    addStatPercentages(stats, True)
     
     return stats
 
@@ -402,10 +466,22 @@ def groupBatterByPitchGroup(df, byZone):
             putaway_pitches=("two_strike_pitch", "sum"),
             
             putaways=("putaway_pitch", "sum"),
+
+            plate_appearances=("isPA", "sum"),
             
             at_bats=("isAB", "sum"),
             
-            hits=("isHit", "sum")
+            hits=("isHit", "sum"),
+
+            strikeouts=("isStrikeout", "sum"),
+
+            walks=("isWalk", "sum"),
+            
+            timesOnBase=("isOnBase", "sum"),
+            
+            onBaseOpps=("onBaseOpp", "sum"),
+            
+            slugging=("slug", "sum")
         )
         .reset_index()
     )
@@ -415,7 +491,7 @@ def groupBatterByPitchGroup(df, byZone):
         ascending=False
     )
     
-    addStatPercentages(stats)
+    addStatPercentages(stats, True)
     
     return stats
 
@@ -455,7 +531,13 @@ def groupBatter(df, byZone):
 
             strikeouts=("isStrikeout", "sum"),
 
-            walks=("isWalk", "sum")
+            walks=("isWalk", "sum"),
+            
+            timesOnBase=("isOnBase", "sum"),
+            
+            onBaseOpps=("onBaseOpp", "sum"),
+            
+            slugging=("slug", "sum")
         )
         .reset_index()
     )
@@ -465,7 +547,7 @@ def groupBatter(df, byZone):
         ascending=False
     )
     
-    addStatPercentages(stats)
+    addStatPercentages(stats, False)
     
     return stats
 
@@ -475,49 +557,25 @@ if __name__ == '__main__':
 
     ID = 660271
 
-    df = getRawPitches(670541, START_DATE, END_DATE, "batter")
+    df = getRawPitches(ID, START_DATE, END_DATE, "batter")
     LHB = df[df["stand"] == "L"]
     RHB = df[df["stand"] == "R"]
     LHP = df[df["p_throws"] == "L"]
     RHP = df[df["p_throws"] == "R"]
 
-    # stats = groupBatterByPitchType(df, False)
+    stats = groupBatterByPitchType(df, False)
     stats2 = groupBatter(df, False)
-    # LHB_stats = groupBatterByPitchType(LHB, False)
-    # RHB_stats = groupBatterByPitchType(RHB, False)
-    # LHP_stats = groupBatterByPitchType(LHP, False)
-    # RHP_stats = groupBatterByPitchType(RHP, False)
+    LHB_stats = groupBatterByPitchType(LHB, False)
+    RHB_stats = groupBatterByPitchType(RHB, False)
+    LHP_stats = groupBatterByPitchType(LHP, False)
+    RHP_stats = groupBatterByPitchType(RHP, False)
 
-    # condenseStats(stats)
-    condenseStats(stats2)
-    # condenseStats(LHB_stats)
-    # condenseStats(RHB_stats)
-    # condenseStats(LHP_stats)
-    # condenseStats(RHP_stats)
-    # stats2 = stats2[
-    #        [
-    #             # "pitch_type",
-    #             # "pitch_name",
-    #             # "pitch_group",
-    #             "pitches",
-    #             # "usage",
-    #             # "called_strikes",
-    #             "whiffs",
-    #             # "csw_pct",
-    #             "swings",
-    #             "whiff_pct",
-    #             # "swstr_pct",
-    #             # "cstr_pct",
-    #             # "chase_pct",
-    #             # "putaway_pct",
-    #             # "putaway_usg",
-    #             "batting_avg",
-    #             "strikeouts",
-    #             "k_pct",
-    #             "walks",
-    #             "bb_pct"
-    #         ]
-    #     ]
+    stats = condenseStats(stats)
+    stats2 = condenseStats(stats2)
+    LHB_stats = condenseStats(LHB_stats)
+    RHB_stats = condenseStats(RHB_stats)
+    LHP_stats = condenseStats(LHP_stats)
+    RHP_stats = condenseStats(RHP_stats)
 
     print("\n")
     print("=" * 100)
@@ -526,7 +584,7 @@ if __name__ == '__main__':
     print("=" * 100)
 
     print(
-        stats2.to_string(index=False)
+        stats.to_string(index=False)
     )
     # print(
     #     LHP_stats.to_string(index=False)
