@@ -76,8 +76,13 @@ STRIKEOUT_EVENTS = {
     "strikeout_double_play"
 }
 
+WALK_EVENTS = {
+    "walk",
+    "intent_walk"
+}
+
 def pitchOutOfZone(zone):
-    return zone >= 11 or zone <= 14
+    return zone >= 11 and zone <= 14
 
 def isChase(row):
     return row["pitch_out_of_zone"] and row["swing"]
@@ -220,7 +225,7 @@ def getRawPitches(mlbid, startDate, endDate, position):
     df["isAB"] = df["events"].isin(AB_EVENTS)
     df["isHit"] = df["events"].isin(HIT_EVENTS)
     df["isStrikeout"] = df["events"].isin(STRIKEOUT_EVENTS)
-    df["isWalk"] = df["events"].equals("Walk")
+    df["isWalk"] = df["events"].isin(WALK_EVENTS)
 
     if len(df) == 0:
         raise RuntimeError(
@@ -305,6 +310,7 @@ def condenseStats(stats):
             # "pitch_type",
             # "pitch_name",
             # "pitch_group",
+            "plate_appearances",
             "pitches",
             # "usage",
             # "called_strikes",
@@ -318,7 +324,9 @@ def condenseStats(stats):
             # "putaway_pct",
             # "putaway_usg",
             "batting_avg",
+            "strikeouts",
             "k_pct",
+            "walks",
             "bb_pct"
         ]
     ]
@@ -486,6 +494,30 @@ if __name__ == '__main__':
     # condenseStats(RHB_stats)
     # condenseStats(LHP_stats)
     # condenseStats(RHP_stats)
+    # stats2 = stats2[
+    #        [
+    #             # "pitch_type",
+    #             # "pitch_name",
+    #             # "pitch_group",
+    #             "pitches",
+    #             # "usage",
+    #             # "called_strikes",
+    #             "whiffs",
+    #             # "csw_pct",
+    #             "swings",
+    #             "whiff_pct",
+    #             # "swstr_pct",
+    #             # "cstr_pct",
+    #             # "chase_pct",
+    #             # "putaway_pct",
+    #             # "putaway_usg",
+    #             "batting_avg",
+    #             "strikeouts",
+    #             "k_pct",
+    #             "walks",
+    #             "bb_pct"
+    #         ]
+    #     ]
 
     print("\n")
     print("=" * 100)
