@@ -353,41 +353,73 @@ def addStatPercentages(stats, pitchGroup):
     stats["usage"] = (stats["pitches"] / stats["pitches"].sum() * 100).round(2)
     stats["putaway_usg"] = (stats["putaway_pitches"] / stats["putaway_pitches"].sum() * 100).round(2)
 
-def condenseStats(stats):
-    return stats[
-       [
-            # "pitch_type",
-            # "pitch_name",
-            "plate_appearances",
-            "pitches",
-            # "usage",
-            # "called_strikes",
-            "whiffs",
-            # "csw_pct",
-            "swings",
-            "whiff_pct",
-            # "swstr_pct",
-            # "cstr_pct",
-            # "chase_pct",
-            # "putaway_pct",
-            # "putaway_usg",
-            "batting_avg",
-            "strikeouts",
-            "k_pct",
-            "walks",
-            "bb_pct",
-            "obp",
-            "slug_pct",
-            "ops",
-            "iso"
+def condenseStats(stats, type):
+    if type == "overall":
+        return stats[
+            [
+                "plate_appearances",
+                "at_bats",
+                "pitches",
+                "batting_avg",
+                "strikeouts",
+                "k_pct",
+                "walks",
+                "bb_pct",
+                "obp",
+                "slug_pct",
+                "ops",
+                "iso"
+            ]
         ]
-    ]
-
-def groupBatterByPitchType(df, byZone):
-    if byZone:
-        grouping = ["pitch_type", "pitch_name", "zone"]
     else:
-        grouping = ["pitch_type", "pitch_name"]
+        return stats[
+            [
+                "pitch_type",
+                "pitch_name",
+                "pitch_group",
+                "pitches",
+                "usage",
+                "plate_appearances",
+                "at_bats",
+                "strikeouts",
+                "k_pct",
+                "walks",
+                "bb_pct",
+                "swings",
+                "whiffs",
+                "whiff_pct",
+                "swstr_pct",
+                "called_strikes",
+                "cstr_pct",
+                "csw_pct",
+                "chase_pct",
+                "putaway_usg",
+                "putaway_pct",
+                "batting_avg",
+                "obp",
+                "slug_pct",
+                "ops",
+                "iso"
+            ]
+        ]
+
+def getGrouping(datatype, byZone):
+    grouping = []
+
+    if datatype == "pitch_type":
+        grouping  = ["pitch_type", "pitch_name"]
+    elif datatype == "pitch_group":
+        grouping = ["pitch_group"]
+    else:
+        grouping = datatype
+
+    if byZone:
+        grouping.append("zone")
+
+    return grouping
+        
+def groupByPitches(df, groupType, byZone):
+    grouping = getGrouping(groupType, byZone)
         
     stats = (
         df.groupby(
@@ -395,7 +427,7 @@ def groupBatterByPitchType(df, byZone):
             dropna=False
         )
         .agg(
-            pitches=("pitch_type", "size"),
+            pitches=("batter", "size"),
 
             called_strikes=("called_strike", "sum"),
 
@@ -451,7 +483,7 @@ def groupBatterByPitchGroup(df, byZone):
             dropna=False
         )
         .agg(
-            pitches=("pitch_group", "size"),
+            pitches=("batter", "size"),
 
             called_strikes=("called_strike", "sum"),
 
@@ -495,11 +527,8 @@ def groupBatterByPitchGroup(df, byZone):
     
     return stats
 
-def groupBatter(df, byZone):
-    if byZone:
-        grouping = ["batter", "zone"]
-    else:
-        grouping = ["batter"]
+def groupOverall(df, position, byZone):
+    grouping = getGrouping(position, byZone)
         
     stats = (
         df.groupby(
@@ -553,7 +582,7 @@ def groupBatter(df, byZone):
 
 if __name__ == '__main__':
     START_DATE = "2026-03-25"
-    END_DATE   = "2026-09-01"
+    END_DATE   = "2026-09-02"
 
     ID = 660271
 
@@ -563,19 +592,19 @@ if __name__ == '__main__':
     LHP = df[df["p_throws"] == "L"]
     RHP = df[df["p_throws"] == "R"]
 
-    stats = groupBatterByPitchType(df, False)
-    stats2 = groupBatter(df, False)
-    LHB_stats = groupBatterByPitchType(LHB, False)
-    RHB_stats = groupBatterByPitchType(RHB, False)
-    LHP_stats = groupBatterByPitchType(LHP, False)
-    RHP_stats = groupBatterByPitchType(RHP, False)
+    stats = groupByPitches(df, "pitch_type", False)
+    stats2 = groupOverall(df, "batter", False)
+    LHB_stats = groupByPitches(LHB, "pitch_type", False)
+    RHB_stats = groupByPitches(RHB, "pitch_type", False)
+    LHP_stats = groupByPitches(LHP, "pitch_type", False)
+    RHP_stats = groupByPitches(RHP, "pitch_type", False)
 
-    stats = condenseStats(stats)
-    stats2 = condenseStats(stats2)
-    LHB_stats = condenseStats(LHB_stats)
-    RHB_stats = condenseStats(RHB_stats)
-    LHP_stats = condenseStats(LHP_stats)
-    RHP_stats = condenseStats(RHP_stats)
+    stats = condenseStats(stats, "pitch")
+    stats2 = condenseStats(stats2, "overall")
+    LHB_stats = condenseStats(LHB_stats, "pitch")
+    RHB_stats = condenseStats(RHB_stats, "pitch")
+    LHP_stats = condenseStats(LHP_stats, "pitch")
+    RHP_stats = condenseStats(RHP_stats, "pitch")
 
     print("\n")
     print("=" * 100)
@@ -584,7 +613,7 @@ if __name__ == '__main__':
     print("=" * 100)
 
     print(
-        stats.to_string(index=False)
+        stats2.to_string(index=False)
     )
     # print(
     #     LHP_stats.to_string(index=False)
