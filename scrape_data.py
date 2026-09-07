@@ -1,7 +1,7 @@
 from requests import get
 from scraping_information import *
 from datetime import datetime, date, timedelta
-import json
+import json, pandas as pd
 
 def getLineups(gid):
     url = f"https://statsapi.mlb.com/api/v1/schedule?gamePk={gid}&language=en&hydrate=story,xrefId,lineups,broadcasts(all),probablePitcher(note),game(content(media(epg)),tickets)&useLatestGames=true&fields=dates,games,teams,probablePitcher,note,id,dates,games,broadcasts,type,name,homeAway,language,isNational,callSign,mediaState,mediaStateCode,availableForStreaming,freeGame,mediaId,dates,games,game,tickets,ticketType,ticketLinks,dates,games,content,media,epg,dates,games,lineups,homePlayers,awayPlayers,useName,lastName,primaryPosition,abbreviation,dates,games,xrefIds,xrefId,xrefType,story"
@@ -18,6 +18,7 @@ def getLineups(gid):
 
 def getAllGameInfo():
     gameInfo = {
+        2023: dict(),
         2024: dict(),
         2025: dict(),
         2026: dict()
@@ -69,13 +70,25 @@ def getAllGameInfo():
     file.write(json.dumps(gameInfo, indent=4))
     file.close()
 
+def getAllGameIds(yearFrom, yearTo):
+    file = open("mlbGameIds.json", "r")
+    allIds = json.load(file)
+    file.close()
 
-def getAllPlateAppearances(gid):
+    ids = []
+    for year in range(int(yearFrom), int(yearTo) + 1):
+        yearIds = allIds[str(year)]
+        ids.extend(yearIds)
+
+    return ids
+
+def getGamePAs(gid):
     url = f"https://ws.statsapi.mlb.com/api/v1.1/game/{gid}/feed/live?language=en"
     
     return get(url, headers).json()["liveData"]["plays"]["allPlays"]
 
 def getPAInfo(pa):
+    eventDate = pa["playEndTime"][0:10]
     year = pa["playEndTime"][0:4]
     batter = Batter(pa["matchup"]["batter"]["id"], year)
     batSide = pa["matchup"]["batSide"]["code"]
@@ -86,23 +99,43 @@ def getPAInfo(pa):
 def getPAData(pa):
     paInfo = getPAInfo(pa)
 
-def getAllAtBats(yearFrom, yearTo):
-    #allGameIds = getGameIds(yearFrom, yearTo)
-    allGameIds = [747060]
+def getPA(play, gid):
+    gameid = gid
+    eventDate = play["playEndTime"][0:10]
+    year = play["playEndTime"][0:4]
+    batter = play["matchup"]["batter"]["id"]
+    batSide = play["matchup"]["batSide"]["code"]
+    pitcher = play["matchup"]["pitcher"]["id"]
+    pitchSide = play["matchup"]["pitchHand"]["code"]
+    result = play["result"]["eventType"]
+    isStrikeout = "strikeout" in result
+    isWalk = "walk" in result
+
+    return [gameid, eventDate, year, batter, batSide, pitcher, pitchSide, result, isStrikeout, isWalk]
+
+def getAllPAs(yearFrom, yearTo):
+    allGameIds = getAllGameIds(yearFrom, yearTo)
+    #allGameIds = [747060]
     allPlateAppearances = []
     
-    for gid in allGameIds:
-        allPAs = getAllPlateAppearances(gid)
+    for gid in allGameIds[0:100]:
+        allPAs = getGamePAs(gid)
         
-        for pa in allPAs[0:1]:
-            paData = getPAData(pa)
-            for key, value in paData.getDict():
-                print(key, value)
-            allPlateAppearances.append(paData)
+        for play in allPAs:
+            pa = getPA(play, gid)
+            # for key, value in paData.getDict():
+            #     print(key, value)
+            allPlateAppearances.append(pa)
+
+    cols = ["gid","date", "year", "batter", "bSide", "pitcher", "pSide", "result", "isStrikeout", "isWalk"]
+    df = pd.DataFrame(allPlateAppearances, columns=cols)
+
+    df.to_csv("data/pas.csv", index=False)
     
 
 def getProbablePitchers(date):
     pass
 
 if __name__ == '__main__':
-    getAllAtBats('2024', '2026')
+    #getAllGameInfo()
+    getAllPAs('2024', '2026')
