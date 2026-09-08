@@ -70,6 +70,50 @@ def getAllGameInfo():
     file.write(json.dumps(gameInfo, indent=4))
     file.close()
 
+def getEventDate(gid):
+    url = f"https://ws.statsapi.mlb.com/api/v1.1/game/{gid}/feed/live?language=en"
+        
+    js = get(url, headers).json()
+    dateData = js["gameData"]
+
+    return dateData["datetime"]["dateTime"][0:10]
+
+def convertGameInfoToCsv():
+    file = open("data/mlbGameInfo.json", "r")
+    allGameInfo = json.load(file)
+    print("file loaded")
+    file.close()
+
+    allRows = []
+
+    for year in allGameInfo.keys():
+        games = allGameInfo[year]
+
+        curDate = mlbDates[int(year)][0]
+
+        for gid in games.keys():
+            info = games[gid]
+            eventDate = getEventDate(gid)
+
+            if eventDate != curDate:
+                print(eventDate)
+                curDate = eventDate
+            #     # df = pd.DataFrame(allRows, columns=["year", "date", "gid", "home", "away", "hPitcher", "aPitcher", "hLineup", "aLineup"])
+            #     # df.to_csv(f"data/gameInfo/{curDate}.csv")
+            #     # df = df[["year", "date", "gid"]]
+            #     # df.to_csv(f"data/gameIds/{curDate}.csv")
+
+            #     allRows = []
+            #     curDate = eventDate
+
+            allRows.append([year, eventDate, gid, info["home"], info["away"], info["hPitcher"], info["aPitcher"], info["hLineup"], info["aLineup"]])
+
+        df = pd.DataFrame(allRows, columns=["year", "date", "gid", "home", "away", "hPitcher", "aPitcher", "hLineup", "aLineup"])
+        df.to_csv(f"data/gameInfo/{year}.csv")
+        df = df[["year", "date", "gid"]]
+        df.to_csv(f"data/gameIds/{year}.csv")
+
+
 def getAllGameIds(yearFrom, yearTo):
     file = open("mlbGameIds.json", "r")
     allIds = json.load(file)
@@ -139,4 +183,5 @@ def getProbablePitchers(date):
 
 if __name__ == '__main__':
     #getAllGameInfo()
-    getAllPAs('2024', '2026')
+    #getAllPAs('2024', '2026')
+    convertGameInfoToCsv()
