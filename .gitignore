@@ -1,2 +1,7 @@
 # data folder
 data/
+
+# test/debug files
+savant_data (8).csv
+testsize.csv
+scrapestatcasttest.py
