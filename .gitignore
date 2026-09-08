@@ -1,5 +1,7 @@
 # data folder
-data/
+data/gameIds
+data/gameInfo
+data/pas
 
 # test/debug files
 savant_data (8).csv
