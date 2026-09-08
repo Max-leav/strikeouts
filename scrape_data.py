@@ -131,6 +131,7 @@ def getAllPAs(yearFrom, yearTo):
     df = pd.DataFrame(allPlateAppearances, columns=cols)
 
     df.to_csv("data/pas.csv", index=False)
+
     
 
 def getProbablePitchers(date):
