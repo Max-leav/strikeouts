@@ -112,6 +112,32 @@ ON_BASE_OPPORTUNITIES = {
     "sac_fly"
 }
 
+RENAME_COLS = {
+    "plate_appearances": "PA",
+    "at_bats": "AB",
+    "batting_avg": "AVG",
+    "strikeouts": "K",
+    "k_pct": "K%",
+    "walks": "BB",
+    "bb_pct": "OBP",
+    "slug_pct": "SLG",
+    "ops": "OPS",
+    "iso": "ISO",
+    "pitch_type": "Pitch Type",
+    "pitch_name": "Pitch",
+    "pitch_group": "Pitch Group",
+    "usage": "USG",
+    "whiffs": "Whiffs",
+    "whiff_pct": "Whiff%",
+    "swstr_pct": "SwStr%",
+    "called_strikes": "Called Strikes",
+    "cstr_pct": "cStr%",
+    "csw_pct": "CSW%",
+    "chase_pct": "Chase%",
+    "putaway_usg": "Putaway USG",
+    "putaway_pct": "Putaway%",
+}
+
 def pitchOutOfZone(zone):
     return zone >= 11 and zone <= 14
 
@@ -353,9 +379,15 @@ def addStatPercentages(stats, pitchGroup):
     stats["usage"] = (stats["pitches"] / stats["pitches"].sum() * 100).round(2)
     stats["putaway_usg"] = (stats["putaway_pitches"] / stats["putaway_pitches"].sum() * 100).round(2)
 
-def condenseStats(stats, type):
-    if type == "overall":
-        return stats[
+def renameCols(name):
+    if name in RENAME_COLS:
+        return RENAME_COLS[name]
+    else:
+        return name
+
+def condenseStats(stats, datatype):
+    if datatype == "overall":
+        ret = stats[
             [
                 "plate_appearances",
                 "at_bats",
@@ -371,8 +403,11 @@ def condenseStats(stats, type):
                 "iso"
             ]
         ]
+        
+        ret.rename(columns=renameCols, inplace=True)
+        return ret
     else:
-        return stats[
+        ret = stats[
             [
                 "pitch_type",
                 "pitch_name",
@@ -402,6 +437,9 @@ def condenseStats(stats, type):
                 "iso"
             ]
         ]
+        
+        ret.rename(columns=renameCols, inplace=True)
+        return ret
 
 def getGrouping(datatype, byZone):
     grouping = []
@@ -613,7 +651,7 @@ if __name__ == '__main__':
     print("=" * 100)
 
     print(
-        stats2.to_string(index=False)
+        stats.to_string(index=False)
     )
     # print(
     #     LHP_stats.to_string(index=False)

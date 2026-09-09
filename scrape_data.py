@@ -87,6 +87,8 @@ def convertGameInfoToCsv():
     allRows = []
 
     for year in allGameInfo.keys():
+        if year == "2024":
+            continue
         games = allGameInfo[year]
 
         curDate = mlbDates[int(year)][0]
@@ -184,4 +186,13 @@ def getProbablePitchers(date):
 if __name__ == '__main__':
     #getAllGameInfo()
     #getAllPAs('2024', '2026')
-    convertGameInfoToCsv()
+    #convertGameInfoToCsv()
+    for year in ["2024", "2025", "2026"]:
+        s = f"data/gameIds/{year}.csv"
+        s2 = f"data/gameInfo/{year}.csv"
+        df = pd.read_csv(s)
+        df2 = pd.read_csv(s2)
+        df2['hPitcher'] = df2['hPitcher'].astype('Int64')
+        df2['aPitcher'] = df2['aPitcher'].astype('Int64')
+        df.to_csv(s, index=False)
+        df2.to_csv(s2, index=False)
