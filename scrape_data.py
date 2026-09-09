@@ -115,23 +115,27 @@ def convertGameInfoToCsv():
         df = df[["year", "date", "gid"]]
         df.to_csv(f"data/gameIds/{year}.csv")
 
+def getAllGameIds(dateFrom, dateTo):
+    allIds = pd.DataFrame(columns=["year", "date", "gid"])
 
-def getAllGameIds(yearFrom, yearTo):
-    file = open("mlbGameIds.json", "r")
-    allIds = json.load(file)
-    file.close()
+    for year in range(int(dateFrom[0:4]), int(dateTo[0:4]) + 1):
+        yearIds = pd.read_csv(f"data/gameIds/{year}.csv")
+        yearIds = yearIds[yearIds["date"].between(dateFrom, dateTo)]
+        allIds = pd.concat([allIds, yearIds], ignore_index=True)
+        #allIds.extend(yearIds["gid"].tolist())
 
-    ids = []
-    for year in range(int(yearFrom), int(yearTo) + 1):
-        yearIds = allIds[str(year)]
-        ids.extend(yearIds)
+    # allIds = allIds[allIds["date"].between(dateFrom, dateTo)]
 
-    return ids
+    return allIds.sort_values(by="date")
 
 def getGamePAs(gid):
-    url = f"https://ws.statsapi.mlb.com/api/v1.1/game/{gid}/feed/live?language=en"
+    url = f"https://statsapi.mlb.com/api/v1.1/game/{gid}/feed/live?language=en"
+    # print("getting info from url: ", url)
+
+    js = get(url, headers=headers).json()
+    # print("got json")
     
-    return get(url, headers).json()["liveData"]["plays"]["allPlays"]
+    return js["liveData"]["plays"]["allPlays"]
 
 def getPAInfo(pa):
     eventDate = pa["playEndTime"][0:10]
@@ -159,24 +163,38 @@ def getPA(play, gid):
 
     return [gameid, eventDate, year, batter, batSide, pitcher, pitchSide, result, isStrikeout, isWalk]
 
-def getAllPAs(yearFrom, yearTo):
-    allGameIds = getAllGameIds(yearFrom, yearTo)
+def getAllPAs(dateFrom, dateTo):
+    allGameIds = getAllGameIds(dateFrom, dateTo)
     #allGameIds = [747060]
-    allPlateAppearances = []
-    
-    for gid in allGameIds[0:100]:
-        allPAs = getGamePAs(gid)
+
+    for year in allGameIds["year"].unique():
+        allPlateAppearances = []
+        month = "03"
+
+        yearIds = allGameIds[allGameIds["year"] == year]
+
+        for row in yearIds.itertuples(index=False):
+            if row.date[5:7] != month:
+                cols = ["gid","date", "year", "batter", "bSide", "pitcher", "pSide", "result", "isStrikeout", "isWalk"]
+                df = pd.DataFrame(allPlateAppearances, columns=cols)
         
-        for play in allPAs:
-            pa = getPA(play, gid)
-            # for key, value in paData.getDict():
-            #     print(key, value)
-            allPlateAppearances.append(pa)
+                df.to_csv(f"data/pas/{year}/{month}.csv", index=False)
+                month = row.date[5:7]
+                allPlateAppearances = []
 
-    cols = ["gid","date", "year", "batter", "bSide", "pitcher", "pSide", "result", "isStrikeout", "isWalk"]
-    df = pd.DataFrame(allPlateAppearances, columns=cols)
+            gid = row.gid
+            print("gid: ", gid)
+            allPAs = getGamePAs(gid)
+            print("pas in game: ", len(allPAs))
+            
+            for play in allPAs:
+                pa = getPA(play, gid)
+                allPlateAppearances.append(pa)
 
-    df.to_csv("data/pas.csv", index=False)
+        cols = ["gid","date", "year", "batter", "bSide", "pitcher", "pSide", "result", "isStrikeout", "isWalk"]
+        df = pd.DataFrame(allPlateAppearances, columns=cols)
+
+        df.to_csv(f"data/pas/{year}/{month}.csv", index=False)
 
     
 
@@ -185,14 +203,5 @@ def getProbablePitchers(date):
 
 if __name__ == '__main__':
     #getAllGameInfo()
-    #getAllPAs('2024', '2026')
-    #convertGameInfoToCsv()
-    for year in ["2024", "2025", "2026"]:
-        s = f"data/gameIds/{year}.csv"
-        s2 = f"data/gameInfo/{year}.csv"
-        df = pd.read_csv(s)
-        df2 = pd.read_csv(s2)
-        df2['hPitcher'] = df2['hPitcher'].astype('Int64')
-        df2['aPitcher'] = df2['aPitcher'].astype('Int64')
-        df.to_csv(s, index=False)
-        df2.to_csv(s2, index=False)
+    getAllPAs('2024-05-01', mlbDates[2026][1])
+    
