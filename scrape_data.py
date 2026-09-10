@@ -115,6 +115,18 @@ def convertGameInfoToCsv():
         df = df[["year", "date", "gid"]]
         df.to_csv(f"data/gameIds/{year}.csv")
 
+def convertLookupsToCsv():
+    with open('lookups/mlbLookup.json', 'r') as file:
+        data = json.load(file)
+
+    cols = ["mlbid", "fgid", "name"]
+    mlbIds = [int(key) for key in data.keys()]
+    fgIds = [data[str(id)][0] for id in mlbIds]
+    name = [data[str(id)][1] for id in mlbIds]
+
+    df = pd.DataFrame(zip(mlbIds, fgIds, name), columns=cols)
+    df.to_csv("data/lookup.csv", index=False)
+
 def getAllGameIds(dateFrom, dateTo):
     allIds = pd.DataFrame(columns=["year", "date", "gid"])
 
@@ -191,7 +203,8 @@ def getAllPAs(dateFrom, dateTo):
 
         df.to_csv(f"data/pas/{year}/{month}.csv", index=False)
 
-    
+def getPitcherYearlyData(yearFrom, yearTo):
+    pass
 
 def getProbablePitchers(date):
     pass
@@ -199,5 +212,5 @@ def getProbablePitchers(date):
 if __name__ == '__main__':
     #getAllGameInfo()
     #getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
-    pass
+    convertLookupsToCsv()
     
