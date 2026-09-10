@@ -1,7 +1,8 @@
 from requests import get
 from scraping_information import *
 from datetime import datetime, date, timedelta
-import json, pandas as pd
+import json, pandas as pd, time
+from scrape_statcast import *
 
 def getLineups(gid):
     url = f"https://statsapi.mlb.com/api/v1/schedule?gamePk={gid}&language=en&hydrate=story,xrefId,lineups,broadcasts(all),probablePitcher(note),game(content(media(epg)),tickets)&useLatestGames=true&fields=dates,games,teams,probablePitcher,note,id,dates,games,broadcasts,type,name,homeAway,language,isNational,callSign,mediaState,mediaStateCode,availableForStreaming,freeGame,mediaId,dates,games,game,tickets,ticketType,ticketLinks,dates,games,content,media,epg,dates,games,lineups,homePlayers,awayPlayers,useName,lastName,primaryPosition,abbreviation,dates,games,xrefIds,xrefId,xrefType,story"
@@ -203,13 +204,49 @@ def getAllPAs(dateFrom, dateTo):
 
         df.to_csv(f"data/pas/{year}/{month}.csv", index=False)
 
-def getPitcherYearlyData(yearFrom, yearTo):
-    pass
+def getYearlyData(year, mlbid, position):
+    df = getRawPitches(mlbid, mlbDates[year][0], mlbDates[year][1], position)
+    time.sleep(0.1)
+
+    print(mlbid, year, position)
+    if len(df) <= 0:
+        return
+
+    if position == "batter":
+        filt = "p_throws"
+        fName1 = f"data/batters/{year}/vsLHP/{mlbid}.csv"
+        fName2 = f"data/batters/{year}/vsRHP/{mlbid}.csv"
+    else:
+        filt = "stand"
+        fName1 = f"data/pitchers/{year}/vsLHB/{mlbid}.csv"
+        fName2 = f"data/pitchers/{year}/vsRHB/{mlbid}.csv"
+
+    vsL = df[df[filt] == "L"]
+    vsR = df[df[filt] == "R"]
+
+    lStats = groupByPitches(vsL, "pitch_type", False)
+    lStats = condenseStats(lStats, "pitch")
+    rStats = groupByPitches(vsR, "pitch_type", False)
+    rStats = condenseStats(rStats, "pitch")
+
+    lStats.to_csv(fName1, index=False)
+    rStats.to_csv(fName2, index=False)
+
+
+def getAllPitchLevelData(yearFrom, yearTo):
+    df = pd.read_csv("data/lookup.csv")
+
+    for id in df['mlbid'].tolist():
+        print("getting data for id: ", id)
+        for year in range(yearFrom, yearTo + 1):
+            batterData = getYearlyData(year, id, "batter")
+            pitcherData = getYearlyData(year, id, "pitcher")
 
 def getProbablePitchers(date):
     pass
 
 if __name__ == '__main__':
     #getAllGameInfo()
-    getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
+    #getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
+    getAllPitchLevelData(2023, 2025)
     
