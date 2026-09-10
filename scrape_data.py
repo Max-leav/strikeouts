@@ -122,18 +122,13 @@ def getAllGameIds(dateFrom, dateTo):
         yearIds = pd.read_csv(f"data/gameIds/{year}.csv")
         yearIds = yearIds[yearIds["date"].between(dateFrom, dateTo)]
         allIds = pd.concat([allIds, yearIds], ignore_index=True)
-        #allIds.extend(yearIds["gid"].tolist())
-
-    # allIds = allIds[allIds["date"].between(dateFrom, dateTo)]
 
     return allIds.sort_values(by="date")
 
 def getGamePAs(gid):
     url = f"https://statsapi.mlb.com/api/v1.1/game/{gid}/feed/live?language=en"
-    # print("getting info from url: ", url)
 
     js = get(url, headers=headers).json()
-    # print("got json")
     
     return js["liveData"]["plays"]["allPlays"]
 
@@ -149,10 +144,10 @@ def getPAInfo(pa):
 def getPAData(pa):
     paInfo = getPAInfo(pa)
 
-def getPA(play, gid):
+def getPA(play, gid, date):
     gameid = gid
-    eventDate = play["playEndTime"][0:10]
-    year = play["playEndTime"][0:4]
+    eventDate = date
+    year = date[0:4]
     batter = play["matchup"]["batter"]["id"]
     batSide = play["matchup"]["batSide"]["code"]
     pitcher = play["matchup"]["pitcher"]["id"]
@@ -188,7 +183,7 @@ def getAllPAs(dateFrom, dateTo):
             print("pas in game: ", len(allPAs))
             
             for play in allPAs:
-                pa = getPA(play, gid)
+                pa = getPA(play, gid, row.date)
                 allPlateAppearances.append(pa)
 
         cols = ["gid","date", "year", "batter", "bSide", "pitcher", "pSide", "result", "isStrikeout", "isWalk"]
@@ -203,5 +198,5 @@ def getProbablePitchers(date):
 
 if __name__ == '__main__':
     #getAllGameInfo()
-    getAllPAs('2024-05-01', mlbDates[2026][1])
+    getAllPAs('2025-08-01', mlbDates[2026][1])
     
