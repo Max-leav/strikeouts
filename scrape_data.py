@@ -211,6 +211,5 @@ def getProbablePitchers(date):
 
 if __name__ == '__main__':
     #getAllGameInfo()
-    #getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
-    convertLookupsToCsv()
+    getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
     
