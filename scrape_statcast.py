@@ -168,7 +168,7 @@ def getParams(mlbid, startDate, endDate, position):
             "hfGT": "R|",
 
             # Season
-            "hfSea": "2026|2025|2024",
+            "hfSea": "2026|2025|2024|2023",
 
             "player_type": "batter",
 
@@ -202,7 +202,7 @@ def getParams(mlbid, startDate, endDate, position):
             "hfGT": "R|",
 
             # Season
-            "hfSea": "2026|2025|2024",
+            "hfSea": "2026|2025|2024|2023",
 
             "player_type": "pitcher",
 
@@ -232,9 +232,9 @@ def getParams(mlbid, startDate, endDate, position):
 def getRawPitches(mlbid, startDate, endDate, position):
     params = getParams(mlbid, startDate, endDate, position)
     
-    response = get(url, params=params, timeout=10)
+    response = get(url, params=params, timeout=30)
     response.raise_for_status()
-    print(response.url)
+    #print(response.url)
 
     df = pd.read_csv(StringIO(response.text))
     df = df[
@@ -299,10 +299,10 @@ def getRawPitches(mlbid, startDate, endDate, position):
     df["onBaseOpp"] = df["events"].isin(ON_BASE_OPPORTUNITIES)
     df["slug"] = df["events"].map(sluggingValue)
 
-    if len(df) == 0:
-        raise RuntimeError(
-            "Baseball Savant returned zero rows.\n"
-        )
+    # if len(df) == 0:
+    #     raise RuntimeError(
+    #         "Baseball Savant returned zero rows.\n"
+    #     )
     
     return df
 
@@ -619,10 +619,10 @@ def groupOverall(df, position, byZone):
     return stats
 
 if __name__ == '__main__':
-    START_DATE = "2026-03-25"
+    START_DATE = "2023-03-25"
     END_DATE   = "2026-09-02"
 
-    ID = 660271
+    ID = 677951
 
     df = getRawPitches(ID, START_DATE, END_DATE, "batter")
     LHB = df[df["stand"] == "L"]
