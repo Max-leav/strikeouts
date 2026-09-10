@@ -198,5 +198,5 @@ def getProbablePitchers(date):
 
 if __name__ == '__main__':
     #getAllGameInfo()
-    getAllPAs('2024-03-25', '2024-03-31')
+    getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
     
