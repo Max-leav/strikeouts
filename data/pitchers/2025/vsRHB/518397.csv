@@ -1,0 +1,4 @@
+Pitch Type,Pitch,Pitch Group,pitches,USG,PA,AB,K,K%,BB,OBP,swings,Whiffs,Whiff%,SwStr%,Called Strikes,cStr%,CSW%,Chase%,Putaway USG,Putaway%,AVG,obp,SLG,OPS,ISO
+SI,Sinker,FB,106,69.74,34,28,1,2.94,5,14.71,46,4,8.7,3.77,19,17.92,21.7,18.37,47.37,5.56,0.321,0.441,0.643,1.084,0.322
+CH,Changeup,OS,44,28.95,6,6,1,16.67,0,0.0,16,7,43.75,15.91,3,6.82,22.73,21.88,47.37,5.56,0.167,0.167,0.333,0.5,0.166
+SL,Slider,BR,2,1.32,2,2,1,50.0,0,0.0,2,1,50.0,50.0,0,0.0,50.0,,5.26,50.0,0.5,0.5,2.0,2.5,1.5
