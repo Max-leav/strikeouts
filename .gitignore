@@ -2,6 +2,19 @@
 # data/gameIds
 # data/gameInfo
 # data/pas
+data/batters/2023/vsRHP
+data/batters/2024/vsRHP
+data/batters/2025/vsRHP
+data/batters/2023/vsLHP
+data/batters/2024/vsLHP
+data/batters/2025/vsLHP
+data/pitchers/2023/vsRHB
+data/pitchers/2024/vsRHB
+data/pitchers/2025/vsRHB
+data/pitchers/2023/vsLHB
+data/pitchers/2024/vsLHB
+data/pitchers/2025/vsLHB
+
 
 # test/debug files
 savant_data (8).csv
