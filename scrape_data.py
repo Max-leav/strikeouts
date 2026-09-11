@@ -3,6 +3,7 @@ from scraping_information import *
 from datetime import datetime, date, timedelta
 import json, pandas as pd, time
 from scrape_statcast import *
+from pathlib import Path
 
 def getLineups(gid):
     url = f"https://statsapi.mlb.com/api/v1/schedule?gamePk={gid}&language=en&hydrate=story,xrefId,lineups,broadcasts(all),probablePitcher(note),game(content(media(epg)),tickets)&useLatestGames=true&fields=dates,games,teams,probablePitcher,note,id,dates,games,broadcasts,type,name,homeAway,language,isNational,callSign,mediaState,mediaStateCode,availableForStreaming,freeGame,mediaId,dates,games,game,tickets,ticketType,ticketLinks,dates,games,content,media,epg,dates,games,lineups,homePlayers,awayPlayers,useName,lastName,primaryPosition,abbreviation,dates,games,xrefIds,xrefId,xrefType,story"
@@ -234,7 +235,6 @@ def getYearlyData(yearFrom, yearTo, mlbid, position):
         lStats.to_csv(fName1, index=False)
         rStats.to_csv(fName2, index=False)
 
-
 def getAllPitchLevelData(yearFrom, yearTo):
     df = pd.read_csv("data/lookup.csv")
 
@@ -242,6 +242,27 @@ def getAllPitchLevelData(yearFrom, yearTo):
         print("getting data for id: ", id)
         batterData = getYearlyData(yearFrom, yearTo, id, "batter")
         pitcherData = getYearlyData(yearFrom, yearTo, id, "pitcher")
+        
+def condenseYearlyPlayerData(yearFrom, yearTo):
+    for year in range(yearFrom, yearTo + 1):
+        paths = [f"data/batters/{year}/vsLHP", f"data/batters/{year}/vsRHP", f"data/pitchers/{year}/vsLHB", f"data/pitchers/{year}/vsRHB"]
+        
+        for p in paths:
+            ydf = pd.read_csv("data/playerTemplate.csv")
+            
+            path = Path(p)
+            fNames = [file.name for file in path.iterdir() if file.is_file()]
+            
+            for f in fNames:
+                df = pd.read_csv(f"{path}/{f}")
+                df["mlbid"] = int(f[0:6])
+                ydf = pd.concat([ydf, df])
+                
+            ydf["mlbid"] = pd.to_numeric(ydf["mlbid"], errors="raise").astype("int64")
+                
+            ydf.to_csv(f"{path}.csv", index=False)
+            
+        
 
 def getProbablePitchers(date):
     pass
@@ -249,5 +270,5 @@ def getProbablePitchers(date):
 if __name__ == '__main__':
     #getAllGameInfo()
     #getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
-    getAllPitchLevelData(2023, 2025)
+    condenseYearlyPlayerData(2023, 2025)
     
