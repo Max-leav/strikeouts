@@ -204,43 +204,44 @@ def getAllPAs(dateFrom, dateTo):
 
         df.to_csv(f"data/pas/{year}/{month}.csv", index=False)
 
-def getYearlyData(year, mlbid, position):
-    df = getRawPitches(mlbid, mlbDates[year][0], mlbDates[year][1], position)
+def getYearlyData(yearFrom, yearTo, mlbid, position):
+    df = getRawPitches(mlbid, mlbDates[yearFrom][0], mlbDates[yearTo][1], position)
     time.sleep(0.1)
 
-    print(mlbid, year, position)
+    print(mlbid, position)
     if len(df) <= 0:
         return
 
-    if position == "batter":
-        filt = "p_throws"
-        fName1 = f"data/batters/{year}/vsLHP/{mlbid}.csv"
-        fName2 = f"data/batters/{year}/vsRHP/{mlbid}.csv"
-    else:
-        filt = "stand"
-        fName1 = f"data/pitchers/{year}/vsLHB/{mlbid}.csv"
-        fName2 = f"data/pitchers/{year}/vsRHB/{mlbid}.csv"
+    for year in range(yearFrom, yearTo + 1):
+        ydf = df[df["game_year"] == year]
+        if position == "batter":
+            filt = "p_throws"
+            fName1 = f"data/batters/{year}/vsLHP/{mlbid}.csv"
+            fName2 = f"data/batters/{year}/vsRHP/{mlbid}.csv"
+        else:
+            filt = "stand"
+            fName1 = f"data/pitchers/{year}/vsLHB/{mlbid}.csv"
+            fName2 = f"data/pitchers/{year}/vsRHB/{mlbid}.csv"
 
-    vsL = df[df[filt] == "L"]
-    vsR = df[df[filt] == "R"]
+        vsL = ydf[ydf[filt] == "L"]
+        vsR = ydf[ydf[filt] == "R"]
 
-    lStats = groupByPitches(vsL, "pitch_type", False)
-    lStats = condenseStats(lStats, "pitch")
-    rStats = groupByPitches(vsR, "pitch_type", False)
-    rStats = condenseStats(rStats, "pitch")
+        lStats = groupByPitches(vsL, "pitch_type", False)
+        lStats = condenseStats(lStats, "pitch")
+        rStats = groupByPitches(vsR, "pitch_type", False)
+        rStats = condenseStats(rStats, "pitch")
 
-    lStats.to_csv(fName1, index=False)
-    rStats.to_csv(fName2, index=False)
+        lStats.to_csv(fName1, index=False)
+        rStats.to_csv(fName2, index=False)
 
 
 def getAllPitchLevelData(yearFrom, yearTo):
     df = pd.read_csv("data/lookup.csv")
 
-    for id in df['mlbid'].tolist():
+    for id in df['mlbid'].tolist()[2235:]:
         print("getting data for id: ", id)
-        for year in range(yearFrom, yearTo + 1):
-            batterData = getYearlyData(year, id, "batter")
-            pitcherData = getYearlyData(year, id, "pitcher")
+        batterData = getYearlyData(yearFrom, yearTo, id, "batter")
+        pitcherData = getYearlyData(yearFrom, yearTo, id, "pitcher")
 
 def getProbablePitchers(date):
     pass

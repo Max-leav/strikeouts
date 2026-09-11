@@ -1,0 +1,4 @@
+Pitch Type,Pitch,Pitch Group,pitches,USG,PA,AB,K,K%,BB,OBP,swings,Whiffs,Whiff%,SwStr%,Called Strikes,cStr%,CSW%,Chase%,Putaway USG,Putaway%,AVG,obp,SLG,OPS,ISO
+FC,Cutter,FB,45,45.0,7,5,3,42.86,2,28.57,24,8,33.33,17.78,10,22.22,40.0,40.0,34.29,25.0,0.2,0.429,0.4,0.829,0.2
+FF,4-Seam Fastball,FB,40,40.0,13,12,1,7.69,1,7.69,23,5,21.74,12.5,3,7.5,20.0,37.5,42.86,6.67,0.167,0.231,0.25,0.481,0.08299999999999999
+SL,Slider,BR,15,15.0,5,5,1,20.0,0,0.0,9,3,33.33,20.0,0,0.0,20.0,42.86,22.86,12.5,0.2,0.2,0.4,0.6000000000000001,0.2

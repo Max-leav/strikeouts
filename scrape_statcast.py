@@ -1,5 +1,5 @@
 from requests import get
-import pandas as pd, numpy as np
+import pandas as pd, numpy as np, time
 from io import StringIO
 from datetime import datetime, timedelta
 
@@ -232,9 +232,14 @@ def getParams(mlbid, startDate, endDate, position):
 def getRawPitches(mlbid, startDate, endDate, position):
     params = getParams(mlbid, startDate, endDate, position)
     
-    response = get(url, params=params, timeout=30)
-    response.raise_for_status()
-    #print(response.url)
+    for i in range(5):
+        try:
+            response = get(url, params=params, timeout=30)
+            response.raise_for_status()
+            continue
+            #print(response.url)
+        except:
+            time.sleep(0.5)
 
     df = pd.read_csv(StringIO(response.text))
     df = df[
