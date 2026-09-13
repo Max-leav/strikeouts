@@ -119,7 +119,7 @@ RENAME_COLS = {
     "strikeouts": "K",
     "k_pct": "K%",
     "walks": "BB",
-    "bb_pct": "OBP",
+    "bb_pct": "BB%",
     "slug_pct": "SLG",
     "ops": "OPS",
     "iso": "ISO",
@@ -136,6 +136,8 @@ RENAME_COLS = {
     "chase_pct": "Chase%",
     "putaway_usg": "Putaway USG",
     "putaway_pct": "Putaway%",
+    "batter": "mlbid",
+    "pitcher": "mlbid"
 }
 
 def pitchOutOfZone(zone):
@@ -163,6 +165,9 @@ def getParams(mlbid, startDate, endDate, position):
     if position == "batter":
         return {
             "all": "true",
+
+            # Pitch type
+            #"hfPT": "FF|SI|FC|CH|FS|FO|SC|CU|KC|CS|SL|ST|SV|KN|FA|IN|PO",
 
             # Season type
             "hfGT": "R|",
@@ -236,8 +241,8 @@ def getRawPitches(mlbid, startDate, endDate, position):
         try:
             response = get(url, params=params, timeout=30)
             response.raise_for_status()
-            continue
-            #print(response.url)
+            print(response.url)
+            break
         except:
             time.sleep(0.5)
 
@@ -282,7 +287,7 @@ def getRawPitches(mlbid, startDate, endDate, position):
         CALLED_STRIKE_DESCRIPTIONS
     )
     
-    df["pitch_out_of_zone"] = df["zone"].map(pitchOutOfZone)
+    df["pitch_out_of_zone"] = (df["zone"].map(pitchOutOfZone).fillna(False).astype(bool))
 
     df["chase"] = df.apply(isChase, axis=1)
     
@@ -302,8 +307,8 @@ def getRawPitches(mlbid, startDate, endDate, position):
     df["isWalk"] = df["events"].isin(WALK_EVENTS)
     df["isOnBase"] = df["events"].isin(ON_BASE_EVENTS)
     df["onBaseOpp"] = df["events"].isin(ON_BASE_OPPORTUNITIES)
-    df["slug"] = df["events"].map(sluggingValue)
-
+    df["slug"] = pd.to_numeric(df["events"].map(sluggingValue),errors="coerce")
+    
     # if len(df) == 0:
     #     raise RuntimeError(
     #         "Baseball Savant returned zero rows.\n"
@@ -391,9 +396,10 @@ def renameCols(name):
         return name
 
 def condenseStats(stats, datatype):
-    if datatype == "overall":
+    if datatype == "batter" or datatype == "pitcher":
         ret = stats[
             [
+                datatype,
                 "plate_appearances",
                 "at_bats",
                 "pitches",
@@ -405,9 +411,18 @@ def condenseStats(stats, datatype):
                 "obp",
                 "slug_pct",
                 "ops",
-                "iso"
+                "iso",
+                "swings",
+                "whiffs",
+                "whiff_pct",
+                "swstr_pct",
+                "called_strikes",
+                "cstr_pct",
+                "csw_pct",
+                "chase_pct",
+                "putaway_pct",
             ]
-        ]
+        ].copy()
         
         ret.rename(columns=renameCols, inplace=True)
         return ret
@@ -441,7 +456,7 @@ def condenseStats(stats, datatype):
                 "ops",
                 "iso"
             ]
-        ]
+        ].copy()
         
         ret.rename(columns=renameCols, inplace=True)
         return ret
@@ -579,7 +594,7 @@ def groupOverall(df, position, byZone):
             dropna=False
         )
         .agg(
-            pitches=("batter", "size"),
+            pitches=(position, "size"),
 
             called_strikes=("called_strike", "sum"),
 
@@ -625,9 +640,9 @@ def groupOverall(df, position, byZone):
 
 if __name__ == '__main__':
     START_DATE = "2023-03-25"
-    END_DATE   = "2026-09-02"
+    END_DATE   = "2023-11-02"
 
-    ID = 677951
+    ID = 621566
 
     df = getRawPitches(ID, START_DATE, END_DATE, "batter")
     LHB = df[df["stand"] == "L"]
@@ -643,7 +658,7 @@ if __name__ == '__main__':
     RHP_stats = groupByPitches(RHP, "pitch_type", False)
 
     stats = condenseStats(stats, "pitch")
-    stats2 = condenseStats(stats2, "overall")
+    stats2 = condenseStats(stats2, "batter")
     LHB_stats = condenseStats(LHB_stats, "pitch")
     RHB_stats = condenseStats(RHB_stats, "pitch")
     LHP_stats = condenseStats(LHP_stats, "pitch")
@@ -655,8 +670,9 @@ if __name__ == '__main__':
     print(f"{START_DATE} through {END_DATE}")
     print("=" * 100)
 
+    #stats2.to_csv("data/overallTemplate.csv", index=False)
     print(
-        stats.to_string(index=False)
+        stats2.to_string(index=False)
     )
     # print(
     #     LHP_stats.to_string(index=False)

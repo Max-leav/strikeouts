@@ -261,8 +261,78 @@ def condenseYearlyPlayerData(yearFrom, yearTo):
             ydf["mlbid"] = pd.to_numeric(ydf["mlbid"], errors="raise").astype("int64")
                 
             ydf.to_csv(f"{path}.csv", index=False)
-            
+
+def getAllPitches(yearFrom, yearTo):
+    ids = pd.read_csv("data/lookup.csv")
+    ids = ids["mlbid"].tolist()
+    
+    for id in ids[10:]:
+        for year in range(yearFrom, yearTo + 1):
+            for pos in ["batter", "pitcher"]:
+                df = getRawPitches(id, mlbDates[year][0], mlbDates[year][1], pos)
+                if len(df) <= 0:
+                    continue
+                df.to_csv(f"data/{pos}s/{year}/pitches/{id}.csv", index=False)
+   
+def condenseYearlyPitches(yearFrom, yearTo):
+    for year in range(yearFrom, yearTo + 1):
+        paths = [f"data/batters/{year}/pitches", f"data/pitchers/{year}/pitches"]
         
+        for p in paths:
+            ydf = pd.read_csv("data/pitchTemplate.csv")
+            
+            path = Path(p)
+            fNames = [file.name for file in path.iterdir() if file.is_file()]
+            
+            for f in fNames:
+                print(f)
+                df = pd.read_csv(f"{path}/{f}")
+                ydf = pd.concat([ydf, df])
+                
+                
+            ydf.to_csv(f"{path}.csv", index=False)
+            
+def getPlayerOverallStats(yearFrom, yearTo):
+    for year in range(yearFrom, yearFrom + 1):
+        for pos in ["batter", "pitcher"]:
+            path = f"data/{pos}s/{year}"
+            
+            df = pd.read_csv(f"{path}/pitches.csv")
+            
+            if pos == "batter":
+                filt = "p_throws"
+            elif pos == "pitcher":
+                filt = "stand"
+                
+            vsL = df[df[filt] == "L"]
+            vsR = df[df[filt] == "R"]
+            
+            lStats = groupOverall(vsL, pos, False)
+            rStats = groupOverall(vsR, pos, False)
+            
+            lStats = condenseStats(lStats, pos)
+            rStats = condenseStats(rStats, pos)
+            
+            lStats.to_csv(f"{path}/overall/vsL.csv", index=False)
+            rStats.to_csv(f"{path}/overall/vsR.csv", index=False)
+   
+def addPAStats(yearFrom, yearTo):
+    for year in range(yearFrom, yearFrom + 1):
+        p = f"data/pas/{year}"
+        path = Path(p)
+            
+        fNames = [file.name for file in path.iterdir() if file.is_file()]
+        
+        for f in fNames:
+            print(f)
+            df = pd.read_csv(f"{path}/{f}")
+            
+            new_cols = df.apply(addPAStats, axis=1, result_type="expand")
+            df = pd.concat([df, new_cols], axis=1)
+            
+            
+        ydf.to_csv(f"{path}.csv", index=False)
+               
 
 def getProbablePitchers(date):
     pass
@@ -270,5 +340,8 @@ def getProbablePitchers(date):
 if __name__ == '__main__':
     #getAllGameInfo()
     #getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
-    condenseYearlyPlayerData(2023, 2025)
-    
+    # condenseYearlyPlayerData(2023, 2025)
+    #getAllPitches(2023, 2026)
+    #condenseYearlyPitches(2023, 2026)
+    #getPlayerOverallStats(2023, 2025)
+    pass
