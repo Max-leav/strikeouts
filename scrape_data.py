@@ -5,20 +5,7 @@ import json, pandas as pd, time
 from scrape_statcast import *
 from pathlib import Path
 
-pitches = {
-    2024: {
-        "batter": pd.read_csv("data/batters/2024/pitches.csv"),
-        "pitcher": pd.read_csv("data/pitchers/2024/pitches.csv")
-    },
-    2025: {
-        "batter": pd.read_csv("data/batters/2025/pitches.csv"),
-        "pitcher": pd.read_csv("data/pitchers/2025/pitches.csv")
-    },
-    2026: {
-        "batter": pd.read_csv("data/batters/2026/pitches.csv"),
-        "pitcher": pd.read_csv("data/pitchers/2026/pitches.csv")
-    }
-}
+pitches = dict()
 
 def getLineups(gid):
     url = f"https://statsapi.mlb.com/api/v1/schedule?gamePk={gid}&language=en&hydrate=story,xrefId,lineups,broadcasts(all),probablePitcher(note),game(content(media(epg)),tickets)&useLatestGames=true&fields=dates,games,teams,probablePitcher,note,id,dates,games,broadcasts,type,name,homeAway,language,isNational,callSign,mediaState,mediaStateCode,availableForStreaming,freeGame,mediaId,dates,games,game,tickets,ticketType,ticketLinks,dates,games,content,media,epg,dates,games,lineups,homePlayers,awayPlayers,useName,lastName,primaryPosition,abbreviation,dates,games,xrefIds,xrefId,xrefType,story"
@@ -381,6 +368,21 @@ def getPAStats(pa):
     return newStats
          
 def addPAStats(yearFrom, yearTo):
+    pitches = {
+        2024: {
+            "batter": pd.read_csv("data/batters/2024/pitches.csv"),
+            "pitcher": pd.read_csv("data/pitchers/2024/pitches.csv")
+        },
+        2025: {
+            "batter": pd.read_csv("data/batters/2025/pitches.csv"),
+            "pitcher": pd.read_csv("data/pitchers/2025/pitches.csv")
+        },
+        2026: {
+            "batter": pd.read_csv("data/batters/2026/pitches.csv"),
+            "pitcher": pd.read_csv("data/pitchers/2026/pitches.csv")
+        }
+    }
+    
     for year in range(yearFrom, yearTo + 1):
         p = f"data/pas/{year}"
         path = Path(p)
@@ -388,8 +390,6 @@ def addPAStats(yearFrom, yearTo):
         fNames = [file.name for file in path.iterdir() if file.is_file()]
         
         for f in fNames:
-            if year <= 2024 or (year == 2025 and f <= '05.csv'):
-                continue
             print(f)
             
             df = pd.read_csv(f"{path}/{f}")
@@ -400,8 +400,60 @@ def addPAStats(yearFrom, yearTo):
             
             df.to_csv(f"{path}/{f}", index=False)               
 
-def getProbablePitchers(date):
-    pass
+def getMonthResults(df, year, month):
+    pas = len(df)
+    strikeouts = df["isStrikeout"].sum()
+    walks = df["isWalk"].sum()
+    k_pct = (strikeouts / pas * 100).round(2)
+    bb_pct = (walks / pas * 100).round(2)
+    
+    return [year, month, pas, strikeouts, walks, k_pct, bb_pct]
+
+def getYearResults(df, year):
+    df = df[df["Year"] == year]
+    
+    pas = df["PA"].sum()
+    strikeouts = df["K"].sum()
+    walks = df["BB"].sum()
+    k_pct = (strikeouts / pas * 100).round(2)
+    bb_pct = (walks / pas * 100).round(2)
+    
+    return [year, pd.NA, pas, strikeouts, walks, k_pct, bb_pct]
+
+def getTotalResults(df):
+    df = df[df["Month"].isna()]
+    
+    pas = df["PA"].sum()
+    strikeouts = df["K"].sum()
+    walks = df["BB"].sum()
+    k_pct = (strikeouts / pas * 100).round(2)
+    bb_pct = (walks / pas * 100).round(2)
+    
+    return [pd.NA, pd.NA, pas, strikeouts, walks, k_pct, bb_pct]
+
+def getAllPAResults(yearFrom, yearTo):
+    stats = pd.DataFrame(columns=["Year", "Month", "PA", "K", "BB", "K%", "BB%"])
+    
+    for year in range(yearFrom, yearTo + 1):
+        p = f"data/pas/{year}"
+        path = Path(p)
+            
+        fNames = [file.name for file in path.iterdir() if file.is_file()]
+        
+        for f in fNames:
+            print(f)
+            
+            df = pd.read_csv(f"{path}/{f}")
+            df = df[['isStrikeout','isWalk']].copy()
+            
+            stats.loc[len(stats)] = getMonthResults(df, year, int(f[0:2]))
+            
+        stats.loc[len(stats)] = getYearResults(stats, year)
+    
+    stats.loc[len(stats)] = getTotalResults(stats)
+    
+    print(stats.to_string(index=False))
+    stats.to_csv("data/simulation/paRes.csv", index=False)
 
 if __name__ == '__main__':
     #getAllGameInfo()
@@ -410,4 +462,6 @@ if __name__ == '__main__':
     #getAllPitches(2023, 2026)
     #condenseYearlyPitches(2023, 2026)
     #getAllPlayerOverallStats(2023, 2025)
-    addPAStats(2024, 2026)
+    #addPAStats(2024, 2026)
+    #getAllPAResults(2024, 2026)
+    pass
