@@ -308,7 +308,7 @@ def condenseYearlyPitches(yearFrom, yearTo):
             ydf.to_csv(f"{path}.csv", index=False)
             
 def getAllPlayerOverallStats(yearFrom, yearTo):
-    for year in range(yearFrom, yearFrom + 1):
+    for year in range(yearFrom, yearTo + 1):
         for pos in ["batter", "pitcher"]:
             path = f"data/{pos}s/{year}"
             
@@ -346,8 +346,8 @@ def getPreviousYearOverallStats(mlbid, year, position, side):
 
 def getPlayerOverallStats(mlbid, year, endDate, position, side):
     #print(f"id: {mlbid} | position: {position} | date: {endDate}")
-    df = pd.read_csv(f"data/{position}s/{year}/pitches.csv")
-    df = df[df[position] == mlbid]
+    df = pitches[year][position]
+    df = df[df[position] == mlbid].copy()
     
     filt = "p_throws" if position == "batter" else "stand"
     df = df[(df["game_date"] < endDate) & (df[filt] == side)]
@@ -363,7 +363,7 @@ def getPlayerOverallStats(mlbid, year, endDate, position, side):
     return ret
 
 def getPAStats(pa):
-    #print(pa)
+    print(f"batter: {pa['batter']} | pitcher: {pa['pitcher']} | date: {pa['date']}")
     bStats = getPlayerOverallStats(pa["batter"], pa["year"], pa["date"], "batter", pa["pSide"])
     pbStats = getPreviousYearOverallStats(pa["batter"], pa["year"] - 1, "batter", pa["pSide"])
     pStats = getPlayerOverallStats(pa["pitcher"], pa["year"], pa["date"], "pitcher", pa["bSide"])
@@ -379,26 +379,26 @@ def getPAStats(pa):
         newStats = newStats | stats.iloc[0].to_dict()
         
     return newStats
-        
-      
+         
 def addPAStats(yearFrom, yearTo):
-    for year in range(yearFrom, yearFrom + 1):
+    for year in range(yearFrom, yearTo + 1):
         p = f"data/pas/{year}"
         path = Path(p)
             
         fNames = [file.name for file in path.iterdir() if file.is_file()]
         
         for f in fNames:
+            if year <= 2024 or (year == 2025 and f <= '05.csv'):
+                continue
             print(f)
+            
             df = pd.read_csv(f"{path}/{f}")
+            df = df[['gid','date','year','batter','bSide','pitcher','pSide','result','isStrikeout','isWalk']].copy()
             
             new_cols = df.apply(getPAStats, axis=1, result_type="expand")
             df = pd.concat([df, new_cols], axis=1)
             
-            df.to_csv(f"{path}/{f}.csv", index=False)
-            
-            
-               
+            df.to_csv(f"{path}/{f}", index=False)               
 
 def getProbablePitchers(date):
     pass
