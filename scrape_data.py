@@ -432,7 +432,15 @@ def getTotalResults(df):
     return [pd.NA, pd.NA, pas, strikeouts, walks, k_pct, bb_pct]
 
 def getAllPAResults(yearFrom, yearTo):
-    stats = pd.DataFrame(columns=["Year", "Month", "PA", "K", "BB", "K%", "BB%"])
+    stats = pd.DataFrame({
+        "Year": pd.Series(dtype="int"),
+        "Month": pd.Series(dtype="int"),
+        "PA": pd.Series(dtype="int"),
+        "K": pd.Series(dtype="int"),
+        "BB": pd.Series(dtype="int"),
+        "K%": pd.Series(dtype="float"),
+        "BB%": pd.Series(dtype="float")
+    })
     
     for year in range(yearFrom, yearTo + 1):
         p = f"data/pas/{year}"
@@ -452,8 +460,7 @@ def getAllPAResults(yearFrom, yearTo):
     
     stats.loc[len(stats)] = getTotalResults(stats)
     
-    print(stats.to_string(index=False))
-    stats.to_csv("data/simulation/paRes.csv", index=False)
+    stats.to_csv("data/testing/realResults.csv", index=False)
 
 if __name__ == '__main__':
     #getAllGameInfo()
@@ -463,5 +470,5 @@ if __name__ == '__main__':
     #condenseYearlyPitches(2023, 2026)
     #getAllPlayerOverallStats(2023, 2025)
     #addPAStats(2024, 2026)
-    #getAllPAResults(2024, 2026)
+    getAllPAResults(2024, 2026)
     pass
