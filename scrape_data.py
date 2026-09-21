@@ -462,9 +462,48 @@ def getAllPAResults(yearFrom, yearTo):
     
     stats.to_csv("data/testing/realResults.csv", index=False)
 
+def flattenLineup(lineup, side):
+    ret = dict()
+    
+    for i in range(len(lineup)):
+        key = f"{side}Lineup.{i}"
+        value = lineup[i]
+        
+        ret[key] = value
+        
+    return ret
+
+def flattenGameInfo(info, gid, year):
+    row = dict()
+    row["gid"], row["year"] = int(gid), int(year)
+    
+    row = row | info
+    
+    del row["hLineup"]
+    del row["aLineup"]
+    
+    hLineup = flattenLineup(info["hLineup"], "h")
+    aLineup = flattenLineup(info["aLineup"], "a")
+    
+    row = row | hLineup | aLineup
+    
+    return row
+
 def convertGameInfoToCsv():
-    df = pd.read_json("data/mlbGameInfo.json")
-    print(df.head())
+    with open('data/mlbGameInfo.json', 'r') as file:
+        games = json.load(file)
+        
+    rows = []
+    
+    for year in games.keys():
+        for gid in games[year].keys():
+            info = games[year][gid]
+            rows.append(flattenGameInfo(info, gid, year))
+            
+    df = pd.DataFrame(rows)
+    df["aPitcher"] = df["aPitcher"].astype('Int64')
+    df["hPitcher"] = df["hPitcher"].astype('Int64')
+    df.to_csv("data/mlbGames.csv", index=False)
 
 if __name__ == '__main__':
     #getAllGameInfo()
@@ -475,4 +514,5 @@ if __name__ == '__main__':
     #getAllPlayerOverallStats(2023, 2025)
     #addPAStats(2024, 2026)
     #getAllPAResults(2024, 2026)
+    convertGameInfoToCsv()
     pass
