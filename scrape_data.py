@@ -470,5 +470,5 @@ if __name__ == '__main__':
     #condenseYearlyPitches(2023, 2026)
     #getAllPlayerOverallStats(2023, 2025)
     #addPAStats(2024, 2026)
-    getAllPAResults(2024, 2026)
+    #getAllPAResults(2024, 2026)
     pass
