@@ -462,6 +462,10 @@ def getAllPAResults(yearFrom, yearTo):
     
     stats.to_csv("data/testing/realResults.csv", index=False)
 
+def convertGameInfoToCsv():
+    df = pd.read_json("data/mlbGameInfo.json")
+    print(df.head())
+
 if __name__ == '__main__':
     #getAllGameInfo()
     #getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
