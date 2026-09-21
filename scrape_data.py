@@ -505,6 +505,9 @@ def convertGameInfoToCsv():
     df["hPitcher"] = df["hPitcher"].astype('Int64')
     df.to_csv("data/mlbGames.csv", index=False)
 
+def addInfoToStrikeoutLines():
+    pass
+
 if __name__ == '__main__':
     #getAllGameInfo()
     #getAllPAs(mlbDates[2024][0], mlbDates[2026][1])
