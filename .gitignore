@@ -37,3 +37,5 @@ data/pitchers/2023/pitches.csv
 savant_data (8).csv
 testsize.csv
 scrapestatcasttest.py
+
+duck_datasets.py
