@@ -234,12 +234,13 @@ def logisticRegression(method):
     methodPath = Path(f"data/testing/method_{method}")
     outputPath = methodPath / "logisticRegression.csv"
 
-    all_dfs = []
+    results = []
 
-    # Find every version directory
     versionPaths = sorted(
-        [p for p in methodPath.iterdir()
-         if p.is_dir() and p.name.startswith("v")],
+        [
+            p for p in methodPath.iterdir()
+            if p.is_dir() and p.name.startswith("v")
+        ],
         key=lambda p: int(p.name[1:])
     )
 
@@ -249,280 +250,269 @@ def logisticRegression(method):
         if not pasPath.exists():
             continue
 
-        print(f"Reading {pasPath}")
+        version = int(versionPath.name[1:])
+
+        print(f"Running logistic regression for method {method}, {version}")
 
         df = pd.read_csv(pasPath)
 
-        # Keep track of which random-weight version this PA came from
-        df["version"] = versionPath.name
+        df["date"] = pd.to_datetime(df["date"])
+        df["exp_k_rate"] = pd.to_numeric(df["exp_k_rate"])
+        df["isStrikeout"] = pd.to_numeric(df["isStrikeout"])
 
-        all_dfs.append(df)
+        # Convert expected K rate from percentage to probability
+        p = (df["exp_k_rate"] / 100).clip(1e-6, 1 - 1e-6)
+        y = df["isStrikeout"]
 
-    if not all_dfs:
-        print(f"No pas.csv files found for method {method}")
-        return
+        # -------------------------
+        # Overall metrics
+        # -------------------------
 
-    # Combine every version
-    df = pd.concat(all_dfs, ignore_index=True)
+        brierScore = np.mean((p - y) ** 2)
 
-    # Convert types
-    df["date"] = pd.to_datetime(df["date"])
-    df["exp_k_rate"] = pd.to_numeric(df["exp_k_rate"])
-    df["isStrikeout"] = pd.to_numeric(df["isStrikeout"])
+        logLoss = -np.mean(
+            y * np.log(p) +
+            (1 - y) * np.log(1 - p)
+        )
 
-    # Convert percentage to probability
-    p = df["exp_k_rate"] / 100
+        # -------------------------
+        # Calibration regression
+        # -------------------------
 
-    # Prevent log(0) / log(1)
-    p = p.clip(1e-6, 1 - 1e-6)
+        expectedLogit = np.log(p / (1 - p))
 
-    y = df["isStrikeout"]
+        X = sm.add_constant(expectedLogit)
 
-    # -------------------------
-    # Overall metrics
-    # -------------------------
+        model = sm.Logit(y, X).fit(disp=False)
 
-    brierScore = np.mean((p - y) ** 2)
+        intercept = model.params.iloc[0]
+        slope = model.params.iloc[1]
 
-    logLoss = -np.mean(
-        y * np.log(p) +
-        (1 - y) * np.log(1 - p)
-    )
+        interceptSE = model.bse.iloc[0]
+        slopeSE = model.bse.iloc[1]
 
-    # -------------------------
-    # Calibration regression
-    # -------------------------
+        interceptZ = model.tvalues.iloc[0]
+        slopeZ = model.tvalues.iloc[1]
 
-    expectedLogit = np.log(p / (1 - p))
+        interceptP = model.pvalues.iloc[0]
+        slopeP = model.pvalues.iloc[1]
 
-    X = sm.add_constant(expectedLogit)
+        interceptCI = model.conf_int().iloc[0]
+        slopeCI = model.conf_int().iloc[1]
 
-    model = sm.Logit(y, X).fit(disp=False)
+        logLikelihood = model.llf
+        pseudoR2 = model.prsquared
 
-    intercept = model.params.iloc[0]
-    slope = model.params.iloc[1]
+        # -------------------------
+        # Weight columns
+        # -------------------------
 
-    interceptSE = model.bse.iloc[0]
-    slopeSE = model.bse.iloc[1]
+        weightColumns = [
+            column
+            for column in df.columns
+            if column.endswith("_weight")
+        ]
 
-    interceptZ = model.tvalues.iloc[0]
-    slopeZ = model.tvalues.iloc[1]
-
-    interceptP = model.pvalues.iloc[0]
-    slopeP = model.pvalues.iloc[1]
-
-    interceptCI = model.conf_int().iloc[0]
-    slopeCI = model.conf_int().iloc[1]
-
-    logLikelihood = model.llf
-    pseudoR2 = model.prsquared
-
-    # -------------------------
-    # Weight columns
-    # -------------------------
-
-    weightColumns = [
-        column
-        for column in df.columns
-        if column.endswith("_weight")
-    ]
-
-    # Each version has its own weights, so get them separately.
-    versionWeights = {}
-
-    for version in df["version"].unique():
-        versionDf = df[df["version"] == version]
-
-        versionWeights[version] = {
-            column: versionDf[column].iloc[0]
+        # Every row in this version has the same weights,
+        # so just take them from the first row.
+        weights = {
+            column: df[column].iloc[0]
             for column in weightColumns
-            if column in versionDf.columns
         }
 
-    # -------------------------
-    # Results
-    # -------------------------
-
-    results = []
-
-    # Overall result
-    result = {
-        "method": method,
-        "version": "all",
-        "group_type": "overall",
-        "group": "all",
-        "month": np.nan,
-
-        "lower_bound": np.nan,
-        "upper_bound": np.nan,
-
-        "n": len(df),
-
-        "mean_exp_k_rate": df["exp_k_rate"].mean(),
-        "actual_k_rate": y.mean() * 100,
-
-        "calibration_error":
-            y.mean() * 100 - df["exp_k_rate"].mean(),
-
-        "brier_score": brierScore,
-        "log_loss": logLoss,
-
-        "intercept": intercept,
-        "slope": slope,
-
-        "intercept_se": interceptSE,
-        "slope_se": slopeSE,
-
-        "intercept_z": interceptZ,
-        "slope_z": slopeZ,
-
-        "intercept_p": interceptP,
-        "slope_p": slopeP,
-
-        "intercept_ci_low": interceptCI.iloc[0],
-        "intercept_ci_high": interceptCI.iloc[1],
-
-        "slope_ci_low": slopeCI.iloc[0],
-        "slope_ci_high": slopeCI.iloc[1],
-
-        "log_likelihood": logLikelihood,
-        "pseudo_r2": pseudoR2
-    }
-
-    results.append(result)
-
-    # -------------------------
-    # Calibration bins
-    # -------------------------
-
-    bins = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 100]
-    labels = [
-        "0-5%",
-        "5-10%",
-        "10-15%",
-        "15-20%",
-        "20-25%",
-        "25-30%",
-        "30-35%",
-        "35-40%",
-        "40-45%",
-        "45-50%",
-        "50%+"
-    ]
-
-    df["k_rate_bin"] = pd.cut(
-        df["exp_k_rate"],
-        bins=bins,
-        labels=labels,
-        right=False,
-        include_lowest=True
-    )
-
-    for group, groupDf in df.groupby(
-        "k_rate_bin",
-        observed=False
-    ):
-        if len(groupDf) == 0:
-            continue
-
-        groupP = groupDf["exp_k_rate"] / 100
-        groupY = groupDf["isStrikeout"]
+        # -------------------------
+        # Overall result
+        # -------------------------
 
         result = {
             "method": method,
-            "version": "all",
-            "group_type": "k_rate_bin",
-            "group": str(group),
+            "version": version,
+            "group_type": "overall",
+            "group": "all",
             "month": np.nan,
-
-            "lower_bound": groupDf["exp_k_rate"].min(),
-            "upper_bound": groupDf["exp_k_rate"].max(),
-
-            "n": len(groupDf),
-
-            "mean_exp_k_rate": groupDf["exp_k_rate"].mean(),
-            "actual_k_rate": groupY.mean() * 100,
-
-            "calibration_error":
-                groupY.mean() * 100 -
-                groupDf["exp_k_rate"].mean(),
-
-            "brier_score":
-                np.mean((groupP - groupY) ** 2),
-
-            "log_loss":
-                -np.mean(
-                    groupY * np.log(groupP.clip(1e-6, 1 - 1e-6)) +
-                    (1 - groupY) *
-                    np.log((1 - groupP).clip(1e-6, 1 - 1e-6))
-                )
-        }
-
-        results.append(result)
-
-    # -------------------------
-    # Monthly results
-    # -------------------------
-
-    df["month"] = df["date"].dt.month
-
-    for month, monthDf in df.groupby("month"):
-        monthP = (monthDf["exp_k_rate"] / 100).clip(1e-6, 1 - 1e-6)
-        monthY = monthDf["isStrikeout"]
-
-        result = {
-            "method": method,
-            "version": "all",
-            "group_type": "month",
-            "group": str(month),
-
-            "month": month,
 
             "lower_bound": np.nan,
             "upper_bound": np.nan,
 
-            "n": len(monthDf),
+            "n": len(df),
 
-            "mean_exp_k_rate": monthDf["exp_k_rate"].mean(),
-            "actual_k_rate": monthY.mean() * 100,
+            "mean_exp_k_rate": df["exp_k_rate"].mean(),
+            "actual_k_rate": y.mean() * 100,
 
             "calibration_error":
-                monthY.mean() * 100 -
-                monthDf["exp_k_rate"].mean(),
+                y.mean() * 100 -
+                df["exp_k_rate"].mean(),
 
-            "brier_score":
-                np.mean((monthP - monthY) ** 2),
+            "brier_score": brierScore,
+            "log_loss": logLoss,
 
-            "log_loss":
-                -np.mean(
-                    monthY * np.log(monthP) +
-                    (1 - monthY) * np.log(1 - monthP)
-                )
+            "intercept": intercept,
+            "slope": slope,
+
+            "intercept_se": interceptSE,
+            "slope_se": slopeSE,
+
+            "intercept_z": interceptZ,
+            "slope_z": slopeZ,
+
+            "intercept_p": interceptP,
+            "slope_p": slopeP,
+
+            "intercept_ci_low": interceptCI.iloc[0],
+            "intercept_ci_high": interceptCI.iloc[1],
+
+            "slope_ci_low": slopeCI.iloc[0],
+            "slope_ci_high": slopeCI.iloc[1],
+
+            "log_likelihood": logLikelihood,
+            "pseudo_r2": pseudoR2
         }
+
+        result.update(weights)
 
         results.append(result)
 
+        # -------------------------
+        # K-rate bins
+        # -------------------------
+
+        bins = [
+            0, 5, 10, 15, 20, 25,
+            30, 35, 40, 45, 50, 100
+        ]
+
+        labels = [
+            "0-5%",
+            "5-10%",
+            "10-15%",
+            "15-20%",
+            "20-25%",
+            "25-30%",
+            "30-35%",
+            "35-40%",
+            "40-45%",
+            "45-50%",
+            "50%+"
+        ]
+
+        df["k_rate_bin"] = pd.cut(
+            df["exp_k_rate"],
+            bins=bins,
+            labels=labels,
+            right=False,
+            include_lowest=True
+        )
+
+        for group, groupDf in df.groupby(
+            "k_rate_bin",
+            observed=False
+        ):
+            if len(groupDf) == 0:
+                continue
+
+            groupP = (
+                groupDf["exp_k_rate"] / 100
+            ).clip(1e-6, 1 - 1e-6)
+
+            groupY = groupDf["isStrikeout"]
+
+            result = {
+                "method": method,
+                "version": version,
+                "group_type": "k_rate_bin",
+                "group": str(group),
+                "month": np.nan,
+
+                "lower_bound": groupDf["exp_k_rate"].min(),
+                "upper_bound": groupDf["exp_k_rate"].max(),
+
+                "n": len(groupDf),
+
+                "mean_exp_k_rate":
+                    groupDf["exp_k_rate"].mean(),
+
+                "actual_k_rate":
+                    groupY.mean() * 100,
+
+                "calibration_error":
+                    groupY.mean() * 100 -
+                    groupDf["exp_k_rate"].mean(),
+
+                "brier_score":
+                    np.mean((groupP - groupY) ** 2),
+
+                "log_loss":
+                    -np.mean(
+                        groupY * np.log(groupP) +
+                        (1 - groupY) *
+                        np.log(1 - groupP)
+                    )
+            }
+
+            result.update(weights)
+
+            results.append(result)
+
+        # -------------------------
+        # Monthly results
+        # -------------------------
+
+        df["month"] = df["date"].dt.month
+
+        for month, monthDf in df.groupby("month"):
+            monthP = (
+                monthDf["exp_k_rate"] / 100
+            ).clip(1e-6, 1 - 1e-6)
+
+            monthY = monthDf["isStrikeout"]
+
+            result = {
+                "method": method,
+                "version": version,
+                "group_type": "month",
+                "group": str(month),
+
+                "month": month,
+
+                "lower_bound": np.nan,
+                "upper_bound": np.nan,
+
+                "n": len(monthDf),
+
+                "mean_exp_k_rate":
+                    monthDf["exp_k_rate"].mean(),
+
+                "actual_k_rate":
+                    monthY.mean() * 100,
+
+                "calibration_error":
+                    monthY.mean() * 100 -
+                    monthDf["exp_k_rate"].mean(),
+
+                "brier_score":
+                    np.mean((monthP - monthY) ** 2),
+
+                "log_loss":
+                    -np.mean(
+                        monthY * np.log(monthP) +
+                        (1 - monthY) * np.log(1 - monthP)
+                    )
+            }
+
+            result.update(weights)
+
+            results.append(result)
+
     # -------------------------
-    # Add weights
+    # Save everything
     # -------------------------
 
     resultsDf = pd.DataFrame(results)
 
-    # The combined regression uses all versions,
-    # so there isn't one single set of random weights.
-    # Instead, store the weights for each version separately.
-    #
-    # Example:
-    # v0_bK%_weight
-    # v0_pK%_weight
-    # v1_bK%_weight
-    # v1_pK%_weight
-
-    for version, weights in versionWeights.items():
-        for column, weight in weights.items():
-            resultsDf[f"{version}_{column}"] = weight
-
-    resultsDf.to_csv(outputPath, index=False)
+    resultsDf.to_csv(
+        outputPath,
+        index=False
+    )
 
 if __name__ == '__main__':
     method = "002"
