@@ -25,7 +25,7 @@ def getMethodWeights(method):
 
     return weights
 
-def getStrikeoutChance(pa, method):    
+def getStrikeoutChance(pa, method, weights):    
     # if method == "001":
     #     if pd.notna(pa["bK%"]):
     #         return pa["bK%"]
@@ -35,35 +35,38 @@ def getStrikeoutChance(pa, method):
     variables = getMethodVariables(method)
 
     vars = []
-    weights = []
+    usedWeights = []
 
     for variable in variables:
         value = pa[variable]
 
         if pd.notna(value):
             vars.append(value)
-            weights.append(weights[variable])
+            usedWeights.append(weights[variable])
             continue
 
-        value = pa[f"p{variable}"]
+        try:
+            value = pa[f"p{variable}"]
+        except:
+            pass
         
         if pd.notna(value):
             vars.append(value)
-            weights.append(weights[variable])
+            usedWeights.append(weights[variable])
             continue
             
         if "K%" in variable:
             vars.append(LEAGUE_K_PCT)
-            weights.append(weights[variable])
+            usedWeights.append(weights[variable])
 
     if len(vars) == 0:
         return LEAGUE_K_PCT
 
-    weight_total = sum(weights)
+    weight_total = sum(usedWeights)
 
-    weights = [weight / weight_total for weight in weights]
+    usedWeights = [weight / weight_total for weight in usedWeights]
 
-    exp_k_rate = sum(value * weight for value, weight in zip(vars, weights))
+    exp_k_rate = sum(value * weight for value, weight in zip(vars, usedWeights))
 
     return exp_k_rate
                 
@@ -191,6 +194,10 @@ def getPATestingData(yearFrom, yearTo, method, numRuns):
                 df = pd.read_csv(f"{path}/{f}")
                 
                 df["exp_k_rate"] = df.apply(getStrikeoutChance, axis=1, args=(method, weights))
+                
+                for variable, weight in weights.items():
+                    df[f"{variable}_weight"] = weight
+                
                 df = df[['gid','date','year','batter','pitcher','isStrikeout','exp_k_rate'] 
                         + [f"{variable}_weight"for variable in weights]].copy()
                 
@@ -518,6 +525,8 @@ def logisticRegression(method):
     resultsDf.to_csv(outputPath, index=False)
 
 if __name__ == '__main__':
+    method = "002"
+    runs = 2
     #testModelNumbers(2024, 2025, "001")
-    #getPATestingData(2024, 2026, "001")
-    logisticRegression("002", 2)
+    getPATestingData(2024, 2026, method, runs)
+    logisticRegression(method)
