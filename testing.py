@@ -108,75 +108,103 @@ def testModelNumbers(yearFrom, yearTo, method):
     stats.to_csv(f"data/testing/method_{method}_Results.csv", index=False)
 
 def getPATestingData2(yearFrom, yearTo, method):
-    outPath = Path(f"data/testing/method_{method}")
-    outPath.mkdir(parents=True, exist_ok=True)
+    methodPath = Path(f"data/testing/method_{method}")
+    dataPath = methodPath / "data"
 
-    outFile = outPath / "pas.csv"
+    methodPath.mkdir(parents=True, exist_ok=True)
+    dataPath.mkdir(parents=True, exist_ok=True)
 
-    # Generate the weights ONCE for this method.
-    weights = getMethodWeights(method)
+    print(dataPath.iterdir()[-1])
+    exit(1)
+    # Find existing version directories inside data/
+    versions = [p for p in dataPath.iterdir()]
+    
+    if len(versions) > 0:
+        highestVersion = versions[-1]
+        startVersion = highestVersion + 1
+    else:
+        startVersion = 0
 
-    print(f"\nMethod {method} weights:")
-    for variable, weight in weights.items():
-        print(f"  {variable}: {weight:.6f}")
+    print(f"Starting at version v{startVersion}")
 
-    # Remove an existing file so repeated runs don't append
-    # duplicate PA data.
-    if outFile.exists():
-        outFile.unlink()
+    for i in range(numRuns):
+        version = startVersion + i
 
-    for year in range(yearFrom, yearTo + 1):
+        outPath = dataPath / f"v{version}"
+        outPath.mkdir(parents=True, exist_ok=True)
 
-        p = f"data/pas/{year}"
-        path = Path(p)
+        outFile = outPath / "pas.csv"
 
-        fNames = [
-            file.name
-            for file in path.iterdir()
-            if file.is_file()
-        ]
+        weights = getMethodWeights(method)
 
-        for f in fNames:
-            print(f"{year}: {f}")
+        print(f"Running version v{version} with weights: {weights}")
 
-            df = pd.read_csv(f"{path}/{f}")
+        for year in range(yearFrom, yearTo + 1):
+            p = f"data/pas/{year}"
+            path = Path(p)
 
-            df["exp_k_rate"] = df.apply(
-                getStrikeoutChance,
-                axis=1,
-                args=(method, weights)
-            )
+            fNames = [
+                file.name
+                for file in path.iterdir()
+                if file.is_file()
+            ]
 
-            # Store the weights in the PA-level CSV.
-            for variable, weight in weights.items():
-                df[f"{variable}_weight"] = weight
+            for f in fNames:
+                print(f"v{version}: {f}")
 
-            df = df[
-                [
-                    "gid",
-                    "date",
-                    "year",
-                    "batter",
-                    "pitcher",
-                    "isStrikeout",
-                    "exp_k_rate",
-                ]
-                + [
-                    f"{variable}_weight"
-                    for variable in weights
-                ]
-            ].copy()
+                df = pd.read_csv(path / f)
 
-            df.to_csv(
-                outFile,
-                mode="a",
-                header=not outFile.exists(),
-                index=False
-            )
+                df["exp_k_rate"] = df.apply(
+                    getStrikeoutChance,
+                    axis=1,
+                    args=(method, weights)
+                )
+
+                # Store the weights used for this version
+                for variable, weight in weights.items():
+                    df[f"{variable}_weight"] = weight
+
+                df = df[
+                    [
+                        "gid",
+                        "date",
+                        "year",
+                        "batter",
+                        "pitcher",
+                        "isStrikeout",
+                        "exp_k_rate"
+                    ]
+                    + [f"{variable}_weight" for variable in weights]
+                ].copy()
+
+                df.to_csv(
+                    outFile,
+                    mode="a",
+                    header=not outFile.exists(),
+                    index=False
+                )
+
+        print(f"Finished version v{version}")
 
 def getPATestingData(yearFrom, yearTo, method, numRuns):
+    methodPath = Path(f"data/testing/method_{method}")
+    dataPath = methodPath / "data"
+
+    methodPath.mkdir(parents=True, exist_ok=True)
+    dataPath.mkdir(parents=True, exist_ok=True)
+
+    versions = [p for p in dataPath.iterdir()]
+    
+    if len(versions) > 0:
+        highestVersion = int(versions[-1].name[1:])
+        startVersion = highestVersion + 1
+    else:
+        startVersion = 0
+
     for i in range(numRuns):
-        outPath = Path(f"data/testing/method_{method}/v{i}")
+        version = startVersion + i
+        
+        outPath = dataPath / f"v{version}"
         outPath.mkdir(parents=True, exist_ok=True)
         outFile = outPath / "pas.csv"
         
@@ -199,7 +227,7 @@ def getPATestingData(yearFrom, yearTo, method, numRuns):
                     df[f"{variable}_weight"] = weight
                 
                 df = df[['gid','date','year','batter','pitcher','isStrikeout','exp_k_rate'] 
-                        + [f"{variable}_weight"for variable in weights]].copy()
+                        + [f"{variable}_weight" for variable in weights]].copy()
                 
                 df.to_csv(
                     outFile,
@@ -207,6 +235,7 @@ def getPATestingData(yearFrom, yearTo, method, numRuns):
                     header=not outFile.exists(),
                     index=False
                 )
+        print(f"Finished version v{version}")
             
 def combinePAs(yearFrom, yearTo, method):
     outPath = Path(f"data/testing/method_{method}")
@@ -232,14 +261,21 @@ def combinePAs(yearFrom, yearTo, method):
             
 def logisticRegression(method):
     methodPath = Path(f"data/testing/method_{method}")
+    dataPath = methodPath / "data"
     outputPath = methodPath / "logisticRegression.csv"
 
     results = []
 
+    if not dataPath.exists():
+        print(f"No data directory found: {dataPath}")
+        return
+
     versionPaths = sorted(
         [
-            p for p in methodPath.iterdir()
-            if p.is_dir() and p.name.startswith("v")
+            p for p in dataPath.iterdir()
+            if p.is_dir()
+            and p.name.startswith("v")
+            and p.name[1:].isdigit()
         ],
         key=lambda p: int(p.name[1:])
     )
@@ -250,9 +286,13 @@ def logisticRegression(method):
         if not pasPath.exists():
             continue
 
+        # Store version as an integer rather than "v0", "v1", etc.
         version = int(versionPath.name[1:])
 
-        print(f"Running logistic regression for method {method}, {version}")
+        print(
+            f"Running logistic regression for "
+            f"method {method}, v{version}"
+        )
 
         df = pd.read_csv(pasPath)
 
@@ -260,13 +300,11 @@ def logisticRegression(method):
         df["exp_k_rate"] = pd.to_numeric(df["exp_k_rate"])
         df["isStrikeout"] = pd.to_numeric(df["isStrikeout"])
 
-        # Convert expected K rate from percentage to probability
-        p = (df["exp_k_rate"] / 100).clip(1e-6, 1 - 1e-6)
-        y = df["isStrikeout"]
+        p = (
+            df["exp_k_rate"] / 100
+        ).clip(1e-6, 1 - 1e-6)
 
-        # -------------------------
-        # Overall metrics
-        # -------------------------
+        y = df["isStrikeout"]
 
         brierScore = np.mean((p - y) ** 2)
 
@@ -275,10 +313,8 @@ def logisticRegression(method):
             (1 - y) * np.log(1 - p)
         )
 
-        # -------------------------
-        # Calibration regression
-        # -------------------------
-
+        # Calibration regression:
+        # logit(actual) ~ intercept + slope * logit(expected)
         expectedLogit = np.log(p / (1 - p))
 
         X = sm.add_constant(expectedLogit)
@@ -303,96 +339,65 @@ def logisticRegression(method):
         logLikelihood = model.llf
         pseudoR2 = model.prsquared
 
-        # -------------------------
-        # Weight columns
-        # -------------------------
-
+        # Get the weights stored in pas.csv
         weightColumns = [
             column
             for column in df.columns
             if column.endswith("_weight")
         ]
 
-        # Every row in this version has the same weights,
-        # so just take them from the first row.
         weights = {
             column: df[column].iloc[0]
             for column in weightColumns
         }
 
-        # -------------------------
-        # Overall result
-        # -------------------------
-
+        # Overall
         result = {
             "method": method,
             "version": version,
             "group_type": "overall",
             "group": "all",
             "month": np.nan,
-
             "lower_bound": np.nan,
             "upper_bound": np.nan,
-
             "n": len(df),
-
             "mean_exp_k_rate": df["exp_k_rate"].mean(),
             "actual_k_rate": y.mean() * 100,
-
             "calibration_error":
                 y.mean() * 100 -
                 df["exp_k_rate"].mean(),
-
             "brier_score": brierScore,
             "log_loss": logLoss,
-
             "intercept": intercept,
             "slope": slope,
-
             "intercept_se": interceptSE,
             "slope_se": slopeSE,
-
             "intercept_z": interceptZ,
             "slope_z": slopeZ,
-
             "intercept_p": interceptP,
             "slope_p": slopeP,
-
             "intercept_ci_low": interceptCI.iloc[0],
             "intercept_ci_high": interceptCI.iloc[1],
-
             "slope_ci_low": slopeCI.iloc[0],
             "slope_ci_high": slopeCI.iloc[1],
-
             "log_likelihood": logLikelihood,
             "pseudo_r2": pseudoR2
         }
 
         result.update(weights)
-
         results.append(result)
 
-        # -------------------------
         # K-rate bins
-        # -------------------------
-
         bins = [
             0, 5, 10, 15, 20, 25,
             30, 35, 40, 45, 50, 100
         ]
 
         labels = [
-            "0-5%",
-            "5-10%",
-            "10-15%",
-            "15-20%",
-            "20-25%",
-            "25-30%",
-            "30-35%",
-            "35-40%",
-            "40-45%",
-            "45-50%",
-            "50%+"
+            "0-5%", "5-10%", "10-15%",
+            "15-20%", "20-25%", "25-30%",
+            "30-35%", "35-40%", "40-45%",
+            "45-50%", "50%+"
         ]
 
         df["k_rate_bin"] = pd.cut(
@@ -422,41 +427,27 @@ def logisticRegression(method):
                 "group_type": "k_rate_bin",
                 "group": str(group),
                 "month": np.nan,
-
                 "lower_bound": groupDf["exp_k_rate"].min(),
                 "upper_bound": groupDf["exp_k_rate"].max(),
-
                 "n": len(groupDf),
-
-                "mean_exp_k_rate":
-                    groupDf["exp_k_rate"].mean(),
-
-                "actual_k_rate":
-                    groupY.mean() * 100,
-
+                "mean_exp_k_rate": groupDf["exp_k_rate"].mean(),
+                "actual_k_rate": groupY.mean() * 100,
                 "calibration_error":
                     groupY.mean() * 100 -
                     groupDf["exp_k_rate"].mean(),
-
                 "brier_score":
                     np.mean((groupP - groupY) ** 2),
-
                 "log_loss":
                     -np.mean(
                         groupY * np.log(groupP) +
-                        (1 - groupY) *
-                        np.log(1 - groupP)
+                        (1 - groupY) * np.log(1 - groupP)
                     )
             }
 
             result.update(weights)
-
             results.append(result)
 
-        # -------------------------
-        # Monthly results
-        # -------------------------
-
+        # Month
         df["month"] = df["date"].dt.month
 
         for month, monthDf in df.groupby("month"):
@@ -471,27 +462,17 @@ def logisticRegression(method):
                 "version": version,
                 "group_type": "month",
                 "group": str(month),
-
                 "month": month,
-
                 "lower_bound": np.nan,
                 "upper_bound": np.nan,
-
                 "n": len(monthDf),
-
-                "mean_exp_k_rate":
-                    monthDf["exp_k_rate"].mean(),
-
-                "actual_k_rate":
-                    monthY.mean() * 100,
-
+                "mean_exp_k_rate": monthDf["exp_k_rate"].mean(),
+                "actual_k_rate": monthY.mean() * 100,
                 "calibration_error":
                     monthY.mean() * 100 -
                     monthDf["exp_k_rate"].mean(),
-
                 "brier_score":
                     np.mean((monthP - monthY) ** 2),
-
                 "log_loss":
                     -np.mean(
                         monthY * np.log(monthP) +
@@ -500,12 +481,7 @@ def logisticRegression(method):
             }
 
             result.update(weights)
-
             results.append(result)
-
-    # -------------------------
-    # Save everything
-    # -------------------------
 
     resultsDf = pd.DataFrame(results)
 
@@ -516,7 +492,7 @@ def logisticRegression(method):
 
 if __name__ == '__main__':
     method = "002"
-    runs = 2
+    runs = 1000
     #testModelNumbers(2024, 2025, "001")
     getPATestingData(2024, 2026, method, runs)
     logisticRegression(method)
