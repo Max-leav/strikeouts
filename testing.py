@@ -224,209 +224,356 @@ def combinePAs(yearFrom, yearTo, method):
             )
             
 def logisticRegression(method):
-    df = pd.read_csv(f"data/testing/method_{method}/pas.csv")
-
-    df = df[["date", "exp_k_rate", "isStrikeout"]].copy()
-
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-
-    df["exp_k_rate"] = pd.to_numeric(
-        df["exp_k_rate"], errors="coerce"
-    )
-
-    df["isStrikeout"] = pd.to_numeric(
-        df["isStrikeout"], errors="coerce"
-    )
-
-    df = df.dropna()
-    
-    df["exp_k_rate"] /= 100
-
-    df["exp_k_rate_pct"] = df["exp_k_rate"] * 100
-
-    df["exp_k_rate"] = df["exp_k_rate"].clip(1e-6, 1 - 1e-6)
-
-    df["month"] = df["date"].dt.month
-
-    brier_score = np.mean(
-        (df["exp_k_rate"] - df["isStrikeout"]) ** 2
-    )
-
-    log_loss = -np.mean(
-        df["isStrikeout"] * np.log(df["exp_k_rate"])
-        + (1 - df["isStrikeout"])
-        * np.log(1 - df["exp_k_rate"])
-    )
-
-    df["expected_logit"] = np.log(
-        df["exp_k_rate"]
-        / (1 - df["exp_k_rate"])
-    )
-
-    X = sm.add_constant(df["expected_logit"])
-    y = df["isStrikeout"]
-
-    model = sm.Logit(y, X).fit(disp=False)
-
-    conf_int = model.conf_int()
+    methodPath = Path(f"data/testing/method_{method}")
 
     results = []
 
-    results.append({
-        "group_type": "overall",
-        "group": "overall",
-        "month": np.nan,
-        "lower_bound": np.nan,
-        "upper_bound": np.nan,
-        "n": len(df),
-        "mean_exp_k_rate": df["exp_k_rate"].mean() * 100,
-        "actual_k_rate": df["isStrikeout"].mean() * 100,
-        "brier_score": brier_score,
-        "log_loss": log_loss,
-
-        "intercept": model.params["const"],
-        "slope": model.params["expected_logit"],
-        "intercept_std_error": model.bse["const"],
-        "slope_std_error": model.bse["expected_logit"],
-        "intercept_z": model.tvalues["const"],
-        "slope_z": model.tvalues["expected_logit"],
-        "intercept_p_value": model.pvalues["const"],
-        "slope_p_value": model.pvalues["expected_logit"],
-        "intercept_confidence_low": conf_int.loc["const", 0],
-        "intercept_confidence_high": conf_int.loc["const", 1],
-        "slope_confidence_low": conf_int.loc["expected_logit", 0],
-        "slope_confidence_high": conf_int.loc["expected_logit", 1],
-        "log_likelihood": model.llf,
-        "pseudo_r2": model.prsquared
-    })
-
-    def add_group(group_type, group_name, group_df,
-                   month=np.nan,
-                   lower_bound=np.nan,
-                   upper_bound=np.nan):
-
-        if len(group_df) == 0:
-            return
-
-        group_brier = np.mean(
-            (group_df["exp_k_rate"] - group_df["isStrikeout"]) ** 2
-        )
-
-        group_log_loss = -np.mean(
-            group_df["isStrikeout"] * np.log(group_df["exp_k_rate"])
-            + (1 - group_df["isStrikeout"])
-            * np.log(1 - group_df["exp_k_rate"])
-        )
-
-        results.append({
-            "group_type": group_type,
-            "group": group_name,
-            "month": month,
-            "lower_bound": lower_bound,
-            "upper_bound": upper_bound,
-            "n": len(group_df),
-            "mean_exp_k_rate": (
-                group_df["exp_k_rate"].mean() * 100
-            ),
-            "actual_k_rate": (
-                group_df["isStrikeout"].mean() * 100
-            ),
-            "calibration_error": (
-                group_df["isStrikeout"].mean() * 100
-                - group_df["exp_k_rate"].mean() * 100
-            ),
-            "brier_score": group_brier,
-            "log_loss": group_log_loss,
-
-            # Regression values don't apply to individual groups
-            "intercept": np.nan,
-            "slope": np.nan,
-            "intercept_std_error": np.nan,
-            "slope_std_error": np.nan,
-            "intercept_z": np.nan,
-            "slope_z": np.nan,
-            "intercept_p_value": np.nan,
-            "slope_p_value": np.nan,
-            "intercept_confidence_low": np.nan,
-            "intercept_confidence_high": np.nan,
-            "slope_confidence_low": np.nan,
-            "slope_confidence_high": np.nan,
-            "log_likelihood": np.nan,
-            "pseudo_r2": np.nan
-        })
-
-    bins = [
-        0, 5, 10, 15, 20, 25,
-        30, 35, 40, 45, 50, 100
+    # Find all version directories: v0, v1, v2, ...
+    versions = [
+        path for path in methodPath.iterdir()
+        if path.is_dir() and path.name.startswith("v")
     ]
 
-    labels = [
-        "0-5%",
-        "5-10%",
-        "10-15%",
-        "15-20%",
-        "20-25%",
-        "25-30%",
-        "30-35%",
-        "35-40%",
-        "40-45%",
-        "45-50%",
-        "50%+"
-    ]
+    # Sort numerically by version number
+    versions.sort(key=lambda x: int(x.name[1:]))
 
-    df["k_rate_group"] = pd.cut(
-        df["exp_k_rate_pct"],
-        bins=bins,
-        labels=labels,
-        right=False,
-        include_lowest=True
-    )
+    for versionPath in versions:
 
-    for i, group in enumerate(labels):
-        group_df = df[df["k_rate_group"] == group]
+        version = versionPath.name
+        pasFile = versionPath / "pas.csv"
 
-        add_group(
-            "exp_k_rate",
-            group,
-            group_df,
-            lower_bound=bins[i],
-            upper_bound=bins[i + 1]
+        if not pasFile.exists():
+            print(f"Skipping {version}: pas.csv does not exist")
+            continue
+
+        print(f"Running logistic regression: method {method}, {version}")
+
+        df = pd.read_csv(pasFile)
+
+        # Get weight columns
+        weight_columns = [
+            col for col in df.columns
+            if col.endswith("_weight")
+        ]
+
+        # Get the weights from the first row.
+        # They are the same for every PA in this version.
+        weights = {}
+
+        for col in weight_columns:
+            weights[col] = df[col].iloc[0]
+
+        df = df[
+            ["date", "exp_k_rate", "isStrikeout"]
+        ].copy()
+
+        df["date"] = pd.to_datetime(
+            df["date"],
+            errors="coerce"
         )
 
-    for month in sorted(df["month"].unique()):
-
-        group_df = df[df["month"] == month]
-
-        add_group(
-            "month",
-            str(int(month)),
-            group_df,
-            month=int(month)
+        df["exp_k_rate"] = pd.to_numeric(
+            df["exp_k_rate"],
+            errors="coerce"
         )
 
-    for i, group in enumerate(labels):
+        df["isStrikeout"] = pd.to_numeric(
+            df["isStrikeout"],
+            errors="coerce"
+        )
 
-        for month in sorted(df["month"].unique()):
+        df = df.dropna()
+
+        # Convert percentage to probability
+        df["exp_k_rate"] /= 100
+
+        df["exp_k_rate_pct"] = df["exp_k_rate"] * 100
+
+        # Prevent log(0)
+        df["exp_k_rate"] = df["exp_k_rate"].clip(
+            1e-6,
+            1 - 1e-6
+        )
+
+        df["month"] = df["date"].dt.month
+
+        # --------------------------------------------------
+        # Overall Brier score and log loss
+        # --------------------------------------------------
+
+        brier_score = np.mean(
+            (df["exp_k_rate"] - df["isStrikeout"]) ** 2
+        )
+
+        log_loss = -np.mean(
+            df["isStrikeout"] * np.log(df["exp_k_rate"])
+            + (1 - df["isStrikeout"])
+            * np.log(1 - df["exp_k_rate"])
+        )
+
+        # --------------------------------------------------
+        # Calibration logistic regression
+        # --------------------------------------------------
+
+        df["expected_logit"] = np.log(
+            df["exp_k_rate"]
+            / (1 - df["exp_k_rate"])
+        )
+
+        X = sm.add_constant(df["expected_logit"])
+        y = df["isStrikeout"]
+
+        model = sm.Logit(y, X).fit(disp=False)
+
+        conf_int = model.conf_int()
+
+        # --------------------------------------------------
+        # Add overall results
+        # --------------------------------------------------
+
+        overall_result = {
+            "version": version,
+            "group_type": "overall",
+            "group": "overall",
+            "month": np.nan,
+            "lower_bound": np.nan,
+            "upper_bound": np.nan,
+
+            "n": len(df),
+
+            "mean_exp_k_rate":
+                df["exp_k_rate"].mean() * 100,
+
+            "actual_k_rate":
+                df["isStrikeout"].mean() * 100,
+
+            "calibration_error":
+                df["isStrikeout"].mean() * 100
+                - df["exp_k_rate"].mean() * 100,
+
+            "brier_score": brier_score,
+            "log_loss": log_loss,
+
+            "intercept": model.params["const"],
+            "slope": model.params["expected_logit"],
+
+            "intercept_std_error":
+                model.bse["const"],
+
+            "slope_std_error":
+                model.bse["expected_logit"],
+
+            "intercept_z":
+                model.tvalues["const"],
+
+            "slope_z":
+                model.tvalues["expected_logit"],
+
+            "intercept_p_value":
+                model.pvalues["const"],
+
+            "slope_p_value":
+                model.pvalues["expected_logit"],
+
+            "intercept_confidence_low":
+                conf_int.loc["const", 0],
+
+            "intercept_confidence_high":
+                conf_int.loc["const", 1],
+
+            "slope_confidence_low":
+                conf_int.loc["expected_logit", 0],
+
+            "slope_confidence_high":
+                conf_int.loc["expected_logit", 1],
+
+            "log_likelihood":
+                model.llf,
+
+            "pseudo_r2":
+                model.prsquared
+        }
+
+        # Add weights to result
+        for column, weight in weights.items():
+            overall_result[column] = weight
+
+        results.append(overall_result)
+
+        # --------------------------------------------------
+        # Function for grouped results
+        # --------------------------------------------------
+
+        def add_group(
+            group_type,
+            group_name,
+            group_df,
+            month=np.nan,
+            lower_bound=np.nan,
+            upper_bound=np.nan
+        ):
+
+            if len(group_df) == 0:
+                return
+
+            group_brier = np.mean(
+                (group_df["exp_k_rate"]
+                 - group_df["isStrikeout"]) ** 2
+            )
+
+            group_log_loss = -np.mean(
+                group_df["isStrikeout"]
+                * np.log(group_df["exp_k_rate"])
+                +
+                (1 - group_df["isStrikeout"])
+                * np.log(1 - group_df["exp_k_rate"])
+            )
+
+            result = {
+                "version": version,
+                "group_type": group_type,
+                "group": group_name,
+                "month": month,
+                "lower_bound": lower_bound,
+                "upper_bound": upper_bound,
+
+                "n": len(group_df),
+
+                "mean_exp_k_rate":
+                    group_df["exp_k_rate"].mean() * 100,
+
+                "actual_k_rate":
+                    group_df["isStrikeout"].mean() * 100,
+
+                "calibration_error":
+                    group_df["isStrikeout"].mean() * 100
+                    - group_df["exp_k_rate"].mean() * 100,
+
+                "brier_score": group_brier,
+                "log_loss": group_log_loss,
+
+                # Regression values don't apply to groups
+                "intercept": np.nan,
+                "slope": np.nan,
+                "intercept_std_error": np.nan,
+                "slope_std_error": np.nan,
+                "intercept_z": np.nan,
+                "slope_z": np.nan,
+                "intercept_p_value": np.nan,
+                "slope_p_value": np.nan,
+                "intercept_confidence_low": np.nan,
+                "intercept_confidence_high": np.nan,
+                "slope_confidence_low": np.nan,
+                "slope_confidence_high": np.nan,
+                "log_likelihood": np.nan,
+                "pseudo_r2": np.nan
+            }
+
+            # Add weights
+            for column, weight in weights.items():
+                result[column] = weight
+
+            results.append(result)
+
+        # --------------------------------------------------
+        # K-rate bins
+        # --------------------------------------------------
+
+        bins = [
+            0, 5, 10, 15, 20, 25,
+            30, 35, 40, 45, 50, 100
+        ]
+
+        labels = [
+            "0-5%",
+            "5-10%",
+            "10-15%",
+            "15-20%",
+            "20-25%",
+            "25-30%",
+            "30-35%",
+            "35-40%",
+            "40-45%",
+            "45-50%",
+            "50%+"
+        ]
+
+        df["k_rate_group"] = pd.cut(
+            df["exp_k_rate_pct"],
+            bins=bins,
+            labels=labels,
+            right=False,
+            include_lowest=True
+        )
+
+        for i, group in enumerate(labels):
 
             group_df = df[
-                (df["k_rate_group"] == group)
-                & (df["month"] == month)
+                df["k_rate_group"] == group
             ]
 
             add_group(
-                "exp_k_rate_month",
-                f"{group}_{int(month)}",
+                "exp_k_rate",
+                group,
                 group_df,
-                month=int(month),
                 lower_bound=bins[i],
                 upper_bound=bins[i + 1]
             )
 
+        # --------------------------------------------------
+        # Monthly results
+        # --------------------------------------------------
+
+        for month in sorted(df["month"].unique()):
+
+            group_df = df[
+                df["month"] == month
+            ]
+
+            add_group(
+                "month",
+                str(int(month)),
+                group_df,
+                month=int(month)
+            )
+
+        # --------------------------------------------------
+        # K-rate x month results
+        # --------------------------------------------------
+
+        for i, group in enumerate(labels):
+
+            for month in sorted(df["month"].unique()):
+
+                group_df = df[
+                    (df["k_rate_group"] == group)
+                    &
+                    (df["month"] == month)
+                ]
+
+                add_group(
+                    "exp_k_rate_month",
+                    f"{group}_{int(month)}",
+                    group_df,
+                    month=int(month),
+                    lower_bound=bins[i],
+                    upper_bound=bins[i + 1]
+                )
+
+    # ------------------------------------------------------
+    # Save all versions
+    # ------------------------------------------------------
+
     results = pd.DataFrame(results)
 
     results.to_csv(
-        f"data/testing/method_{method}/logisticRegression.csv",
+        methodPath / "logisticRegression.csv",
         index=False
+    )
+
+    print(
+        f"\nSaved results to "
+        f"{methodPath / 'logisticRegression.csv'}"
     )
 
 if __name__ == '__main__':
