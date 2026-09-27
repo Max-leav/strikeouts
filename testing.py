@@ -50,6 +50,9 @@ def getStrikeoutChance(pa, method, weights):
         try:
             value = pa[f"p{variable}"]
         except:
+            if "K%" in variable:
+                vars.append(LEAGUE_K_PCT)
+                usedWeights.append(weights[variable])
             continue
         
         if pd.notna(value):
@@ -898,8 +901,8 @@ def testCalibration(method, model):
     )
 
 if __name__ == '__main__':
-    method = "002"
-    runs = 1000
+    method = "003"
+    runs = 5000
     #testModelNumbers(2024, 2025, "001")
     getPATestingData(2024, 2025, 2026, 2026, method, runs)
     logisticRegression(method)
