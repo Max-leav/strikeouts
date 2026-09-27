@@ -369,6 +369,10 @@ def getPAStats(pa):
          
 def addPAStats(yearFrom, yearTo):
     pitches = {
+        2023: {
+            "batter": pd.read_csv("data/batters/2023/pitches.csv"),
+            "pitcher": pd.read_csv("data/pitchers/2023/pitches.csv")
+        },
         2024: {
             "batter": pd.read_csv("data/batters/2024/pitches.csv"),
             "pitcher": pd.read_csv("data/pitchers/2024/pitches.csv")
@@ -517,5 +521,5 @@ if __name__ == '__main__':
     #getAllPlayerOverallStats(2023, 2025)
     #addPAStats(2024, 2026)
     #getAllPAResults(2024, 2026)
-    convertGameInfoToCsv()
+    #convertGameInfoToCsv()
     pass
