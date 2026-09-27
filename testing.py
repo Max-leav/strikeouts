@@ -191,7 +191,7 @@ def getPATestingData2(yearFrom, yearTo, method):
 
         print(f"Finished version v{version}")
 
-def getPATestingData(cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRuns):
+def getPATestingData(cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRuns, version):
     methodPath = Path(f"data/testing/method_{method}")
 
     calibrationDataPath = (
@@ -374,7 +374,7 @@ def combinePAs(yearFrom, yearTo, method):
                 index=False
             )
             
-def logisticRegression(method):
+def logisticRegression(method, version):
     methodPath = Path(f"data/testing/method_{method}")
 
     dataPath = methodPath / "calibration" / "data"
@@ -900,10 +900,20 @@ def testCalibration(method, model):
         index=False
     )
 
+def runModel(model, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
+    startVersion = getVersion(method)
+    
+    for i in range(numRuns):    
+        getPATestingData(cYearFrom, cYearTo, tYearFrom, tYearTo, method, 1, startVersion + i)
+        logisticRegression(method, startVersion + i)
+        testCalibration(method, startVersion + i)
+        
+        # function to delete pas.csv
+
 if __name__ == '__main__':
     method = "003"
-    runs = 5000
+    runs = 4988
     #testModelNumbers(2024, 2025, "001")
-    getPATestingData(2024, 2025, 2026, 2026, method, runs)
-    logisticRegression(method)
+    #getPATestingData(2024, 2025, 2026, 2026, method, runs)
+    #logisticRegression(method)
     testCalibration(method, "all")
