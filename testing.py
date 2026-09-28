@@ -315,7 +315,9 @@ def combinePAs(yearFrom, yearTo, method):
             )
             
 def logisticRegression(method, version):
-    methodPath = Path(f"data/testing/method_{method}")
+    methodPath = Path(
+        f"data/testing/method_{method}"
+    )
 
     pasPath = (
         methodPath /
@@ -345,7 +347,9 @@ def logisticRegression(method, version):
 
     df = pd.read_csv(pasPath)
 
-    df["date"] = pd.to_datetime(df["date"])
+    df["date"] = pd.to_datetime(
+        df["date"]
+    )
 
     df["exp_k_rate"] = pd.to_numeric(
         df["exp_k_rate"]
@@ -395,168 +399,194 @@ def logisticRegression(method, version):
             p / (1 - p)
         )
 
-        # -----------------------------------------
-        # Debug information
-        # -----------------------------------------
+        # Default regression values
+        intercept = np.nan
+        slope = np.nan
 
-        print()
-        print("=" * 60)
-        print(
-            f"DEBUG: method={method}, "
-            f"version={version}, "
-            f"group_type={groupType}, "
-            f"group={group}"
-        )
-        print("=" * 60)
+        interceptSE = np.nan
+        slopeSE = np.nan
 
-        print(f"n: {len(groupDf)}")
+        interceptZ = np.nan
+        slopeZ = np.nan
 
-        print(
-            f"isStrikeout unique: "
-            f"{y.nunique()}"
-        )
+        interceptP = np.nan
+        slopeP = np.nan
 
-        print(
-            f"isStrikeout counts:\n"
-            f"{y.value_counts().to_dict()}"
-        )
+        interceptCILow = np.nan
+        interceptCIHigh = np.nan
 
-        print(
-            f"exp_k_rate unique: "
-            f"{groupDf['exp_k_rate'].nunique()}"
-        )
+        slopeCILow = np.nan
+        slopeCIHigh = np.nan
 
-        print(
-            f"exp_k_rate min: "
-            f"{groupDf['exp_k_rate'].min()}"
-        )
+        logLikelihood = np.nan
+        pseudoR2 = np.nan
 
-        print(
-            f"exp_k_rate max: "
-            f"{groupDf['exp_k_rate'].max()}"
-        )
-
-        print(
-            f"exp_k_rate mean: "
-            f"{groupDf['exp_k_rate'].mean()}"
-        )
-
-        print(
-            f"exp_k_rate std: "
-            f"{groupDf['exp_k_rate'].std()}"
-        )
-
-        print(
-            f"expectedLogit unique: "
-            f"{expectedLogit.nunique()}"
-        )
-
-        print(
-            f"expectedLogit min: "
-            f"{expectedLogit.min()}"
-        )
-
-        print(
-            f"expectedLogit max: "
-            f"{expectedLogit.max()}"
-        )
-
-        print(
-            f"expectedLogit mean: "
-            f"{expectedLogit.mean()}"
-        )
-
-        print(
-            f"expectedLogit std: "
-            f"{expectedLogit.std()}"
-        )
-
-        print(
-            f"NaN exp_k_rate: "
-            f"{groupDf['exp_k_rate'].isna().sum()}"
-        )
-
-        print(
-            f"NaN expectedLogit: "
-            f"{np.isnan(expectedLogit).sum()}"
-        )
-
-        print(
-            f"Inf expectedLogit: "
-            f"{np.isinf(expectedLogit).sum()}"
-        )
-
-        print(
-            f"exp_k_rate <= 0: "
-            f"{(groupDf['exp_k_rate'] <= 0).sum()}"
-        )
-
-        print(
-            f"exp_k_rate >= 100: "
-            f"{(groupDf['exp_k_rate'] >= 100).sum()}"
-        )
-
-        print(f"Weights: {weights}")
-
-        # -----------------------------------------
-        # Logistic regression
-        # -----------------------------------------
-
-        X = sm.add_constant(
-            expectedLogit
-        )
-
-        try:
-            regression = sm.Logit(
-                y,
-                X
-            ).fit(disp=False)
-
-        except Exception as e:
-            print()
-            print("!!! LOGISTIC REGRESSION FAILED !!!")
-            print(
-                f"Error type: {type(e).__name__}"
+        # Logistic regression requires both
+        # 0 and 1 outcomes.
+        if y.nunique() >= 2:
+            X = sm.add_constant(
+                expectedLogit
             )
-            print(
-                f"Error: {e}"
-            )
-            print(
-                f"Group: {groupType} = {group}"
-            )
-            print(
-                f"Version: {version}"
-            )
-            print(
-                f"n: {len(groupDf)}"
-            )
-            print("=" * 60)
-            print()
 
-            raise
+            try:
+                regression = sm.Logit(
+                    y,
+                    X
+                ).fit(disp=False)
 
-        intercept = regression.params.iloc[0]
-        slope = regression.params.iloc[1]
+                intercept = regression.params.iloc[0]
+                slope = regression.params.iloc[1]
 
-        interceptSE = regression.bse.iloc[0]
-        slopeSE = regression.bse.iloc[1]
+                interceptSE = regression.bse.iloc[0]
+                slopeSE = regression.bse.iloc[1]
 
-        interceptZ = regression.tvalues.iloc[0]
-        slopeZ = regression.tvalues.iloc[1]
+                interceptZ = regression.tvalues.iloc[0]
+                slopeZ = regression.tvalues.iloc[1]
 
-        interceptP = regression.pvalues.iloc[0]
-        slopeP = regression.pvalues.iloc[1]
+                interceptP = regression.pvalues.iloc[0]
+                slopeP = regression.pvalues.iloc[1]
 
-        interceptCI = (
-            regression.conf_int().iloc[0]
-        )
+                interceptCI = (
+                    regression.conf_int().iloc[0]
+                )
 
-        slopeCI = (
-            regression.conf_int().iloc[1]
-        )
+                slopeCI = (
+                    regression.conf_int().iloc[1]
+                )
 
-        logLikelihood = regression.llf
-        pseudoR2 = regression.prsquared
+                interceptCILow = interceptCI.iloc[0]
+                interceptCIHigh = interceptCI.iloc[1]
+
+                slopeCILow = slopeCI.iloc[0]
+                slopeCIHigh = slopeCI.iloc[1]
+
+                logLikelihood = regression.llf
+                pseudoR2 = regression.prsquared
+
+            except Exception as e:
+                print()
+                print("=" * 60)
+                print(
+                    "!!! LOGISTIC REGRESSION FAILED !!!"
+                )
+                print("=" * 60)
+
+                print(
+                    f"Error type: {type(e).__name__}"
+                )
+                print(
+                    f"Error: {e}"
+                )
+
+                print(
+                    f"Method: {method}"
+                )
+                print(
+                    f"Version: {version}"
+                )
+                print(
+                    f"Group type: {groupType}"
+                )
+                print(
+                    f"Group: {group}"
+                )
+                print(
+                    f"n: {len(groupDf)}"
+                )
+
+                print(
+                    f"isStrikeout unique: "
+                    f"{y.nunique()}"
+                )
+
+                print(
+                    f"isStrikeout counts: "
+                    f"{y.value_counts().to_dict()}"
+                )
+
+                print(
+                    f"exp_k_rate unique: "
+                    f"{groupDf['exp_k_rate'].nunique()}"
+                )
+
+                print(
+                    f"exp_k_rate min: "
+                    f"{groupDf['exp_k_rate'].min()}"
+                )
+
+                print(
+                    f"exp_k_rate max: "
+                    f"{groupDf['exp_k_rate'].max()}"
+                )
+
+                print(
+                    f"exp_k_rate mean: "
+                    f"{groupDf['exp_k_rate'].mean()}"
+                )
+
+                print(
+                    f"exp_k_rate std: "
+                    f"{groupDf['exp_k_rate'].std()}"
+                )
+
+                print(
+                    f"expectedLogit unique: "
+                    f"{expectedLogit.nunique()}"
+                )
+
+                print(
+                    f"expectedLogit min: "
+                    f"{expectedLogit.min()}"
+                )
+
+                print(
+                    f"expectedLogit max: "
+                    f"{expectedLogit.max()}"
+                )
+
+                print(
+                    f"expectedLogit mean: "
+                    f"{expectedLogit.mean()}"
+                )
+
+                print(
+                    f"expectedLogit std: "
+                    f"{expectedLogit.std()}"
+                )
+
+                print(
+                    f"NaN exp_k_rate: "
+                    f"{groupDf['exp_k_rate'].isna().sum()}"
+                )
+
+                print(
+                    f"NaN expectedLogit: "
+                    f"{np.isnan(expectedLogit).sum()}"
+                )
+
+                print(
+                    f"Inf expectedLogit: "
+                    f"{np.isinf(expectedLogit).sum()}"
+                )
+
+                print(
+                    f"exp_k_rate <= 0: "
+                    f"{(groupDf['exp_k_rate'] <= 0).sum()}"
+                )
+
+                print(
+                    f"exp_k_rate >= 100: "
+                    f"{(groupDf['exp_k_rate'] >= 100).sum()}"
+                )
+
+                print(
+                    f"Weights: {weights}"
+                )
+
+                print("=" * 60)
+                print()
+
+                raise
 
         result = {
             "method": method,
@@ -585,13 +615,13 @@ def logisticRegression(method, version):
             "intercept_p": interceptP,
             "slope_p": slopeP,
             "intercept_ci_low":
-                interceptCI.iloc[0],
+                interceptCILow,
             "intercept_ci_high":
-                interceptCI.iloc[1],
+                interceptCIHigh,
             "slope_ci_low":
-                slopeCI.iloc[0],
+                slopeCILow,
             "slope_ci_high":
-                slopeCI.iloc[1],
+                slopeCIHigh,
             "log_likelihood":
                 logLikelihood,
             "pseudo_r2":
@@ -602,6 +632,7 @@ def logisticRegression(method, version):
 
         return result
 
+    # Overall
     results.append(
         calculateResults(
             df,
@@ -610,6 +641,7 @@ def logisticRegression(method, version):
         )
     )
 
+    # K-rate bins
     bins = [
         0, 5, 10, 15, 20, 25,
         30, 35, 40, 45, 50, 100
@@ -649,14 +681,19 @@ def logisticRegression(method, version):
                 groupDf,
                 "k_rate_bin",
                 str(group),
-                lowerBound=groupDf["exp_k_rate"].min(),
-                upperBound=groupDf["exp_k_rate"].max()
+                lowerBound=
+                    groupDf["exp_k_rate"].min(),
+                upperBound=
+                    groupDf["exp_k_rate"].max()
             )
         )
 
+    # Months
     df["month"] = df["date"].dt.month
 
-    for month, monthDf in df.groupby("month"):
+    for month, monthDf in df.groupby(
+        "month"
+    ):
         results.append(
             calculateResults(
                 monthDf,
@@ -912,7 +949,7 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         
 if __name__ == '__main__':
     method = "003"
-    runs = 2991
+    runs = 2000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
     #logisticRegression(method)
