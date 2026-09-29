@@ -6,8 +6,16 @@ from pathlib import Path
 from scrape_data import getMonthResults, getYearResults, getTotalResults
 import statsmodels.api as sm
 import shutil
+from stabilization import getStabilizedValue
 
 LEAGUE_K_PCT = 22.28
+
+STABILIZATION_PARAMS = {
+    "K%":     {"midpoint": 300, "steepness": 0.015},
+    "Whiff%": {"midpoint": 250, "steepness": 0.018},
+    "SwStr%": {"midpoint": 250, "steepness": 0.018},
+    "CSW%":   {"midpoint": 350, "steepness": 0.012},
+}
 
 def getMethodVariables(method):
     if method == "001":
@@ -30,41 +38,33 @@ def getMethodWeights(method):
 
     return weights
 
-def getStrikeoutChance(pa, method, weights):    
-    # if method == "001":
-    #     if pd.notna(pa["bK%"]):
-    #         return pa["bK%"]
-        
-    #     if pd.notna(pa["pbK%"]):
-    #         return pa["pbK%"]
+def getTrueValues(pa, variables):
+    trueValues = {}
+
+    for variable in variables:
+        params = STABILIZATION_PARAMS[variable]
+
+        trueValues[variable] = getStabilizedValue(
+            pa,
+            variable,
+            params["midpoint"],
+            params["steepness"]
+        )
+
+    return trueValues
+
+def getStrikeoutChance(pa, method, weights):
     variables = getMethodVariables(method)
+    trueVals = getTrueValues(pa, variables)
 
     vars = []
     usedWeights = []
 
     for variable in variables:
-        value = pa[variable]
+        value = trueVals.get(variable, np.nan)
 
         if pd.notna(value):
             vars.append(value)
-            usedWeights.append(weights[variable])
-            continue
-
-        try:
-            value = pa[f"p{variable}"]
-        except:
-            if "K%" in variable:
-                vars.append(LEAGUE_K_PCT)
-                usedWeights.append(weights[variable])
-            continue
-        
-        if pd.notna(value):
-            vars.append(value)
-            usedWeights.append(weights[variable])
-            continue
-            
-        if "K%" in variable:
-            vars.append(LEAGUE_K_PCT)
             usedWeights.append(weights[variable])
 
     if len(vars) == 0:
@@ -72,9 +72,15 @@ def getStrikeoutChance(pa, method, weights):
 
     weight_total = sum(usedWeights)
 
-    usedWeights = [weight / weight_total for weight in usedWeights]
+    usedWeights = [
+        weight / weight_total
+        for weight in usedWeights
+    ]
 
-    exp_k_rate = sum(value * weight for value, weight in zip(vars, usedWeights))
+    exp_k_rate = sum(
+        value * weight
+        for value, weight in zip(vars, usedWeights)
+    )
 
     return exp_k_rate
                 
