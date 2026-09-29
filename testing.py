@@ -194,7 +194,24 @@ def getPATestingData2(yearFrom, yearTo, method):
 
         print(f"Finished version v{version}")
 
-def getPATestingData(cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRuns, version):
+def loadPAData(yearFrom, yearTo):
+    dfs = []
+
+    for year in range(yearFrom, yearTo + 1):
+        path = Path(f"data/pas/{year}")
+
+        for file in path.iterdir():
+            if not file.is_file():
+                continue
+
+            print(f"Loading {year}: {file.name}")
+
+            df = pd.read_csv(file)
+            dfs.append(df)
+
+    return pd.concat(dfs, ignore_index=True)
+
+def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRuns, version):
     methodPath = Path(f"data/testing/method_{method}")
 
     calibrationDataPath = methodPath / "calibration" / "data"
@@ -219,80 +236,58 @@ def getPATestingData(cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRuns, ve
 
         print(f"Running version v{currentVersion} with weights: {weights}")
 
-        allYears = set(
-            range(cYearFrom, cYearTo + 1)
+        df = pas.copy()
+
+    df["exp_k_rate"] = df.apply(
+        getStrikeoutChance,
+        axis=1,
+        args=(method, weights)
+    )
+
+    for variable, weight in weights.items():
+        df[f"{variable}_weight"] = weight
+
+    df = df[
+        [
+            "gid",
+            "date",
+            "year",
+            "batter",
+            "pitcher",
+            "isStrikeout",
+            "exp_k_rate"
+        ]
+        + [
+            f"{variable}_weight"
+            for variable in weights
+        ]
+    ].copy()
+
+    calibrationDf = df[
+        (df["year"] >= cYearFrom) &
+        (df["year"] <= cYearTo)
+    ]
+
+    testingDf = df[
+        (df["year"] >= tYearFrom) &
+        (df["year"] <= tYearTo)
+    ]
+
+    if len(calibrationDf) > 0:
+        calibrationDf.to_csv(
+            calibrationOutFile,
+            index=False
         )
 
-        allYears.update(
-            range(tYearFrom, tYearTo + 1)
+    if len(testingDf) > 0:
+        testingDf.to_csv(
+            testingOutFile,
+            index=False
         )
 
-        for year in sorted(allYears):
-            path = Path(f"data/pas/{year}")
-
-            fNames = [
-                file.name
-                for file in path.iterdir()
-                if file.is_file()
-            ]
-
-            for f in fNames:
-                print(f"v{currentVersion}: {f}")
-
-                df = pd.read_csv(path / f)
-
-                df["exp_k_rate"] = df.apply(
-                    getStrikeoutChance,
-                    axis=1,
-                    args=(method, weights)
-                )
-
-                for variable, weight in weights.items():
-                    df[f"{variable}_weight"] = weight
-
-                df = df[
-                    [
-                        "gid",
-                        "date",
-                        "year",
-                        "batter",
-                        "pitcher",
-                        "isStrikeout",
-                        "exp_k_rate"
-                    ]
-                    + [
-                        f"{variable}_weight"
-                        for variable in weights
-                    ]
-                ].copy()
-
-                calibrationDf = df[
-                    (df["year"] >= cYearFrom) &
-                    (df["year"] <= cYearTo)
-                ]
-
-                testingDf = df[
-                    (df["year"] >= tYearFrom) &
-                    (df["year"] <= tYearTo)
-                ]
-
-                if len(calibrationDf) > 0:
-                    calibrationDf.to_csv(
-                        calibrationOutFile,
-                        mode="a",
-                        header=not calibrationOutFile.exists(),
-                        index=False
-                    )
-
-                if len(testingDf) > 0:
-                    testingDf.to_csv(
-                        testingOutFile,
-                        mode="a",
-                        header=not testingOutFile.exists(),
-                        index=False
-                    )
-
-        print(f"Finished generating v{currentVersion}")
+    print(
+        f"Finished generating v{version}"
+    )
             
 def combinePAs(yearFrom, yearTo, method):
     outPath = Path(f"data/testing/method_{method}")
@@ -942,9 +937,10 @@ def deletePAs(method, version):
 
 def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
     startVersion = getVersion(method)
+    pas = loadPAData(cYearFrom, tYearTo)
     
     for i in range(numRuns):    
-        getPATestingData(cYearFrom, cYearTo, tYearFrom, tYearTo, method, 1, startVersion + i)
+        getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, 1, startVersion + i)
         logisticRegression(method, startVersion + i)
         testCalibration(method, startVersion + i)
         deletePAs(method, startVersion + i)

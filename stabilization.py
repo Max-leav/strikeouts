@@ -43,7 +43,7 @@ def getStabilizedValue(pa, variable, midpoint, steepness):
     prevValid = prevPA > 0 and pd.notna(prevValue)
 
     if curValid and prevValid:
-        curWeight = getStabilizationWeight(curPA, midpoint, steepness, specif)
+        curWeight = getStabilizationWeight(curPA, midpoint, steepness)
 
         prevWeight = 1 - curWeight
 
@@ -160,6 +160,8 @@ if __name__ == '__main__':
         "bcStr%", "pcStr%",
         "bBB%", "pBB%"
     ]
+    
+    specificity = 1
 
     df = pd.DataFrame()
 
@@ -185,6 +187,6 @@ if __name__ == '__main__':
         exist_ok=True
     )
 
-    for variable in variables[1:]:
+    for variable in variables:
         print(f"\nTesting {variable}")
         runStabilizationTests(df, variable, specificity)
