@@ -16,6 +16,8 @@ def getMethodVariables(method):
         return ["bK%", "pK%"]
     elif method == "003":
         return ["bK%", "pbK%", "pK%", "ppK%"]
+    elif method == "004":
+        return ["bK%", "pbK%", "pK%", "ppK%"]
     
 def getMethodWeights(method):
     variables = getMethodVariables(method)

@@ -33,6 +33,7 @@ data/batters/2023/pitches.csv
 data/pitchers/2023/pitches.csv
 
 data/testing/method_*
+data/testing/stabilization
 
 
 # test/debug files
