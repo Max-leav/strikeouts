@@ -11,30 +11,55 @@ from stabilization import getStabilizedValue
 LEAGUE_K_PCT = 22.28
 
 STABILIZATION_PARAMS = {
-    "K%":     {"midpoint": 300, "steepness": 0.015},
-    "Whiff%": {"midpoint": 250, "steepness": 0.018},
-    "SwStr%": {"midpoint": 250, "steepness": 0.018},
+    "bK%": {"midpoint": 40, "steepness": 0.0175},
+    "pK%": {"midpoint": 35, "steepness": 0.0175},
+    "bWhiff%": {"midpoint": 35, "steepness": 0.0250},
+    "pWhiff%": {"midpoint": 35, "steepness": 0.0250},
     "CSW%":   {"midpoint": 350, "steepness": 0.012},
 }
 
+WEIGHT_RANGES = {
+    "K%": (0.9, 1.0),
+    "bK%": (0.7, 1.0),
+    "Whiff%": (0.0, 0.025),
+    "bWhiff%": (0.0, 1.0),
+    "CSW%": (0.0, 1.0),
+    "SwStr%": (0.0, 1.0)
+}
+
 def getMethodVariables(method):
-    if method == "001":
+    if method == "001" or method == "004":
         return ["bK%"]
-    elif method == "002":
+    elif method == "002" or method == "006":
         return ["bK%", "pK%"]
     elif method == "003":
         return ["bK%", "pbK%", "pK%", "ppK%"]
     elif method == "004":
         return ["bK%", "pbK%", "pK%", "ppK%"]
+    elif method == "005":
+        return ["pK%"]
+    elif method == "007":
+        return ["bWhiff%", "pWhiff%"]
+    elif method == "008":
+        return ["bK%", "pK%", "bWhiff%", "pWhiff%"]
     
 def getMethodWeights(method):
     variables = getMethodVariables(method)
+    weights = dict()
+    varWeights = dict()
+    
+    for var in variables:
+        bRange = WEIGHT_RANGES["b" + var]
+        weights["b" + var] = random.uniform(*weightRange)
+        weights["p" + var] = 1 - weights["b" + var]
+        
+        varWeights[var] = random.uniform(*weightRange)
 
-    weights = {variable: random.random() for variable in variables}
+    total = sum(varWeights.values())
 
-    total = sum(weights.values())
-
-    weights = {variable: weight / total for variable, weight in weights.items()}
+    varWeights = {variable: weight / total for variable, weight in varWeights.items()}
+    
+    weights = weights | varWeights
 
     return weights
 
@@ -42,26 +67,76 @@ def getTrueValues(pa, variables):
     trueValues = {}
 
     for variable in variables:
-        params = STABILIZATION_PARAMS[variable]
+        for pre in ["p", "b"]:
+            params = STABILIZATION_PARAMS[pre + variable]
 
-        trueValues[variable] = getStabilizedValue(
-            pa,
-            variable,
-            params["midpoint"],
-            params["steepness"]
-        )
+            trueValues[pre + variable] = getStabilizedValue(pa, pre + variable, params["midpoint"], params["steepness"])
 
     return trueValues
 
+def getCombinedVals(trueVals, variables, weights):
+    combinedVals = {}
+
+    for variable in variables:
+        bValue = trueVals.get("b" + variable, np.nan)
+        pValue = trueVals.get("p" + variable, np.nan)
+
+        bWeight = weights["b" + variable]
+        pWeight = weights["p" + variable]
+
+        values = []
+        usedWeights = []
+
+        if pd.notna(bValue):
+            values.append(bValue)
+            usedWeights.append(bWeight)
+        elif variable == "K%":
+            values.append(LEAGUE_K_PCT)
+            usedWeights.append(bWeight)
+
+        if pd.notna(pValue):
+            values.append(pValue)
+            usedWeights.append(pWeight)
+        elif variable == "K%":
+            values.append(LEAGUE_K_PCT)
+            usedWeights.append(pWeight)
+
+        if len(values) == 0:
+            continue
+
+        weightTotal = sum(usedWeights)
+
+        usedWeights = [
+            weight / weightTotal
+            for weight in usedWeights
+        ]
+
+        combinedVals[variable] = sum(
+            value * weight
+            for value, weight in zip(values, usedWeights)
+        )
+
+    return combinedVals
+
 def getStrikeoutChance(pa, method, weights):
     variables = getMethodVariables(method)
-    trueVals = getTrueValues(pa, variables)
+
+    trueVals = getTrueValues(
+        pa,
+        variables
+    )
+
+    combinedVals = getCombinedVals(
+        trueVals,
+        variables,
+        weights
+    )
 
     vars = []
     usedWeights = []
 
     for variable in variables:
-        value = trueVals.get(variable, np.nan)
+        value = combinedVals.get(variable, np.nan)
 
         if pd.notna(value):
             vars.append(value)
@@ -70,10 +145,10 @@ def getStrikeoutChance(pa, method, weights):
     if len(vars) == 0:
         return LEAGUE_K_PCT
 
-    weight_total = sum(usedWeights)
+    weightTotal = sum(usedWeights)
 
     usedWeights = [
-        weight / weight_total
+        weight / weightTotal
         for weight in usedWeights
     ]
 
@@ -244,56 +319,56 @@ def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRun
 
         df = pas.copy()
 
-    df["exp_k_rate"] = df.apply(
-        getStrikeoutChance,
-        axis=1,
-        args=(method, weights)
-    )
-
-    for variable, weight in weights.items():
-        df[f"{variable}_weight"] = weight
-
-    df = df[
-        [
-            "gid",
-            "date",
-            "year",
-            "batter",
-            "pitcher",
-            "isStrikeout",
-            "exp_k_rate"
-        ]
-        + [
-            f"{variable}_weight"
-            for variable in weights
-        ]
-    ].copy()
-
-    calibrationDf = df[
-        (df["year"] >= cYearFrom) &
-        (df["year"] <= cYearTo)
-    ]
-
-    testingDf = df[
-        (df["year"] >= tYearFrom) &
-        (df["year"] <= tYearTo)
-    ]
-
-    if len(calibrationDf) > 0:
-        calibrationDf.to_csv(
-            calibrationOutFile,
-            index=False
+        df["exp_k_rate"] = df.apply(
+            getStrikeoutChance,
+            axis=1,
+            args=(method, weights)
         )
 
-    if len(testingDf) > 0:
-        testingDf.to_csv(
-            testingOutFile,
-            index=False
-        )
+        for variable, weight in weights.items():
+            df[f"{variable}_weight"] = weight
 
-    print(
-        f"Finished generating v{version}"
-    )
+        df = df[
+            [
+                "gid",
+                "date",
+                "year",
+                "batter",
+                "pitcher",
+                "isStrikeout",
+                "exp_k_rate"
+            ]
+            + [
+                f"{variable}_weight"
+                for variable in weights
+            ]
+        ].copy()
+
+        calibrationDf = df[
+            (df["year"] >= cYearFrom) &
+            (df["year"] <= cYearTo)
+        ]
+
+        testingDf = df[
+            (df["year"] >= tYearFrom) &
+            (df["year"] <= tYearTo)
+        ]
+
+        if len(calibrationDf) > 0:
+            calibrationDf.to_csv(
+                calibrationOutFile,
+                index=False
+            )
+
+        if len(testingDf) > 0:
+            testingDf.to_csv(
+                testingOutFile,
+                index=False
+            )
+
+        print(
+            f"Finished generating v{version}"
+        )
             
 def combinePAs(yearFrom, yearTo, method):
     outPath = Path(f"data/testing/method_{method}")
@@ -952,8 +1027,8 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "003"
-    runs = 2000
+    method = "007"
+    runs = 500
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
     #logisticRegression(method)
