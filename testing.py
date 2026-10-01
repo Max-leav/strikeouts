@@ -15,14 +15,18 @@ STABILIZATION_PARAMS = {
     "pK%": {"midpoint": 35, "steepness": 0.0175},
     "bWhiff%": {"midpoint": 35, "steepness": 0.0250},
     "pWhiff%": {"midpoint": 35, "steepness": 0.0250},
+    "bPutaway%": {"midpoint": 75, "steepness": 0.01},
+    "pPutaway%": {"midpoint": 40, "steepness": 0.0225},
     "CSW%":   {"midpoint": 350, "steepness": 0.012},
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.9, 1.0),
-    "bK%": (0.7, 1.0),
+    "K%": (0.945, 1.0),
+    "bK%": (0.85, 0.995),
     "Whiff%": (0.0, 0.025),
     "bWhiff%": (0.0, 1.0),
+    "Putaway%": (0.0, 0.0325),
+    "bPutaway%": (0.0, 1.0),
     "CSW%": (0.0, 1.0),
     "SwStr%": (0.0, 1.0)
 }
@@ -42,6 +46,11 @@ def getMethodVariables(method):
         return ["bWhiff%", "pWhiff%"]
     elif method == "008":
         return ["bK%", "pK%", "bWhiff%", "pWhiff%"]
+    elif method == "009":
+        return ["K%", "Whiff%"]
+    elif method == "010":
+        return ["K%", "Whiff%", "Putaway%"]
+    
     
 def getMethodWeights(method):
     variables = getMethodVariables(method)
@@ -50,9 +59,10 @@ def getMethodWeights(method):
     
     for var in variables:
         bRange = WEIGHT_RANGES["b" + var]
-        weights["b" + var] = random.uniform(*weightRange)
+        weights["b" + var] = random.uniform(*bRange)
         weights["p" + var] = 1 - weights["b" + var]
         
+        weightRange = WEIGHT_RANGES[var]
         varWeights[var] = random.uniform(*weightRange)
 
     total = sum(varWeights.values())
@@ -1027,8 +1037,8 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "007"
-    runs = 500
+    method = "009"
+    runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
     #logisticRegression(method)
