@@ -23,14 +23,14 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.955, 1.0),
-    "bK%": (0.85, 0.995),
-    "Whiff%": (0.0, 0.0225),
-    "bWhiff%": (0.0, 1.0),
-    "Putaway%": (0.0, 0.0275),
-    "bPutaway%": (0.0, 1.0),
-    "Chase%": (0.0, 0.025),
-    "bChase%": (0.0, 1.0),
+    "K%": (0.95, 0.98),
+    "bK%": (0.94, 0.98),
+    "Whiff%": (0.00475, 0.015),
+    "bWhiff%": (0.4, 0.6),
+    "Putaway%": (0.02, 0.028),
+    "bPutaway%": (0.5, 0.5),
+    "Chase%": (0.0015, 0.0075),
+    "bChase%": (0.5, 0.5),
     "CSW%": (0.0, 1.0),
     "SwStr%": (0.0, 1.0)
 }
@@ -56,8 +56,7 @@ def getMethodVariables(method):
         return ["K%", "Whiff%", "Putaway%"]
     elif method == "011":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
-    
-    
+       
 def getMethodWeights(method):
     variables = getMethodVariables(method)
     weights = dict()

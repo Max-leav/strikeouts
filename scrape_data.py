@@ -509,8 +509,39 @@ def convertGameInfoToCsv():
     df["hPitcher"] = df["hPitcher"].astype('Int64')
     df.to_csv("data/mlbGames.csv", index=False)
 
-def addInfoToStrikeoutLines():
-    pass
+def getLeagueAvgStats(yearFrom, yearTo):
+    pitches = {
+        2023: pd.read_csv("data/batters/2023/pitches.csv"),
+        2024: pd.read_csv("data/batters/2024/pitches.csv"),
+        2025: pd.read_csv("data/batters/2025/pitches.csv"),
+        2026: pd.read_csv("data/batters/2026/pitches.csv"),
+    }
+    
+    dfs = []
+    path = Path(f"data/averages.csv")
+    
+    for combo in [("L", "L"), ("L", "R"), ("R", "L"), ("R", "R")]:
+        ydf = pd.DataFrame(columns=pitches[2023].columns)
+        
+        for year in range(yearFrom, yearTo + 1):
+            df = pitches[year]
+            df = df[(df["stand"] == combo[0]) & (df["p_throws"] == combo[1])].copy()
+            dfs.append(df)
+            
+        ydf = pd.concat(dfs, ignore_index=0)
+            
+        ydf["batter"] = 10
+        
+        stats = groupOverall(ydf, "batter", False)    
+        stats = condenseStats(stats, "batter")
+        
+        stats["bSide"] = combo[0]
+        stats["pSide"] = combo[1]
+        
+        stats = stats[['bSide','pSide','PA','AVG','K','K%','BB','BB%','OPS','ISO','Whiff%','SwStr%','cStr%','CSW%','Chase%','Putaway%']].copy()
+        
+        stats.to_csv(path, mode="a", header=not path.exists(), index=False)
+        
 
 if __name__ == '__main__':
     #getAllGameInfo()
@@ -522,4 +553,5 @@ if __name__ == '__main__':
     #addPAStats(2024, 2026)
     #getAllPAResults(2024, 2026)
     #convertGameInfoToCsv()
+    getLeagueAvgStats(2023, 2026)
     pass
