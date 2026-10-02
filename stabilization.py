@@ -8,6 +8,8 @@ import statsmodels.api as sm
 import shutil
 from sklearn.metrics import log_loss
 
+AVERAGES = pd.read_csv("data/averages.csv")
+
 def getStabilizationParams(specificity):
     if specificity == 0:
         midpoints = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550]
@@ -32,6 +34,7 @@ def getStabilizedValue(pa, variable, midpoint, steepness):
     
     curPA = pa.get(f"{variable[0]}PA", 0)
     prevPA = pa.get(f"p{variable[0]}PA", 0)
+    playerPA = curPA + prevPA
 
     curPA = 0 if pd.isna(curPA) else curPA
     prevPA = 0 if pd.isna(prevPA) else prevPA
@@ -41,24 +44,42 @@ def getStabilizedValue(pa, variable, midpoint, steepness):
 
     curValid = curPA > 0 and pd.notna(curValue)
     prevValid = prevPA > 0 and pd.notna(prevValue)
+    
+    avgs = AVERAGES[
+        (AVERAGES["bSide"] == pa["bSide"]) &
+        (AVERAGES["pSide"] == pa["pSide"])
+    ]
+    leagueValue = avgs.iloc[0][variable[1:]]
+    playerValue = leagueValue
 
     if curValid and prevValid:
         curWeight = getStabilizationWeight(curPA, midpoint, steepness)
 
         prevWeight = 1 - curWeight
 
-        return (
+        playerValue = (
             curValue * curWeight +
             prevValue * prevWeight
         )
+    elif curValid:
+        playerValue = curValue
+        playerPA = curPA
+    elif prevValid:
+        playerValue = prevValue
+        playerPA = prevPA
 
-    if curValid:
-        return curValue
+    playerWeight = getStabilizationWeight(
+        playerPA,
+        midpoint,
+        steepness
+    )
 
-    if prevValid:
-        return prevValue
+    leagueWeight = 1 - playerWeight
 
-    return np.nan
+    return (
+        playerValue * playerWeight +
+        leagueValue * leagueWeight
+    )
 
 def calculateStabilizationMetrics(df, variable, midpoint, steepness):
     prevVar = "p" + variable

@@ -6,7 +6,7 @@ from pathlib import Path
 from scrape_data import getMonthResults, getYearResults, getTotalResults
 import statsmodels.api as sm
 import shutil
-from stabilization import getStabilizedValue
+from stabilization import getStabilizedValue, getStabilizationWeight
 
 LEAGUE_K_PCT = 22.28
 
@@ -35,6 +35,8 @@ WEIGHT_RANGES = {
     "SwStr%": (0.0, 1.0)
 }
 
+AVERAGES = pd.read_csv("data/averages.csv")
+
 def getMethodVariables(method):
     if method == "001" or method == "004":
         return ["bK%"]
@@ -52,7 +54,7 @@ def getMethodVariables(method):
         return ["bK%", "pK%", "bWhiff%", "pWhiff%"]
     elif method == "009":
         return ["K%", "Whiff%"]
-    elif method == "010":
+    elif method == "010" or method == "012":
         return ["K%", "Whiff%", "Putaway%"]
     elif method == "011":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
@@ -80,12 +82,34 @@ def getMethodWeights(method):
 
 def getTrueValues(pa, variables):
     trueValues = {}
+    #print(f"PAs: {pa['bPA']}, {pa['pPA']}")
 
     for variable in variables:
         for pre in ["p", "b"]:
             params = STABILIZATION_PARAMS[pre + variable]
 
             trueValues[pre + variable] = getStabilizedValue(pa, pre + variable, params["midpoint"], params["steepness"])
+            # #print(f"{pre + variable}: {pa[pre + variable]} | p{pre + variable}: {pa['p' + pre + variable]}")
+            # params = STABILIZATION_PARAMS[pre + variable]
+            
+            # totalPAs = pa[pre + "PA"] + pa[f"p{pre}PA"]
+            
+            # firstStablizedValue = getStabilizedValue(pa, pre + variable, params["midpoint"], params["steepness"])
+            
+            # pa[pre + "PA"] = totalPAs
+            # pa[pre + variable] = pa["p" + pre + variable]
+            # pa["p" + pre + variable] = AVERAGES[variable]
+            # #playerWeight = getStabilizationWeight(totalPAs, params["midpoint"], params["steepness"])
+            # # avgWeight = 1 - playerWeight
+            
+            # # curValue = pa.get(variable, np.nan)
+            # # prevValue = pa.get("p" + variable, np.nan)
+
+            # trueValues[pre + variable] = getStabilizedValue(pa, pre + variable, params["midpoint"], params["steepness"])
+            # #print("True Value: ")
+            
+    #print(trueValues)
+    #exit(1)
 
     return trueValues
 
@@ -1042,8 +1066,8 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "011"
-    runs = 5000
+    method = "012"
+    runs = 1
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
     #logisticRegression(method)
