@@ -23,15 +23,16 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.95, 0.98),
-    "bK%": (0.94, 0.98),
-    "Whiff%": (0.00475, 0.015),
+    "K%": (0.85, 1.045),
+    "bK%": (0.9, 0.98),
+    "Whiff%": (0.00475, 0.05),
     "bWhiff%": (0.4, 0.6),
-    "Putaway%": (0.02, 0.028),
+    "Putaway%": (0.02, 0.065),
     "bPutaway%": (0.5, 0.5),
-    "Chase%": (0.0015, 0.0075),
+    "Chase%": (0.0015, 0.0275),
     "bChase%": (0.5, 0.5),
-    "CSW%": (0.0, 1.0),
+    "CSW%": (0.001, 0.035),
+    "bCSW%": (0.5, 0.5),
     "SwStr%": (0.0, 1.0)
 }
 
@@ -56,8 +57,10 @@ def getMethodVariables(method):
         return ["K%", "Whiff%"]
     elif method == "010" or method == "012":
         return ["K%", "Whiff%", "Putaway%"]
-    elif method == "011":
+    elif method == "011" or method == "013":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
+    elif method == "014":
+        return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%"]
        
 def getMethodWeights(method):
     variables = getMethodVariables(method)
@@ -82,34 +85,12 @@ def getMethodWeights(method):
 
 def getTrueValues(pa, variables):
     trueValues = {}
-    #print(f"PAs: {pa['bPA']}, {pa['pPA']}")
 
     for variable in variables:
         for pre in ["p", "b"]:
             params = STABILIZATION_PARAMS[pre + variable]
 
             trueValues[pre + variable] = getStabilizedValue(pa, pre + variable, params["midpoint"], params["steepness"])
-            # #print(f"{pre + variable}: {pa[pre + variable]} | p{pre + variable}: {pa['p' + pre + variable]}")
-            # params = STABILIZATION_PARAMS[pre + variable]
-            
-            # totalPAs = pa[pre + "PA"] + pa[f"p{pre}PA"]
-            
-            # firstStablizedValue = getStabilizedValue(pa, pre + variable, params["midpoint"], params["steepness"])
-            
-            # pa[pre + "PA"] = totalPAs
-            # pa[pre + variable] = pa["p" + pre + variable]
-            # pa["p" + pre + variable] = AVERAGES[variable]
-            # #playerWeight = getStabilizationWeight(totalPAs, params["midpoint"], params["steepness"])
-            # # avgWeight = 1 - playerWeight
-            
-            # # curValue = pa.get(variable, np.nan)
-            # # prevValue = pa.get("p" + variable, np.nan)
-
-            # trueValues[pre + variable] = getStabilizedValue(pa, pre + variable, params["midpoint"], params["steepness"])
-            # #print("True Value: ")
-            
-    #print(trueValues)
-    #exit(1)
 
     return trueValues
 
