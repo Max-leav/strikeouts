@@ -24,15 +24,15 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.85, 1.045),
-    "bK%": (0.9, 0.98),
-    "Whiff%": (0.00475, 0.05),
+    "K%": (0.7, 0.97),
+    "bK%": (0.7, 0.98),
+    "Whiff%": (0.00475, 0.3),
     "bWhiff%": (0.4, 0.6),
-    "Putaway%": (0.02, 0.065),
+    "Putaway%": (0.02, 0.08),
     "bPutaway%": (0.5, 0.5),
-    "Chase%": (0.0015, 0.0275),
+    "Chase%": (0.0015, 0.06),
     "bChase%": (0.5, 0.5),
-    "CSW%": (0.001, 0.035),
+    "CSW%": (0.001, 0.06),
     "bCSW%": (0.5, 0.5),
     "SwStr%": (0.0, 1.0)
 }
@@ -54,9 +54,9 @@ def getMethodVariables(method):
         return ["bWhiff%", "pWhiff%"]
     elif method == "008":
         return ["bK%", "pK%", "bWhiff%", "pWhiff%"]
-    elif method == "009":
+    elif method == "009" or method == "015":
         return ["K%", "Whiff%"]
-    elif method == "010" or method == "012" or method == "015":
+    elif method == "010" or method == "012":
         return ["K%", "Whiff%", "Putaway%"]
     elif method == "011" or method == "013":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
@@ -610,8 +610,6 @@ def logisticRegression(method, version, df=None):
                 print("=" * 60)
                 print()
 
-                raise
-
         result = {
             "method": method,
             "version": version,
@@ -990,7 +988,7 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "010"
+    method = "015"
     runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
