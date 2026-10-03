@@ -741,7 +741,10 @@ def logisticRegression(method, version, df=None):
         f"results for v{version} at {datetime.now()}"
     )
     
-def testCalibration(method, model, df=None):
+    overallResult = results[0] 
+    return overallResult["intercept"], overallResult["slope"]
+    
+def testCalibration(method, model, slope, intercept, df=None):
     version = model
 
     methodPath = Path(
@@ -786,6 +789,16 @@ def testCalibration(method, model, df=None):
     df["isStrikeout"] = pd.to_numeric(
         df["isStrikeout"]
     )
+    
+    if pd.notna(intercept) and pd.notna(slope):
+        p = (df["exp_k_rate"] / 100).clip(1e-6, 1 - 1e-6)
+        expectedLogit = np.log(p / (1 - p))
+        
+        calibratedLogit = intercept + slope * expectedLogit
+        
+        calibrated_p = 1 / (1 + np.exp(-calibratedLogit))
+        df["exp_k_rate"] = calibrated_p * 100
+    # ---------------------------------------------------------
 
     weightColumns = [
         column
@@ -970,9 +983,9 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
     for i in range(numRuns):    
         regressionDf, testingDf = getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, 1, startVersion + i, True)
         
-        logisticRegression(method, startVersion + i, regressionDf)
+        intercept, slope = logisticRegression(method, startVersion + i, regressionDf)
         
-        testCalibration(method, startVersion + i, testingDf)
+        testCalibration(method, startVersion + i, slope, intercept, testingDf)
         
         deletePAs(method, startVersion + i)
         
