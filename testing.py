@@ -6,7 +6,7 @@ from pathlib import Path
 from scrape_data import getMonthResults, getYearResults, getTotalResults
 import statsmodels.api as sm
 import shutil
-from stabilization import getStabilizedValue
+from stabilization import getStabilizedValue, getStabilizationWeight
 
 LEAGUE_K_PCT = 22.28
 
@@ -19,21 +19,25 @@ STABILIZATION_PARAMS = {
     "pPutaway%": {"midpoint": 40, "steepness": 0.0225},
     "bChase%": {"midpoint": 200, "steepness": 0.005},
     "pChase%": {"midpoint": 100, "steepness": 0.0075},
-    "CSW%":   {"midpoint": 350, "steepness": 0.012},
+    "bCSW%": {"midpoint": 50, "steepness": 0.005},
+    "pCSW%": {"midpoint": 50, "steepness": 0.005},
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.95, 0.98),
-    "bK%": (0.94, 0.98),
-    "Whiff%": (0.00475, 0.015),
+    "K%": (0.85, 1.045),
+    "bK%": (0.9, 0.98),
+    "Whiff%": (0.00475, 0.05),
     "bWhiff%": (0.4, 0.6),
-    "Putaway%": (0.02, 0.028),
+    "Putaway%": (0.02, 0.065),
     "bPutaway%": (0.5, 0.5),
-    "Chase%": (0.0015, 0.0075),
+    "Chase%": (0.0015, 0.0275),
     "bChase%": (0.5, 0.5),
-    "CSW%": (0.0, 1.0),
+    "CSW%": (0.001, 0.035),
+    "bCSW%": (0.5, 0.5),
     "SwStr%": (0.0, 1.0)
 }
+
+AVERAGES = pd.read_csv("data/averages.csv")
 
 def getMethodVariables(method):
     if method == "001" or method == "004":
@@ -52,10 +56,12 @@ def getMethodVariables(method):
         return ["bK%", "pK%", "bWhiff%", "pWhiff%"]
     elif method == "009":
         return ["K%", "Whiff%"]
-    elif method == "010":
+    elif method == "010" or method == "012":
         return ["K%", "Whiff%", "Putaway%"]
-    elif method == "011":
+    elif method == "011" or method == "013":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
+    elif method == "014":
+        return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%"]
        
 def getMethodWeights(method):
     variables = getMethodVariables(method)
@@ -516,7 +522,7 @@ def logisticRegression(method, version):
 
         # Logistic regression requires both
         # 0 and 1 outcomes.
-        if y.nunique() >= 2:
+        if y.nunique() >= 2 and len(groupDf) >= 15:
             X = sm.add_constant(
                 expectedLogit
             )
@@ -1042,7 +1048,7 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "011"
+    method = "014"
     runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)

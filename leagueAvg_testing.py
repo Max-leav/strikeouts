@@ -19,7 +19,8 @@ STABILIZATION_PARAMS = {
     "pPutaway%": {"midpoint": 40, "steepness": 0.0225},
     "bChase%": {"midpoint": 200, "steepness": 0.005},
     "pChase%": {"midpoint": 100, "steepness": 0.0075},
-    "CSW%":   {"midpoint": 350, "steepness": 0.012},
+    "bCSW%": {"midpoint": 50, "steepness": 0.005},
+    "pCSW%": {"midpoint": 50, "steepness": 0.005},
 }
 
 WEIGHT_RANGES = {
@@ -521,7 +522,7 @@ def logisticRegression(method, version):
 
         # Logistic regression requires both
         # 0 and 1 outcomes.
-        if y.nunique() >= 2:
+        if y.nunique() >= 2 and len(groupDf) >= 15:
             X = sm.add_constant(
                 expectedLogit
             )
@@ -1047,8 +1048,8 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "012"
-    runs = 1
+    method = "014"
+    runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
     #logisticRegression(method)
