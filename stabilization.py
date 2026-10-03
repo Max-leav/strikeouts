@@ -9,6 +9,7 @@ import shutil
 from sklearn.metrics import log_loss
 
 AVERAGES = pd.read_csv("data/averages.csv")
+AVERAGES_DICT = AVERAGES.set_index(['bSide', 'pSide']).to_dict('index')
 
 def getStabilizationParams(specificity):
     if specificity == 0:
@@ -45,11 +46,7 @@ def getStabilizedValue(pa, variable, midpoint, steepness):
     curValid = curPA > 0 and pd.notna(curValue)
     prevValid = prevPA > 0 and pd.notna(prevValue)
     
-    avgs = AVERAGES[
-        (AVERAGES["bSide"] == pa["bSide"]) &
-        (AVERAGES["pSide"] == pa["pSide"])
-    ]
-    leagueValue = avgs.iloc[0][variable[1:]]
+    leagueValue = AVERAGES_DICT[(pa["bSide"], pa["pSide"])][variable[1:]]
     playerValue = leagueValue
 
     if curValid and prevValid:

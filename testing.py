@@ -56,7 +56,7 @@ def getMethodVariables(method):
         return ["bK%", "pK%", "bWhiff%", "pWhiff%"]
     elif method == "009":
         return ["K%", "Whiff%"]
-    elif method == "010" or method == "012":
+    elif method == "010" or method == "012" or method == "015":
         return ["K%", "Whiff%", "Putaway%"]
     elif method == "011" or method == "013":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
@@ -217,85 +217,6 @@ def testModelNumbers(yearFrom, yearTo, method):
     
     stats.to_csv(f"data/testing/method_{method}_Results.csv", index=False)
 
-def getPATestingData2(yearFrom, yearTo, method):
-    methodPath = Path(f"data/testing/method_{method}")
-    dataPath = methodPath / "data"
-
-    methodPath.mkdir(parents=True, exist_ok=True)
-    dataPath.mkdir(parents=True, exist_ok=True)
-
-    print(dataPath.iterdir()[-1])
-    exit(1)
-    # Find existing version directories inside data/
-    versions = [p for p in dataPath.iterdir()]
-    
-    if len(versions) > 0:
-        highestVersion = versions[-1]
-        startVersion = highestVersion + 1
-    else:
-        startVersion = 0
-
-    print(f"Starting at version v{startVersion}")
-
-    for i in range(numRuns):
-        version = startVersion + i
-
-        outPath = dataPath / f"v{version}"
-        outPath.mkdir(parents=True, exist_ok=True)
-
-        outFile = outPath / "pas.csv"
-
-        weights = getMethodWeights(method)
-
-        print(f"Running version v{version} with weights: {weights}")
-
-        for year in range(yearFrom, yearTo + 1):
-            p = f"data/pas/{year}"
-            path = Path(p)
-
-            fNames = [
-                file.name
-                for file in path.iterdir()
-                if file.is_file()
-            ]
-
-            for f in fNames:
-                print(f"v{version}: {f}")
-
-                df = pd.read_csv(path / f)
-
-                df["exp_k_rate"] = df.apply(
-                    getStrikeoutChance,
-                    axis=1,
-                    args=(method, weights)
-                )
-
-                # Store the weights used for this version
-                for variable, weight in weights.items():
-                    df[f"{variable}_weight"] = weight
-
-                df = df[
-                    [
-                        "gid",
-                        "date",
-                        "year",
-                        "batter",
-                        "pitcher",
-                        "isStrikeout",
-                        "exp_k_rate"
-                    ]
-                    + [f"{variable}_weight" for variable in weights]
-                ].copy()
-
-                df.to_csv(
-                    outFile,
-                    mode="a",
-                    header=not outFile.exists(),
-                    index=False
-                )
-
-        print(f"Finished version v{version}")
-
 def loadPAData(yearFrom, yearTo):
     dfs = []
 
@@ -313,7 +234,7 @@ def loadPAData(yearFrom, yearTo):
 
     return pd.concat(dfs, ignore_index=True)
 
-def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRuns, version):
+def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRuns, version, returnPAs):
     methodPath = Path(f"data/testing/method_{method}")
 
     calibrationDataPath = methodPath / "calibration" / "data"
@@ -325,18 +246,9 @@ def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRun
     for i in range(numRuns):
         currentVersion = version + i
 
-        calibrationOutPath = calibrationDataPath / f"v{currentVersion}"
-        testingOutPath = testingDataPath / f"v{currentVersion}"
-
-        calibrationOutPath.mkdir(parents=True, exist_ok=True)
-        testingOutPath.mkdir(parents=True, exist_ok=True)
-
-        calibrationOutFile = calibrationOutPath / "pas.csv"
-        testingOutFile = testingOutPath / "pas.csv"
-
         weights = getMethodWeights(method)
 
-        print(f"Running version v{currentVersion} with weights: {weights}")
+        print(f"Running version v{currentVersion} with weights: {weights} at {datetime.now()}")
 
         df = pas.copy()
 
@@ -375,21 +287,33 @@ def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRun
             (df["year"] <= tYearTo)
         ]
 
-        if len(calibrationDf) > 0:
-            calibrationDf.to_csv(
-                calibrationOutFile,
-                index=False
-            )
+        if not returnPAs:
+            calibrationOutPath = calibrationDataPath / f"v{currentVersion}"
+            testingOutPath = testingDataPath / f"v{currentVersion}"
 
-        if len(testingDf) > 0:
-            testingDf.to_csv(
-                testingOutFile,
-                index=False
-            )
+            calibrationOutPath.mkdir(parents=True, exist_ok=True)
+            testingOutPath.mkdir(parents=True, exist_ok=True)
+
+            calibrationOutFile = calibrationOutPath / "pas.csv"
+            testingOutFile = testingOutPath / "pas.csv"
+            
+            if len(calibrationDf) > 0:
+                calibrationDf.to_csv(
+                    calibrationOutFile,
+                    index=False
+                )
+
+            if len(testingDf) > 0:
+                testingDf.to_csv(
+                    testingOutFile,
+                    index=False
+                )
 
         print(
-            f"Finished generating v{version}"
+            f"Finished generating v{version}  at {datetime.now()}"
         )
+        
+        return calibrationDf, testingDf
             
 def combinePAs(yearFrom, yearTo, method):
     outPath = Path(f"data/testing/method_{method}")
@@ -413,17 +337,9 @@ def combinePAs(yearFrom, yearTo, method):
                 index=False
             )
             
-def logisticRegression(method, version):
+def logisticRegression(method, version, df=None):
     methodPath = Path(
         f"data/testing/method_{method}"
-    )
-
-    pasPath = (
-        methodPath /
-        "calibration" /
-        "data" /
-        f"v{version}" /
-        "pas.csv"
     )
 
     outputPath = (
@@ -431,20 +347,29 @@ def logisticRegression(method, version):
         "calibration" /
         "logisticRegression.csv"
     )
-
-    if not pasPath.exists():
-        print(
-            f"No calibration data found for "
-            f"method {method}, version {version}"
+    
+    if df is None:
+        pasPath = (
+            methodPath /
+            "calibration" /
+            "data" /
+            f"v{version}" /
+            "pas.csv"
         )
-        return
+
+        if not pasPath.exists():
+            print(
+                f"No calibration data found for "
+                f"method {method}, version {version}"
+            )
+            return
+        
+        df = pd.read_csv(pasPath)
 
     print(
         f"Running logistic regression for "
-        f"method {method}, v{version}"
+        f"method {method}, v{version} at {datetime.now()}"
     )
-
-    df = pd.read_csv(pasPath)
 
     df["date"] = pd.to_datetime(
         df["date"]
@@ -813,22 +738,14 @@ def logisticRegression(method, version):
 
     print(
         f"Saved calibration regression "
-        f"results for v{version}"
+        f"results for v{version} at {datetime.now()}"
     )
     
-def testCalibration(method, model):
+def testCalibration(method, model, df=None):
     version = model
 
     methodPath = Path(
         f"data/testing/method_{method}"
-    )
-
-    pasPath = (
-        methodPath /
-        "testing" /
-        "data" /
-        f"v{version}" /
-        "pas.csv"
     )
 
     outputPath = (
@@ -836,20 +753,29 @@ def testCalibration(method, model):
         "testing" /
         "results.csv"
     )
-
-    if not pasPath.exists():
-        print(
-            f"No testing data found for "
-            f"method {method}, version {version}"
+    
+    if df is None:
+        pasPath = (
+            methodPath /
+            "testing" /
+            "data" /
+            f"v{version}" /
+            "pas.csv"
         )
-        return
+
+        if not pasPath.exists():
+            print(
+                f"No testing data found for "
+                f"method {method}, version {version}"
+            )
+            return
+        
+        df = pd.read_csv(pasPath)
 
     print(
         f"Running testing for "
-        f"method {method}, v{version}"
+        f"method {method}, v{version} at {datetime.now()}"
     )
-
-    df = pd.read_csv(pasPath)
 
     df["date"] = pd.to_datetime(df["date"])
 
@@ -993,7 +919,7 @@ def testCalibration(method, model):
     )
 
     print(
-        f"Saved testing results for v{version}"
+        f"Saved testing results for v{version} at {datetime.now()}"
     )
 
 def getVersion(method):
@@ -1042,13 +968,16 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
     pas = loadPAData(cYearFrom, tYearTo)
     
     for i in range(numRuns):    
-        getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, 1, startVersion + i)
-        logisticRegression(method, startVersion + i)
-        testCalibration(method, startVersion + i)
+        regressionDf, testingDf = getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, 1, startVersion + i, True)
+        
+        logisticRegression(method, startVersion + i, regressionDf)
+        
+        testCalibration(method, startVersion + i, testingDf)
+        
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "014"
+    method = "010"
     runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
