@@ -21,6 +21,12 @@ STABILIZATION_PARAMS = {
     "pChase%": {"midpoint": 100, "steepness": 0.0075},
     "bCSW%": {"midpoint": 50, "steepness": 0.005},
     "pCSW%": {"midpoint": 50, "steepness": 0.005},
+    "bBB%": {"midpoint": 75, "steepness": 0.0175},
+    "bcStr%": {"midpoint": 200, "steepness": 0.005},
+    "bSwStr%": {"midpoint": 150, "steepness": 0.005},
+    "pBB%": {"midpoint": 100, "steepness": 0.01},
+    "pcStr%": {"midpoint": 40, "steepness": 0.025},
+    "pSwStr%": {"midpoint": 100, "steepness": 0.005},
 }
 
 WEIGHT_RANGES = {
@@ -38,7 +44,7 @@ WEIGHT_RANGES = {
     "bSwStr%": (0.5, 0.5),
     "cStr%": (0.001, 0.06),
     "bcStr%": (0.5, 0.5),
-    "BB%": (0.001, 0.06),
+    "BB%": (-0.06, 0.06),
     "bBB%": (0.5, 0.5),
 }
 
@@ -1090,7 +1096,7 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "016"
+    method = "019"
     runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
