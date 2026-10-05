@@ -60,7 +60,7 @@ def getMethodVariables(method):
         return ["K%", "Whiff%", "Putaway%"]
     elif method == "011" or method == "013":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
-    elif method == "014":
+    elif method == "014" or method == "016":
         return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%"]
        
 def getMethodWeights(method):
@@ -988,8 +988,8 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "015"
-    runs = 5000
+    method = "016"
+    runs = 1
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
     #logisticRegression(method)
