@@ -179,6 +179,87 @@ def getStrikeoutChance(pa, method, weights):
     )
 
     return exp_k_rate
+
+def getStrikeoutChanceVectorized(df, method, weights):
+    variables = getMethodVariables(method)
+    exp_k_rate_df = pd.DataFrame(index=df.index)
+    
+    for var in variables:
+        # Map League Averages for this variable using a MultiIndex lookup
+        lookup_series = AVERAGES.set_index(['bSide', 'pSide'])[var]
+        lg_val = df.set_index(['bSide', 'pSide']).index.map(lookup_series).values
+        
+        # Convert to Series and fallback to LEAGUE_K_PCT if missing
+        lg_series = pd.Series(lg_val, index=df.index)
+        if var == "K%":
+            lg_series = lg_series.fillna(LEAGUE_K_PCT)
+
+        for pre in ["p", "b"]:
+            col_name = pre + var
+            prev_col_name = "p" + col_name
+            pa_col = pre + "PA"
+            prev_pa_col = "p" + pre + "PA"
+
+            params = STABILIZATION_PARAMS[col_name]
+            mid = params["midpoint"]
+            steep = params["steepness"]
+
+            # Fill missing PAs with 0
+            cur_pa = df[pa_col].fillna(0)
+            prev_pa = df[prev_pa_col].fillna(0)
+            player_pa = cur_pa + prev_pa
+
+            cur_val = df[col_name]
+            prev_val = df[prev_col_name]
+
+            # Establish valid masks
+            cur_valid = (cur_pa > 0) & cur_val.notna()
+            prev_valid = (prev_pa > 0) & prev_val.notna()
+
+            # Vectorized exponential weights
+            cur_weight = 1 / (1 + np.exp(-steep * (cur_pa - mid)))
+            player_weight = 1 / (1 + np.exp(-steep * (player_pa - mid)))
+
+            # Player value logic
+            player_value = lg_series.copy()
+            
+            # Both Valid
+            both_mask = cur_valid & prev_valid
+            player_value = np.where(
+                both_mask, 
+                cur_val * cur_weight + prev_val * (1 - cur_weight), 
+                player_value
+            )
+
+            # Only Current Valid
+            cur_only_mask = cur_valid & ~prev_valid
+            player_value = np.where(cur_only_mask, cur_val, player_value)
+
+            # Only Previous Valid
+            prev_only_mask = ~cur_valid & prev_valid
+            player_value = np.where(prev_only_mask, prev_val, player_value)
+
+            # Calculate true stabilized value
+            true_val = player_value * player_weight + lg_series * (1 - player_weight)
+            exp_k_rate_df[f"true_{col_name}"] = true_val
+
+        # Combine Pitcher and Batter True Values
+        b_weight = weights["b" + var]
+        p_weight = weights["p" + var]
+        exp_k_rate_df[f"comb_{var}"] = (
+            exp_k_rate_df[f"true_b{var}"] * b_weight + 
+            exp_k_rate_df[f"true_p{var}"] * p_weight
+        )
+        
+    # Combine all core variables into the final expected K rate
+    final_exp_k_rate = pd.Series(0.0, index=df.index)
+    weight_total = sum(weights[var] for var in variables)
+    
+    for var in variables:
+        normalized_weight = weights[var] / weight_total
+        final_exp_k_rate += exp_k_rate_df[f"comb_{var}"] * normalized_weight
+        
+    return final_exp_k_rate
                 
 def getPAPrediction(pa, method):
     xk_pct = getStrikeoutChance(pa, method)
@@ -252,11 +333,7 @@ def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRun
 
         df = pas.copy()
 
-        df["exp_k_rate"] = df.apply(
-            getStrikeoutChance,
-            axis=1,
-            args=(method, weights)
-        )
+        df["exp_k_rate"] = getStrikeoutChanceVectorized(df, method, weights)
 
         for variable, weight in weights.items():
             df[f"{variable}_weight"] = weight
