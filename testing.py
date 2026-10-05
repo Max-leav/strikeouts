@@ -24,15 +24,15 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.7, 0.97),
-    "bK%": (0.7, 0.98),
-    "Whiff%": (0.00475, 0.3),
-    "bWhiff%": (0.4, 0.6),
-    "Putaway%": (0.02, 0.08),
+    "K%": (0.734, 0.734),
+    "bK%": (0.71, 0.71),
+    "Whiff%": (0.13, 0.13),
+    "bWhiff%": (0.5, 0.5),
+    "Putaway%": (0.08, 0.08),
     "bPutaway%": (0.5, 0.5),
-    "Chase%": (0.0015, 0.06),
+    "Chase%": (0.06, 0.06),
     "bChase%": (0.5, 0.5),
-    "CSW%": (0.001, 0.06),
+    "CSW%": (0.5, 0.5),
     "bCSW%": (0.5, 0.5),
     "SwStr%": (0.0, 1.0)
 }
@@ -60,7 +60,7 @@ def getMethodVariables(method):
         return ["K%", "Whiff%", "Putaway%"]
     elif method == "011" or method == "013":
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
-    elif method == "014":
+    elif method == "014" or method == "016":
         return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%"]
        
 def getMethodWeights(method):
@@ -1065,7 +1065,7 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "015"
+    method = "016"
     runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
