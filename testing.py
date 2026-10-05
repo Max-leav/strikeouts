@@ -139,48 +139,48 @@ def getCombinedVals(trueVals, variables, weights):
 
     return combinedVals
 
-def getStrikeoutChance(pa, method, weights):
-    variables = getMethodVariables(method)
+# def getStrikeoutChance(pa, method, weights):
+#     variables = getMethodVariables(method)
 
-    trueVals = getTrueValues(
-        pa,
-        variables
-    )
+#     trueVals = getTrueValues(
+#         pa,
+#         variables
+#     )
 
-    combinedVals = getCombinedVals(
-        trueVals,
-        variables,
-        weights
-    )
+#     combinedVals = getCombinedVals(
+#         trueVals,
+#         variables,
+#         weights
+#     )
 
-    vars = []
-    usedWeights = []
+#     vars = []
+#     usedWeights = []
 
-    for variable in variables:
-        value = combinedVals.get(variable, np.nan)
+#     for variable in variables:
+#         value = combinedVals.get(variable, np.nan)
 
-        if pd.notna(value):
-            vars.append(value)
-            usedWeights.append(weights[variable])
+#         if pd.notna(value):
+#             vars.append(value)
+#             usedWeights.append(weights[variable])
 
-    if len(vars) == 0:
-        return LEAGUE_K_PCT
+#     if len(vars) == 0:
+#         return LEAGUE_K_PCT
 
-    weightTotal = sum(usedWeights)
+#     weightTotal = sum(usedWeights)
 
-    usedWeights = [
-        weight / weightTotal
-        for weight in usedWeights
-    ]
+#     usedWeights = [
+#         weight / weightTotal
+#         for weight in usedWeights
+#     ]
 
-    exp_k_rate = sum(
-        value * weight
-        for value, weight in zip(vars, usedWeights)
-    )
+#     exp_k_rate = sum(
+#         value * weight
+#         for value, weight in zip(vars, usedWeights)
+#     )
 
-    return exp_k_rate
+#     return exp_k_rate
 
-def getStrikeoutChanceVectorized(df, method, weights):
+def getStrikeoutChance(df, method, weights):
     variables = getMethodVariables(method)
     exp_k_rate_df = pd.DataFrame(index=df.index)
     
@@ -347,7 +347,7 @@ def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRun
 
         df = pas.copy()
 
-        df["exp_k_rate"] = getStrikeoutChanceVectorized(df, method, weights)
+        df["exp_k_rate"] = getStrikeoutChance(df, method, weights)
 
         for variable, weight in weights.items():
             df[f"{variable}_weight"] = weight
