@@ -24,17 +24,22 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.734, 0.734),
-    "bK%": (0.71, 0.71),
-    "Whiff%": (0.13, 0.13),
+    "K%": (0.6, 0.95),
+    "bK%": (0.6, 0.77),
+    "Whiff%": (0.025, 0.085),
     "bWhiff%": (0.5, 0.5),
-    "Putaway%": (0.08, 0.08),
+    "Putaway%": (0.0175, 0.09),
     "bPutaway%": (0.5, 0.5),
-    "Chase%": (0.06, 0.06),
+    "Chase%": (0.0015, 0.06),
     "bChase%": (0.5, 0.5),
-    "CSW%": (0.5, 0.5),
+    "CSW%": (0.001, 0.06),
     "bCSW%": (0.5, 0.5),
-    "SwStr%": (0.0, 1.0)
+    "SwStr%": (0.001, 0.06),
+    "bSwStr%": (0.5, 0.5),
+    "cStr%": (0.001, 0.06),
+    "bcStr%": (0.5, 0.5),
+    "BB%": (0.001, 0.06),
+    "bBB%": (0.5, 0.5),
 }
 
 AVERAGES = pd.read_csv("data/averages.csv")
@@ -62,6 +67,12 @@ def getMethodVariables(method):
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
     elif method == "014" or method == "016":
         return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%"]
+    elif method == "017":
+        return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%", "SwStr%"]
+    elif method == "018":
+        return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%", "SwStr%", "cStr%"]
+    elif method == "019":
+        return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%", "SwStr%", "cStr%", "BB%"]
        
 def getMethodWeights(method):
     variables = getMethodVariables(method)
