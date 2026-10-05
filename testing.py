@@ -24,15 +24,15 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.7, 0.97),
-    "bK%": (0.7, 0.98),
-    "Whiff%": (0.00475, 0.3),
-    "bWhiff%": (0.4, 0.6),
-    "Putaway%": (0.02, 0.08),
+    "K%": (0.734, 0.734),
+    "bK%": (0.71, 0.71),
+    "Whiff%": (0.13, 0.13),
+    "bWhiff%": (0.5, 0.5),
+    "Putaway%": (0.08, 0.08),
     "bPutaway%": (0.5, 0.5),
-    "Chase%": (0.0015, 0.06),
+    "Chase%": (0.06, 0.06),
     "bChase%": (0.5, 0.5),
-    "CSW%": (0.001, 0.06),
+    "CSW%": (0.5, 0.5),
     "bCSW%": (0.5, 0.5),
     "SwStr%": (0.0, 1.0)
 }
@@ -179,7 +179,102 @@ def getStrikeoutChance(pa, method, weights):
     )
 
     return exp_k_rate
-                
+
+def getStrikeoutChanceVectorized(df, method, weights):
+    variables = getMethodVariables(method)
+    exp_k_rate_df = pd.DataFrame(index=df.index)
+    
+    for var in variables:
+        # Match League averages exactly
+        lookup_series = AVERAGES.set_index(['bSide', 'pSide'])[var]
+        lg_val = df.set_index(['bSide', 'pSide']).index.map(lookup_series).values
+        lg_series = pd.Series(lg_val, index=df.index)
+        
+        for pre in ["p", "b"]:
+            col_name = pre + var
+            prev_col_name = "p" + col_name
+            pa_col = pre + "PA"
+            prev_pa_col = "p" + pre + "PA"
+            
+            params = STABILIZATION_PARAMS[col_name]
+            mid = params["midpoint"]
+            steep = params["steepness"]
+            
+            cur_pa = df[pa_col].fillna(0)
+            prev_pa = df[prev_pa_col].fillna(0)
+            
+            cur_val = df[col_name]
+            prev_val = df[prev_col_name]
+            
+            cur_valid = (cur_pa > 0) & cur_val.notna()
+            prev_valid = (prev_pa > 0) & prev_val.notna()
+            
+            # 1. Corrected Player PA Logic: Overwrite PA if only one season is valid
+            active_player_pa = cur_pa + prev_pa
+            active_player_pa = np.where(cur_valid & ~prev_valid, cur_pa, active_player_pa)
+            active_player_pa = np.where(~cur_valid & prev_valid, prev_pa, active_player_pa)
+            
+            cur_weight = 1 / (1 + np.exp(-steep * (cur_pa - mid)))
+            player_weight = 1 / (1 + np.exp(-steep * (active_player_pa - mid)))
+            
+            # Base logic defaults to league average if both are invalid
+            player_value = lg_series.copy()
+            player_value = np.where(
+                cur_valid & prev_valid,
+                cur_val * cur_weight + prev_val * (1 - cur_weight),
+                player_value
+            )
+            player_value = np.where(cur_valid & ~prev_valid, cur_val, player_value)
+            player_value = np.where(~cur_valid & prev_valid, prev_val, player_value)
+            
+            true_val = player_value * player_weight + lg_series * (1 - player_weight)
+            exp_k_rate_df[f"true_{pre}{var}"] = true_val
+            
+        # 2. Corrected Combiner: Handles True Value NaNs and dynamically re-weights
+        b_val = exp_k_rate_df[f"true_b{var}"]
+        p_val = exp_k_rate_df[f"true_p{var}"]
+        b_weight = weights["b" + var]
+        p_weight = weights["p" + var]
+        
+        if var == "K%":
+            b_val = b_val.fillna(LEAGUE_K_PCT)
+            p_val = p_val.fillna(LEAGUE_K_PCT)
+            
+        used_b_weight = np.where(b_val.notna(), b_weight, 0.0)
+        used_p_weight = np.where(p_val.notna(), p_weight, 0.0)
+        tot_weight = used_b_weight + used_p_weight
+        
+        # Safe denominator avoids divide-by-zero on completely missing inputs
+        safe_tot = np.where(tot_weight > 0, tot_weight, 1.0)
+        
+        exp_k_rate_df[f"comb_{var}"] = np.where(
+            tot_weight > 0,
+            (b_val.fillna(0) * (used_b_weight / safe_tot)) + 
+            (p_val.fillna(0) * (used_p_weight / safe_tot)),
+            np.nan
+        )
+        
+    # 3. Final Weighting: Dynamically ignores variables that returned NaN
+    final_exp = pd.Series(0.0, index=df.index)
+    total_var_weights = pd.Series(0.0, index=df.index)
+    
+    for var in variables:
+        comb = exp_k_rate_df[f"comb_{var}"]
+        is_valid = comb.notna()
+        w = weights[var]
+        
+        total_var_weights += np.where(is_valid, w, 0.0)
+        final_exp += np.where(is_valid, comb.fillna(0) * w, 0.0)
+        
+    # Apply final fallback if every single component was completely absent
+    final_exp = np.where(
+        total_var_weights > 0,
+        final_exp / total_var_weights,
+        LEAGUE_K_PCT
+    )
+    
+    return pd.Series(final_exp, index=df.index)
+
 def getPAPrediction(pa, method):
     xk_pct = getStrikeoutChance(pa, method)
     res = random.random()
@@ -252,11 +347,7 @@ def getPATestingData(pas, cYearFrom, cYearTo, tYearFrom, tYearTo, method, numRun
 
         df = pas.copy()
 
-        df["exp_k_rate"] = df.apply(
-            getStrikeoutChance,
-            axis=1,
-            args=(method, weights)
-        )
+        df["exp_k_rate"] = getStrikeoutChanceVectorized(df, method, weights)
 
         for variable, weight in weights.items():
             df[f"{variable}_weight"] = weight
@@ -989,7 +1080,7 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         
 if __name__ == '__main__':
     method = "016"
-    runs = 1
+    runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
     #logisticRegression(method)
