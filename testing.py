@@ -30,10 +30,10 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.75, 0.89),
+    "K%": (0.72, 0.865),
     "bK%": (0.6, 0.67),
-    "Whiff%": (0.033, 0.083),
-    "bWhiff%": (0.386, 0.49),
+    "Whiff%": (0.03, 0.085),
+    "bWhiff%": (0.386, 0.57),
     "Putaway%": (0.02, 0.093),
     "bPutaway%": (0.5, 0.5),
     "Chase%": (0.001, 0.025),
@@ -1096,7 +1096,7 @@ def runModel(method, cYearFrom, cYearTo, tYearFrom, tYearTo, numRuns):
         deletePAs(method, startVersion + i)
         
 if __name__ == '__main__':
-    method = "019"
+    method = "021"
     runs = 5000
     #testModelNumbers(2024, 2025, "001")
     #getPATestingData(2024, 2025, 2026, 2026, method, runs)
