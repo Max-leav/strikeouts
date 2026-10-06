@@ -30,15 +30,15 @@ STABILIZATION_PARAMS = {
 }
 
 WEIGHT_RANGES = {
-    "K%": (0.7, 0.93),
-    "bK%": (0.6, 0.77),
-    "Whiff%": (0.033, 0.08),
-    "bWhiff%": (0.386, 0.568),
+    "K%": (0.75, 0.89),
+    "bK%": (0.6, 0.67),
+    "Whiff%": (0.033, 0.083),
+    "bWhiff%": (0.386, 0.49),
     "Putaway%": (0.02, 0.093),
     "bPutaway%": (0.5, 0.5),
-    "Chase%": (0.001, 0.06),
+    "Chase%": (0.001, 0.025),
     "bChase%": (0.5, 0.5),
-    "CSW%": (0.001, 0.059),
+    "CSW%": (0.001, 0.057),
     "bCSW%": (0.5, 0.5),
     "SwStr%": (0.001, 0.06),
     "bSwStr%": (0.5, 0.5),
@@ -73,11 +73,11 @@ def getMethodVariables(method):
         return ["K%", "Whiff%", "Putaway%", "Chase%"]
     elif method == "014" or method == "016":
         return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%"]
-    elif method == "017":
+    elif method == "017" or method == "020":
         return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%", "SwStr%"]
-    elif method == "018":
+    elif method == "018" or method == "021":
         return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%", "SwStr%", "cStr%"]
-    elif method == "019":
+    elif method == "019" or method == "022":
         return ["K%", "Whiff%", "Putaway%", "Chase%", "CSW%", "SwStr%", "cStr%", "BB%"]
        
 def getMethodWeights(method):
