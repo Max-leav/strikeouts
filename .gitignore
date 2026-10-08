@@ -34,7 +34,7 @@ data/pitchers/2023/pitches.csv
 
 data/testing/method_*
 data/testing/stabilization
-
+data/pitches
 
 # test/debug files
 savant_data (8).csv
