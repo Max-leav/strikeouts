@@ -161,6 +161,111 @@ def sluggingValue(event):
     else:
         return 0
 
+def condenseRawPitches(df):
+    df = df[
+        [
+            "pitch_type",
+            "pitch_name",
+            "game_date",
+            "release_speed",
+            "player_name",
+            "batter",
+            "pitcher",
+            "events",
+            "description",
+            "zone",
+            "stand",
+            "p_throws",
+            "balls",
+            "strikes",
+            "game_year",
+            "umpire",
+            "game_pk",
+            "n_thruorder_pitcher",
+            "n_priorpa_thisgame_player_at_bat",
+            "pitcher_days_since_prev_game",
+            "arm_angle",
+        ]
+    ]
+    
+    df["pitch_group"] = df["pitch_type"].map(PITCH_GROUPINGS)
+
+    df["swing"] = df["description"].isin(
+        SWING_DESCRIPTIONS
+    )
+
+    df["whiff"] = df["description"].isin(
+        WHIFF_DESCRIPTIONS
+    )
+
+    df["called_strike"] = df["description"].isin(
+        CALLED_STRIKE_DESCRIPTIONS
+    )
+    
+    df["pitch_out_of_zone"] = (df["zone"].map(pitchOutOfZone).fillna(False).astype(bool))
+
+    df["chase"] = df.apply(isChase, axis=1)
+    
+    df["two_strike_pitch"] = df["strikes"] == 2
+
+    df["putaway_pitch"] = df.apply(isPutawayPitch, axis=1)
+
+    df["at_bat_vs_pitcher"] = np.minimum(
+        df["n_thruorder_pitcher"],
+        df["n_priorpa_thisgame_player_at_bat"] + 1
+    )
+
+    df["isPA"] = df["events"].notna()
+    df["isAB"] = df["events"].isin(AB_EVENTS)
+    df["isHit"] = df["events"].isin(HIT_EVENTS)
+    df["isStrikeout"] = df["events"].isin(STRIKEOUT_EVENTS)
+    df["isWalk"] = df["events"].isin(WALK_EVENTS)
+    df["isOnBase"] = df["events"].isin(ON_BASE_EVENTS)
+    df["onBaseOpp"] = df["events"].isin(ON_BASE_OPPORTUNITIES)
+    df["slug"] = pd.to_numeric(df["events"].map(sluggingValue),errors="coerce")
+    
+    return df
+
+def getAllSeasonPitches(year):
+    dates = pd.date_range(start=f"{year}-03-20", end=f"{year}-11-05")
+    
+    daily_dfs = []
+    
+    for date in dates:
+        date_str = date.strftime("%Y-%m-%d")
+        
+        params = {
+            "all": "true",
+            "type": "details",
+            "hfGT": "R|P|", 
+            "hfSea": str(year),
+            "player_type": "pitcher",
+            "game_date_gt": date_str,
+            "game_date_lt": date_str,
+        }
+        
+        for attempt in range(5):
+            try:
+                response = get(url, params=params, timeout=30)
+                response.raise_for_status()
+                break
+            except:
+                time.sleep(0.5)
+        
+        if "pitch_type" in response.text:
+            day_df = pd.read_csv(StringIO(response.text))
+            if not day_df.empty:
+                print(f"Scraped {len(day_df)} pitches for {date_str}")
+                daily_dfs.append(day_df)
+        
+        time.sleep(0.5)
+
+    df = pd.concat(daily_dfs, ignore_index=True)
+    
+    df = condenseRawPitches(df)
+    
+    return df
+
 def getParams(mlbid, startDate, endDate, position):
     if position == "batter":
         return {
@@ -247,72 +352,8 @@ def getRawPitches(mlbid, startDate, endDate, position):
             time.sleep(0.5)
 
     df = pd.read_csv(StringIO(response.text))
-    df = df[
-        [
-            "pitch_type",
-            "pitch_name",
-            "game_date",
-            "release_speed",
-            "player_name",
-            "batter",
-            "pitcher",
-            "events",
-            "description",
-            "zone",
-            "stand",
-            "p_throws",
-            "balls",
-            "strikes",
-            "game_year",
-            "umpire",
-            "game_pk",
-            "n_thruorder_pitcher",
-            "n_priorpa_thisgame_player_at_bat",
-            "pitcher_days_since_prev_game",
-            "arm_angle",
-        ]
-    ]
     
-    df["pitch_group"] = df["pitch_type"].map(PITCH_GROUPINGS)
-
-    df["swing"] = df["description"].isin(
-        SWING_DESCRIPTIONS
-    )
-
-    df["whiff"] = df["description"].isin(
-        WHIFF_DESCRIPTIONS
-    )
-
-    df["called_strike"] = df["description"].isin(
-        CALLED_STRIKE_DESCRIPTIONS
-    )
-    
-    df["pitch_out_of_zone"] = (df["zone"].map(pitchOutOfZone).fillna(False).astype(bool))
-
-    df["chase"] = df.apply(isChase, axis=1)
-    
-    df["two_strike_pitch"] = df["strikes"] == 2
-
-    df["putaway_pitch"] = df.apply(isPutawayPitch, axis=1)
-
-    df["at_bat_vs_pitcher"] = np.minimum(
-        df["n_thruorder_pitcher"],
-        df["n_priorpa_thisgame_player_at_bat"] + 1
-    )
-
-    df["isPA"] = df["events"].notna()
-    df["isAB"] = df["events"].isin(AB_EVENTS)
-    df["isHit"] = df["events"].isin(HIT_EVENTS)
-    df["isStrikeout"] = df["events"].isin(STRIKEOUT_EVENTS)
-    df["isWalk"] = df["events"].isin(WALK_EVENTS)
-    df["isOnBase"] = df["events"].isin(ON_BASE_EVENTS)
-    df["onBaseOpp"] = df["events"].isin(ON_BASE_OPPORTUNITIES)
-    df["slug"] = pd.to_numeric(df["events"].map(sluggingValue),errors="coerce")
-    
-    # if len(df) == 0:
-    #     raise RuntimeError(
-    #         "Baseball Savant returned zero rows.\n"
-    #     )
+    df = condenseRawPitches(df)
     
     return df
 
